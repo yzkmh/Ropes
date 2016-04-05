@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="KMAlertView">
+            <rect key="frame" x="0.0" y="0.0" width="250" height="150"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="xAd-SK-sLt" userLabel="bgImg">
+                    <rect key="frame" x="0.0" y="0.0" width="250" height="150"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M0l-ZB-obg">
+                    <rect key="frame" x="15" y="105" width="90" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="lYc-2N-Pxf"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                    <state key="normal" title="取消" backgroundImage="bg1.png">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="cancelBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="k6t-6a-Sx8"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QgL-df-sIr">
+                    <rect key="frame" x="146" y="105" width="90" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="esV-V1-bNA"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                    <state key="normal" title="找回密码" backgroundImage="bg1.png">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="ensureBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="Oaj-d5-pEZ"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="是不是忘记密码了?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHN-ax-lCs">
+                    <rect key="frame" x="0.0" y="45" width="250" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="6Do-bx-YMX"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="QgL-df-sIr" secondAttribute="trailing" constant="14" id="3WX-R6-bJO"/>
+                <constraint firstAttribute="bottom" secondItem="QgL-df-sIr" secondAttribute="bottom" constant="15" id="4ax-k7-iq7"/>
+                <constraint firstAttribute="trailing" secondItem="xAd-SK-sLt" secondAttribute="trailing" id="66c-ei-B1s"/>
+                <constraint firstAttribute="trailing" secondItem="zHN-ax-lCs" secondAttribute="trailing" id="6Zg-0q-Xa2"/>
+                <constraint firstAttribute="bottom" secondItem="xAd-SK-sLt" secondAttribute="bottom" id="7xm-SO-c1a"/>
+                <constraint firstAttribute="bottom" secondItem="M0l-ZB-obg" secondAttribute="bottom" constant="15" id="GYA-nm-9SL"/>
+                <constraint firstItem="QgL-df-sIr" firstAttribute="leading" secondItem="M0l-ZB-obg" secondAttribute="trailing" constant="41" id="KOQ-ex-REF"/>
+                <constraint firstItem="zHN-ax-lCs" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="LGs-1E-I4M"/>
+                <constraint firstItem="M0l-ZB-obg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="LfY-yb-XKs"/>
+                <constraint firstItem="QgL-df-sIr" firstAttribute="leading" secondItem="M0l-ZB-obg" secondAttribute="trailing" constant="41" id="TOC-0X-1cy"/>
+                <constraint firstItem="xAd-SK-sLt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Xhe-Ty-VEg"/>
+                <constraint firstItem="QgL-df-sIr" firstAttribute="width" secondItem="M0l-ZB-obg" secondAttribute="width" id="Yr5-gB-1tq"/>
+                <constraint firstAttribute="trailing" secondItem="QgL-df-sIr" secondAttribute="trailing" constant="15" id="bSv-SF-ebZ"/>
+                <constraint firstItem="xAd-SK-sLt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="t4I-PT-V7Q"/>
+                <constraint firstItem="xAd-SK-sLt" firstAttribute="top" secondItem="zHN-ax-lCs" secondAttribute="bottom" constant="-66" id="z62-HT-or7"/>
+                <constraint firstAttribute="bottom" secondItem="QgL-df-sIr" secondAttribute="bottom" constant="15" id="zzN-r7-4bs"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="bSv-SF-ebZ"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="cancelBtn" destination="M0l-ZB-obg" id="TED-lx-ZwF"/>
+                <outlet property="ensureBtn" destination="QgL-df-sIr" id="SdY-Ni-XxX"/>
+                <outlet property="textLabel" destination="zHN-ax-lCs" id="GJJ-1D-wxk"/>
+            </connections>
+            <point key="canvasLocation" x="405" y="187"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="background" width="320" height="436"/>
+        <image name="bg1.png" width="280" height="77"/>
+    </resources>
+</document>

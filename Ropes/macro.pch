@@ -1,0 +1,24 @@
+//
+//  macro.pch
+//  Ropes
+//
+//  Created by Madoka on 16/3/2.
+//  Copyright © 2016年 Madoka. All rights reserved.
+//
+
+#ifndef macro_pch
+#define macro_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#define SCREEN_CENTER CGPointMake([UIScreen mainScreen].bounds.size.width * 0.5, [UIScreen mainScreen].bounds.size.height * 0.5)
+#define KMMainScreenBounds [[UIScreen mainScreen] bounds]
+
+
+
+
+#define kBASEURL @"http://www.vbaoxiao.net/mashituone/cappController/"
+// 归档位置
+#define kPATH [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"user"]
+
+#endif /* macro_pch */

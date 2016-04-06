@@ -25,6 +25,8 @@
     _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.showView.frame.origin.y+self.showView.frame.size.height, self.view.frame.size.width, 120)];
     [_tableView setDataSource:self];
     
+    [self.view addSubview:_tableView];
+    
     
     
     // Do any additional setup after loading the view.

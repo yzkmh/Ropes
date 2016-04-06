@@ -44,11 +44,16 @@
     _leftTableView = [[UITableView alloc]initWithFrame:CGRectMake(naviView.bounds.origin.x, 0, naviView.bounds.size.width, naviView.bounds.size.height-45)];
     [_leftTableView setDelegate:self];
     [_leftTableView setDataSource:self];
+    _leftTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    //_leftTableView.backgroundColor = [UIColor clearColor];
     [naviView addToShowView:_leftTableView];
+    
+    
     
     _rightTableView = [[UITableView alloc]initWithFrame:CGRectMake(naviView.bounds.size.width, 0, naviView.bounds.size.width, naviView.bounds.size.height-45)];
     [_rightTableView setDelegate:self];
     [_rightTableView setDataSource:self];
+    _rightTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [naviView addToShowView:_rightTableView];
     
     [self.view addSubview:naviView];
@@ -89,8 +94,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    KMLotteryMoreViewController *lotteryMore = [[KMLotteryMoreViewController alloc]initWithNibName:@"KMLotteryMoreViewController" bundle:[NSBundle mainBundle]];
-    [lotteryMore setTitle:@"彩票详情"];
+    KMLotteryMoreViewController *lotteryMore = [[[NSBundle mainBundle]loadNibNamed:@"KMLotteryMoreViewController" owner:nil options:nil]objectAtIndex:0];
     [self.navigationController pushViewController:lotteryMore animated:YES];
 }
 

@@ -61,6 +61,10 @@
     self.showView.showsVerticalScrollIndicator = NO;
     self.showView.showsHorizontalScrollIndicator = NO;
     
+    self.showView.bounces = NO;
+    
+    self.showView.backgroundColor = [UIColor clearColor];
+    
     [self.showView setDelegate:self];
     
 }

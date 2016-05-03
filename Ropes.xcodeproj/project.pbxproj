@@ -14,6 +14,19 @@
 		135688541CB3F9B50017565C /* KMNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 135688521CB3F9B50017565C /* KMNavigationView.m */; };
 		135688551CB3F9B50017565C /* KMNavigationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 135688531CB3F9B50017565C /* KMNavigationView.xib */; };
 		135688581CB3FA000017565C /* KMLotteryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 135688571CB3FA000017565C /* KMLotteryCell.m */; };
+		1356885D1CB552AF0017565C /* KMVoucherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1356885C1CB552AF0017565C /* KMVoucherViewController.m */; };
+		1356885F1CB555030017565C /* KMVoucherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1356885E1CB555030017565C /* KMVoucherCell.xib */; };
+		135688621CB5577C0017565C /* KMVoucherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 135688611CB5577C0017565C /* KMVoucherCell.m */; };
+		135688651CB55AD10017565C /* KMVoucherMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 135688641CB55AD10017565C /* KMVoucherMoreViewController.m */; };
+		135688671CB55B500017565C /* KMVoucherMoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 135688661CB55B500017565C /* KMVoucherMoreViewController.xib */; };
+		135688691CB560A80017565C /* KMShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 135688681CB560A80017565C /* KMShopCell.xib */; };
+		1356886C1CB561130017565C /* KMShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1356886B1CB561130017565C /* KMShopViewController.m */; };
+		1356886F1CB561D90017565C /* KMShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1356886E1CB561D90017565C /* KMShopCell.m */; };
+		135688741CB5DE400017565C /* KMAuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 135688731CB5DE400017565C /* KMAuthenticationViewController.m */; };
+		135688761CB5DEE60017565C /* KMAuthenticationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 135688751CB5DEE60017565C /* KMAuthenticationCell.xib */; };
+		135688791CB743810017565C /* KMAuthenticationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 135688781CB743810017565C /* KMAuthenticationCell.m */; };
+		1356887D1CB747640017565C /* KMAuthenticationMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1356887B1CB747640017565C /* KMAuthenticationMoreViewController.m */; };
+		1356887E1CB747640017565C /* KMAuthenticationMoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1356887C1CB747640017565C /* KMAuthenticationMoreViewController.xib */; };
 		1357B6701CA4B69D00BDF221 /* KMUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1357B66F1CA4B69D00BDF221 /* KMUserManager.m */; };
 		136E1AD41CA670A2005B3F4D /* KMCouponViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 136E1AD31CA670A2005B3F4D /* KMCouponViewController.m */; };
 		136E1AD61CA670D6005B3F4D /* KMCoupon.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 136E1AD51CA670D6005B3F4D /* KMCoupon.storyboard */; };
@@ -121,6 +134,27 @@
 		135688531CB3F9B50017565C /* KMNavigationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KMNavigationView.xib; sourceTree = "<group>"; };
 		135688561CB3F9FF0017565C /* KMLotteryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMLotteryCell.h; sourceTree = "<group>"; };
 		135688571CB3FA000017565C /* KMLotteryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMLotteryCell.m; sourceTree = "<group>"; };
+		1356885B1CB552AF0017565C /* KMVoucherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMVoucherViewController.h; sourceTree = "<group>"; };
+		1356885C1CB552AF0017565C /* KMVoucherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMVoucherViewController.m; sourceTree = "<group>"; };
+		1356885E1CB555030017565C /* KMVoucherCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KMVoucherCell.xib; sourceTree = "<group>"; };
+		135688601CB5577C0017565C /* KMVoucherCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMVoucherCell.h; sourceTree = "<group>"; };
+		135688611CB5577C0017565C /* KMVoucherCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMVoucherCell.m; sourceTree = "<group>"; };
+		135688631CB55AD10017565C /* KMVoucherMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMVoucherMoreViewController.h; sourceTree = "<group>"; };
+		135688641CB55AD10017565C /* KMVoucherMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMVoucherMoreViewController.m; sourceTree = "<group>"; };
+		135688661CB55B500017565C /* KMVoucherMoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KMVoucherMoreViewController.xib; sourceTree = "<group>"; };
+		135688681CB560A80017565C /* KMShopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KMShopCell.xib; sourceTree = "<group>"; };
+		1356886A1CB561130017565C /* KMShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMShopViewController.h; sourceTree = "<group>"; };
+		1356886B1CB561130017565C /* KMShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMShopViewController.m; sourceTree = "<group>"; };
+		1356886D1CB561D90017565C /* KMShopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMShopCell.h; sourceTree = "<group>"; };
+		1356886E1CB561D90017565C /* KMShopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMShopCell.m; sourceTree = "<group>"; };
+		135688721CB5DE400017565C /* KMAuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMAuthenticationViewController.h; sourceTree = "<group>"; };
+		135688731CB5DE400017565C /* KMAuthenticationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMAuthenticationViewController.m; sourceTree = "<group>"; };
+		135688751CB5DEE60017565C /* KMAuthenticationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KMAuthenticationCell.xib; sourceTree = "<group>"; };
+		135688771CB743810017565C /* KMAuthenticationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMAuthenticationCell.h; sourceTree = "<group>"; };
+		135688781CB743810017565C /* KMAuthenticationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMAuthenticationCell.m; sourceTree = "<group>"; };
+		1356887A1CB747640017565C /* KMAuthenticationMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMAuthenticationMoreViewController.h; sourceTree = "<group>"; };
+		1356887B1CB747640017565C /* KMAuthenticationMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMAuthenticationMoreViewController.m; sourceTree = "<group>"; };
+		1356887C1CB747640017565C /* KMAuthenticationMoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KMAuthenticationMoreViewController.xib; sourceTree = "<group>"; };
 		1357B66E1CA4B69D00BDF221 /* KMUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMUserManager.h; sourceTree = "<group>"; };
 		1357B66F1CA4B69D00BDF221 /* KMUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMUserManager.m; sourceTree = "<group>"; };
 		136E1AD21CA670A2005B3F4D /* KMCouponViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMCouponViewController.h; sourceTree = "<group>"; };
@@ -290,6 +324,34 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		1356885A1CB551E90017565C /* 代金券 */ = {
+			isa = PBXGroup;
+			children = (
+				135688631CB55AD10017565C /* KMVoucherMoreViewController.h */,
+				135688641CB55AD10017565C /* KMVoucherMoreViewController.m */,
+				135688661CB55B500017565C /* KMVoucherMoreViewController.xib */,
+				1356885B1CB552AF0017565C /* KMVoucherViewController.h */,
+				1356885C1CB552AF0017565C /* KMVoucherViewController.m */,
+				135688601CB5577C0017565C /* KMVoucherCell.h */,
+				135688611CB5577C0017565C /* KMVoucherCell.m */,
+			);
+			name = "代金券";
+			sourceTree = "<group>";
+		};
+		135688711CB5DD890017565C /* 身份认证 */ = {
+			isa = PBXGroup;
+			children = (
+				135688721CB5DE400017565C /* KMAuthenticationViewController.h */,
+				135688731CB5DE400017565C /* KMAuthenticationViewController.m */,
+				1356887A1CB747640017565C /* KMAuthenticationMoreViewController.h */,
+				1356887B1CB747640017565C /* KMAuthenticationMoreViewController.m */,
+				1356887C1CB747640017565C /* KMAuthenticationMoreViewController.xib */,
+				135688771CB743810017565C /* KMAuthenticationCell.h */,
+				135688781CB743810017565C /* KMAuthenticationCell.m */,
+			);
+			name = "身份认证";
+			sourceTree = "<group>";
+		};
 		1357B66A1CA4B32300BDF221 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -304,11 +366,17 @@
 		136E1AD11CA67006005B3F4D /* 优惠 */ = {
 			isa = PBXGroup;
 			children = (
+				135688711CB5DD890017565C /* 身份认证 */,
+				1356885A1CB551E90017565C /* 代金券 */,
 				135688401CB3F5D30017565C /* 彩票 */,
 				136E1AD21CA670A2005B3F4D /* KMCouponViewController.h */,
 				136E1AD31CA670A2005B3F4D /* KMCouponViewController.m */,
 				136E1AD71CA676D5005B3F4D /* KMCouponCell.h */,
 				136E1AD81CA676D5005B3F4D /* KMCouponCell.m */,
+				1356886A1CB561130017565C /* KMShopViewController.h */,
+				1356886B1CB561130017565C /* KMShopViewController.m */,
+				1356886D1CB561D90017565C /* KMShopCell.h */,
+				1356886E1CB561D90017565C /* KMShopCell.m */,
 			);
 			name = "优惠";
 			sourceTree = "<group>";
@@ -582,6 +650,9 @@
 				BBB019711C86D3F80071362D /* KMCouponCell.xib */,
 				135688491CB3F7010017565C /* KMLotteryCell.xib */,
 				A7A972091CB1B50A00847478 /* KMBankCardCell.xib */,
+				1356885E1CB555030017565C /* KMVoucherCell.xib */,
+				135688681CB560A80017565C /* KMShopCell.xib */,
+				135688751CB5DEE60017565C /* KMAuthenticationCell.xib */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -654,7 +725,7 @@
 				TargetAttributes = {
 					BB2C981D1C85431D00BAEE17 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = B369MLR595;
+						DevelopmentTeam = TXSZ7XA3XE;
 					};
 					BB2C98361C85431D00BAEE17 = {
 						CreatedOnToolsVersion = 7.2;
@@ -709,16 +780,20 @@
 				A70B8D921CA96F7C00575096 /* closeIcon.png in Resources */,
 				A70B8D8F1CA96F7C00575096 /* user_normal.png in Resources */,
 				A70B8D9B1CA96F7C00575096 /* selected.png in Resources */,
+				1356887E1CB747640017565C /* KMAuthenticationMoreViewController.xib in Resources */,
 				135688551CB3F9B50017565C /* KMNavigationView.xib in Resources */,
 				A70B8D941CA96F7C00575096 /* searchIcon.png in Resources */,
 				A741CAC31CAFB81A001F323C /* tag_highlight.png in Resources */,
+				1356885F1CB555030017565C /* KMVoucherCell.xib in Resources */,
 				A70B8D8D1CA96F7C00575096 /* logo.png in Resources */,
+				135688761CB5DEE60017565C /* KMAuthenticationCell.xib in Resources */,
 				BB8FB2B01C8572FB00EFCE91 /* KMLogin.storyboard in Resources */,
 				A70B8DA21CA96F7C00575096 /* cut.png in Resources */,
 				A70B8D8C1CA96F7C00575096 /* bg2.png in Resources */,
 				A70B8DA71CA96F7C00575096 /* ma.png in Resources */,
 				A70B8DA51CA96F7C00575096 /* bigBg.png in Resources */,
 				A70B8D901CA96F7C00575096 /* yellowTip.png in Resources */,
+				135688691CB560A80017565C /* KMShopCell.xib in Resources */,
 				A70B8D991CA96F7C00575096 /* infoIcon.png in Resources */,
 				A741CABC1CAF7A0A001F323C /* LCProgressHUD.bundle in Resources */,
 				A70B8D931CA96F7C00575096 /* unselected.png in Resources */,
@@ -728,6 +803,7 @@
 				A70B8D9A1CA96F7C00575096 /* flag.png in Resources */,
 				136E1AD61CA670D6005B3F4D /* KMCoupon.storyboard in Resources */,
 				A70B8D951CA96F7C00575096 /* card.png in Resources */,
+				135688671CB55B500017565C /* KMVoucherMoreViewController.xib in Resources */,
 				BBB019721C86D3F80071362D /* KMCouponCell.xib in Resources */,
 				A7C667261CAFDB7500094D7B /* touxiang.png in Resources */,
 				A70B8D9F1CA96F7C00575096 /* card_normal.png in Resources */,
@@ -766,24 +842,32 @@
 				A7A971FF1CB1A81200847478 /* NSNumber+FlickerNumber.m in Sources */,
 				A70B54651CA8088F00E919C6 /* KMForgetPwdController.m in Sources */,
 				BB2C98291C85431D00BAEE17 /* ViewController.m in Sources */,
+				1356886F1CB561D90017565C /* KMShopCell.m in Sources */,
 				A712D6091CB0DBF30008FB99 /* KMEditInfoViewController.m in Sources */,
 				BB2C98261C85431D00BAEE17 /* AppDelegate.m in Sources */,
 				A7A972021CB1AAAF00847478 /* KMBalanceViewController.m in Sources */,
+				135688791CB743810017565C /* KMAuthenticationCell.m in Sources */,
 				A741CAC01CAF7C80001F323C /* MBProgressHUD.m in Sources */,
 				A7A971FC1CB1A66800847478 /* KMWalletViewController.m in Sources */,
 				A7A9720D1CB1C15E00847478 /* KMTransactionTableViewCell.m in Sources */,
 				A70B54621CA7D39B00E919C6 /* NSString+MD5.m in Sources */,
 				136E1AD41CA670A2005B3F4D /* KMCouponViewController.m in Sources */,
+				1356887D1CB747640017565C /* KMAuthenticationMoreViewController.m in Sources */,
 				A7A972051CB1ADFA00847478 /* KMBankCardTableViewController.m in Sources */,
 				135688431CB3F5FF0017565C /* KMLotteryViewController.m in Sources */,
+				135688621CB5577C0017565C /* KMVoucherCell.m in Sources */,
 				A741CACB1CAFCCFD001F323C /* KMMyInfoViewController.m in Sources */,
 				135688541CB3F9B50017565C /* KMNavigationView.m in Sources */,
 				135688581CB3FA000017565C /* KMLotteryCell.m in Sources */,
+				135688741CB5DE400017565C /* KMAuthenticationViewController.m in Sources */,
 				A7D69FAB1CA6F6700018E187 /* AFURLRequestSerialization.m in Sources */,
+				1356885D1CB552AF0017565C /* KMVoucherViewController.m in Sources */,
 				BB2C98231C85431D00BAEE17 /* main.m in Sources */,
 				A7A972101CB1C20E00847478 /* KMTransactionTableViewController.m in Sources */,
 				A7D69FAD1CA6F6700018E187 /* AFURLSessionManager.m in Sources */,
+				135688651CB55AD10017565C /* KMVoucherMoreViewController.m in Sources */,
 				BB8FB2B71C857C7E00EFCE91 /* KMRegistViewController.m in Sources */,
+				1356886C1CB561130017565C /* KMShopViewController.m in Sources */,
 				A741CAC71CAFBF3E001F323C /* UIImage+reSize.m in Sources */,
 				A741CABA1CAF7A03001F323C /* LCProgressHUD.m in Sources */,
 				BBB019661C8693B10071362D /* KMAlertView.m in Sources */,

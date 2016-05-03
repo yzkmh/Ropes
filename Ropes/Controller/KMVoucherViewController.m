@@ -1,27 +1,27 @@
 //
-//  KMLotteryViewController.m
+//  KMVoucherViewController.m
 //  Ropes
 //
-//  Created by yzk on 16/3/27.
+//  Created by yzk on 16/4/6.
 //  Copyright © 2016年 Madoka. All rights reserved.
 //
 
-#import "KMLotteryViewController.h"
-#import "KMLotteryMoreViewController.h"
-#import "KMNavigationView.h"
-#import "KMLotteryCell.h"
 
-@interface KMLotteryViewController ()<UITableViewDataSource,UITableViewDelegate>
+#import "KMVoucherCell.h"
+#import "KMVoucherViewController.h"
+#import "KMVoucherMoreViewController.h"
+#import "KMNavigationView.h"
+
+
+@interface KMVoucherViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UITableView *_leftTableView;
     UITableView *_rightTableView;
     
 }
-
-
 @end
 
-@implementation KMLotteryViewController
+@implementation KMVoucherViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,16 +41,15 @@
     
     KMNavigationView *naviView = [[[NSBundle mainBundle] loadNibNamed:@"KMNavigationView" owner:self options:nil]objectAtIndex:0];
     [naviView setFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64)];
-    _leftTableView = [[UITableView alloc]initWithFrame:CGRectMake(naviView.bounds.origin.x, 0, naviView.bounds.size.width, naviView.bounds.size.height-45)];
+    _leftTableView = [[UITableView alloc]initWithFrame:CGRectMake(naviView.bounds.origin.x, 10, naviView.bounds.size.width, naviView.bounds.size.height-45)];
     [_leftTableView setDelegate:self];
     [_leftTableView setDataSource:self];
     _leftTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    //_leftTableView.backgroundColor = [UIColor clearColor];
     [naviView addToShowView:_leftTableView];
     
     
     
-    _rightTableView = [[UITableView alloc]initWithFrame:CGRectMake(naviView.bounds.size.width, 0, naviView.bounds.size.width, naviView.bounds.size.height-45)];
+    _rightTableView = [[UITableView alloc]initWithFrame:CGRectMake(naviView.bounds.size.width, 10, naviView.bounds.size.width, naviView.bounds.size.height-45)];
     [_rightTableView setDelegate:self];
     [_rightTableView setDataSource:self];
     _rightTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -61,11 +60,6 @@
     
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -80,25 +74,26 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    KMLotteryCell *cell = nil;
-    static NSString *cellIdentifier = @"KMLotteryCell";
+    KMVoucherCell *cell = nil;
+    static NSString *cellIdentifier = @"KMVoucherCell";
     //KMCouponItem *item = [items objectAtIndex:indexPath.row];
     cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [[[NSBundle mainBundle]loadNibNamed:@"KMLotteryCell" owner:self options:nil]objectAtIndex:0];
-        //cell.title.text = @"大乐透";
-        //cell.lotteryNum = @"123456789";
-        //cell
+        cell = [[[NSBundle mainBundle]loadNibNamed:@"KMVoucherCell" owner:self options:nil]objectAtIndex:0];
     }
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    KMLotteryMoreViewController *lotteryMore = [[[NSBundle mainBundle]loadNibNamed:@"KMLotteryMoreViewController" owner:nil options:nil]objectAtIndex:0];
-    lotteryMore.title = @"彩票详情";
-    [self.navigationController pushViewController:lotteryMore animated:YES];
+    KMVoucherMoreViewController *voucherMore = [[[NSBundle mainBundle]loadNibNamed:@"KMVoucherMoreViewController" owner:nil options:nil]objectAtIndex:0];
+    voucherMore.title = @"代金券详情";
+    [self.navigationController pushViewController:voucherMore animated:YES];
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 /*
 #pragma mark - Navigation

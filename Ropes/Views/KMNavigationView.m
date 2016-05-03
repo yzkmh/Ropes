@@ -63,7 +63,7 @@
     
     self.showView.bounces = NO;
     
-    self.showView.backgroundColor = [UIColor clearColor];
+    //self.showView.backgroundColor = [UIColor grayColor];
     
     [self.showView setDelegate:self];
     

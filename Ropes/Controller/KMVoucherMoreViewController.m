@@ -1,35 +1,30 @@
 //
-//  KMLotteryMoreViewController.m
+//  KMVoucherMoreViewController.m
 //  Ropes
 //
-//  Created by yzk on 16/4/2.
+//  Created by yzk on 16/4/6.
 //  Copyright © 2016年 Madoka. All rights reserved.
 //
 
-#import "KMLotteryMoreViewController.h"
+#import "KMVoucherMoreViewController.h"
 #import "KMShopViewController.h"
 
 
 
-@interface KMLotteryMoreViewController ()<UITableViewDataSource ,UITableViewDelegate>
-{
-    UITableView *_tableView;
-    
-}
+@interface KMVoucherMoreViewController()<UITableViewDataSource ,UITableViewDelegate>
 @end
 
-@implementation KMLotteryMoreViewController
+
+@implementation KMVoucherMoreViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.showView.frame.origin.y+self.showView.frame.size.height +20, self.view.frame.size.width, 80)];
+    [_tableView setFrame:CGRectMake(0, self.showView.frame.origin.y+self.showView.frame.size.height +20, self.view.frame.size.width, 80)];
     [_tableView setDataSource:self];
     [_tableView setDelegate:self];
     
     
     [self.view addSubview:_tableView];
-    
     
     
     // Do any additional setup after loading the view.
@@ -56,14 +51,13 @@
     
     if (indexPath.row == 0) {
         cell = [[UITableViewCell alloc]init];
-        cell.textLabel.text = @"发送彩票短信";
+        cell.textLabel.text = @"可使用门店";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }else if (indexPath.row == 1)
     {
         cell = [[UITableViewCell alloc]init];
-        cell.textLabel.text = @"兑换商家";
+        cell.textLabel.text = @"使用记录";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        
     }
     return cell;
 }
@@ -82,13 +76,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 1) {
+    if (indexPath.row == 0) {
         KMShopViewController *shopView = [[KMShopViewController alloc]init];
         [shopView setTitle:@"商家详情"];
         [self.navigationController pushViewController:shopView animated:YES];
     }
 }
-
 
 
 /*

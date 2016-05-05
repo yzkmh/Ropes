@@ -10,18 +10,35 @@
 #import "KMLotteryMoreViewController.h"
 #import "KMNavigationView.h"
 #import "KMLotteryCell.h"
+#import "KMRequestCenter.h"
+#import "KMViewsMannager.h"
+#import "KMLottery.h"
+
+#define phoenNum @"13260176978"
 
 @interface KMLotteryViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
+    KMNavigationView *naviView;
+    
     UITableView *_leftTableView;
     UITableView *_rightTableView;
     
+    NSArray *lotteryCanList;
+    NSArray *lotteryNotList;
+    
+    BOOL _isRequst;
 }
-
-
 @end
 
 @implementation KMLotteryViewController
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (_isRequst == NO) {
+        [self initData];
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,23 +46,17 @@
     [self initNavigation];
     self.automaticallyAdjustsScrollViewInsets = false;
     
-    
-    
     // Do any additional setup after loading the view.
 }
 
 - (void)initNavigation
 {
-    
-    
-    
-    KMNavigationView *naviView = [[[NSBundle mainBundle] loadNibNamed:@"KMNavigationView" owner:self options:nil]objectAtIndex:0];
+    naviView = [[[NSBundle mainBundle] loadNibNamed:@"KMNavigationView" owner:self options:nil]objectAtIndex:0];
     [naviView setFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64)];
     _leftTableView = [[UITableView alloc]initWithFrame:CGRectMake(naviView.bounds.origin.x, 0, naviView.bounds.size.width, naviView.bounds.size.height-45)];
     [_leftTableView setDelegate:self];
     [_leftTableView setDataSource:self];
     _leftTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    //_leftTableView.backgroundColor = [UIColor clearColor];
     [naviView addToShowView:_leftTableView];
     
     
@@ -57,10 +68,20 @@
     [naviView addToShowView:_rightTableView];
     
     [self.view addSubview:naviView];
-    
-    
 }
 
+- (void)initData
+{
+    [[KMViewsMannager getInstance]getLotteryInfoWithPhoneNum:phoenNum comlation:^(BOOL result, NSArray *list) {
+        lotteryCanList = [list objectAtIndex:0];
+        lotteryNotList = [list objectAtIndex:1];
+        _isRequst = YES;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_leftTableView reloadData];
+            [_rightTableView reloadData];
+        });
+    }];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -70,7 +91,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    if ([tableView isEqual:_leftTableView]) {
+        return lotteryCanList.count;
+    }else if([tableView isEqual:_rightTableView])
+    {
+        return lotteryNotList.count;
+    }
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -81,14 +108,31 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     KMLotteryCell *cell = nil;
-    static NSString *cellIdentifier = @"KMLotteryCell";
-    //KMCouponItem *item = [items objectAtIndex:indexPath.row];
-    cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        cell = [[[NSBundle mainBundle]loadNibNamed:@"KMLotteryCell" owner:self options:nil]objectAtIndex:0];
-        //cell.title.text = @"大乐透";
-        //cell.lotteryNum = @"123456789";
-        //cell
+    if ([tableView isEqual:_leftTableView]) {
+        static NSString *KMLotteryCanCell = @"KMLotteryCanCell";
+        cell = [tableView dequeueReusableCellWithIdentifier:KMLotteryCanCell];
+        if (cell == nil) {
+            cell = [[[NSBundle mainBundle]loadNibNamed:@"KMLotteryCell" owner:self options:nil]objectAtIndex:0];
+            KMLottery *lottery = [lotteryCanList objectAtIndex:indexPath.row];
+            cell.title.text = lottery.lotteryTypeName;
+            cell.lotteryNum.text = lottery.lotteryNumber;
+            cell.state.text = lottery.lotteryPrizeResult;
+            cell.LotteryDate.text = lottery.lotteryPrizeDate;
+            cell.validDate.text = lottery.invalidDate;
+        }
+    }else if ([tableView isEqual:_rightTableView])
+    {
+        static NSString *KMLotteryNotCell = @"KMLotteryNotCell";
+        cell = [tableView dequeueReusableCellWithIdentifier:KMLotteryNotCell];
+        if (cell == nil) {
+            cell = [[[NSBundle mainBundle]loadNibNamed:@"KMLotteryCell" owner:self options:nil]objectAtIndex:0];
+            KMLottery *lottery = [lotteryNotList objectAtIndex:indexPath.row];
+            cell.title.text = lottery.lotteryTypeName;
+            cell.lotteryNum.text = lottery.lotteryNumber;
+            cell.state.text = lottery.lotteryPrizeResult;
+            cell.LotteryDate.text = lottery.lotteryPrizeDate;
+            cell.validDate.text = lottery.invalidDate;
+        }
     }
     return cell;
 }
@@ -96,6 +140,11 @@
 {
     KMLotteryMoreViewController *lotteryMore = [[[NSBundle mainBundle]loadNibNamed:@"KMLotteryMoreViewController" owner:nil options:nil]objectAtIndex:0];
     lotteryMore.title = @"彩票详情";
+    if ([tableView isEqual:_leftTableView]) {
+        lotteryMore.lottery = [lotteryCanList objectAtIndex:indexPath.row];
+    }else if([tableView isEqual:_rightTableView]){
+        lotteryMore.lottery = [lotteryNotList objectAtIndex:indexPath.row];
+    }
     [self.navigationController pushViewController:lotteryMore animated:YES];
 }
 

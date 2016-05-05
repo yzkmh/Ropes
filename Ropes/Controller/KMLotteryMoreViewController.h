@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KMLottery.h"
 
 @interface KMLotteryMoreViewController : UIViewController
 
@@ -18,5 +19,7 @@
 @property (nonatomic ,weak) IBOutlet UILabel *openDateLb;
 @property (nonatomic ,weak) IBOutlet UILabel *usableDateLb;
 @property (nonatomic ,weak) IBOutlet UILabel *receiveDateLb;
+
+@property (nonatomic ,strong) KMLottery *lottery;
 
 @end

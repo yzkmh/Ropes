@@ -11,9 +11,11 @@
 #import "KMAuthenticationViewController.h"
 #import "KMCouponCell.h"
 #import "UIImage+reSize.h"
+#import "KMUserManager.h"
 //彩票 代金券 折扣券  身份认证
 
 #import "KMLotteryViewController.h"
+#import "KMRequestCenter.h"
 
 
 
@@ -25,8 +27,10 @@
     KMLotteryViewController *_lotteryView;
     KMVoucherViewController *_voucherView;
     KMAuthenticationViewController *_authenticationView;
+    
+    NSArray *countKeys;
 }
-
+@property (nonatomic ,retain) KMUser *user;
 @end
 
 @implementation KMCouponViewController
@@ -35,7 +39,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     UIBarButtonItem *searchBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:nil];
     self.navigationItem.rightBarButtonItem = searchBtn;
     [self initArray];
@@ -44,8 +47,10 @@
     }
     self.tableView.showsVerticalScrollIndicator = NO;
     
+    self.user = [KMUserManager getInstance].currentUser;
+    NSLog(@"%@",self.user.ConponNumList);
+    
 }
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
@@ -69,6 +74,7 @@
                   [UIImage reSizeImage:[UIImage imageNamed:@"cardIcon"] toSize:CGSizeMake(80, 80)],
                   [UIImage reSizeImage:[UIImage imageNamed:@"cut"] toSize:CGSizeMake(80, 80)],
                   [UIImage reSizeImage:[UIImage imageNamed:@"infoIcon"] toSize:CGSizeMake(80, 80)] ,nil];
+    countKeys = @[@"cl",@"nl",@"dc",@"dn",@"zc",@"zn",@"sc",@"sn"];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -92,10 +98,10 @@
         cell.e_typeLabel.text = [e_items objectAtIndex:indexPath.row];
         cell.logoImageView.image = [imageArray objectAtIndex:indexPath.row];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.usableNum.text = @"(0)";
-        cell.usableNum.text = @"(0)";
+
     }
-    
+    cell.usableNum.text = [NSString stringWithFormat:@"(%@)",[self.user.ConponNumList objectForKey:[countKeys objectAtIndex:indexPath.row*2]]];
+    cell.outdateNum.text = [NSString stringWithFormat:@"(%@)",[self.user.ConponNumList objectForKey:[countKeys objectAtIndex:indexPath.row*2+1]]];;
     return cell;
 }
 
@@ -122,14 +128,6 @@
         
         [self.navigationController pushViewController:_authenticationView animated:YES];
     }
-    
-
 }
-
-
-
-
-
-
 
 @end

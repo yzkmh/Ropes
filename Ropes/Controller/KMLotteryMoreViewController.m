@@ -30,9 +30,21 @@
     
     [self.view addSubview:_tableView];
     
-    
+//    [self initData];
     
     // Do any additional setup after loading the view.
+}
+
+- (void)setLottery:(KMLottery *)lottery
+{
+    _lottery = lottery;
+    self.titleLb.text = self.lottery.lotteryTypeName;
+    self.lotteryNumLb.text = self.lottery.lotteryNumber;
+    self.winningLvLb.text = self.lottery.lotteryPrizeResult;
+    self.lotteryTermLb.text = self.lottery.lotterySchedule;
+    self.openDateLb.text = self.lottery.lotteryPrizeDate;
+    self.usableDateLb.text = self.lottery.invalidDate;
+    self.receiveDateLb.text = self.lottery.lotteryGetDate;
 }
 
 - (void)didReceiveMemoryWarning {

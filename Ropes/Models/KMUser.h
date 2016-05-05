@@ -32,6 +32,8 @@
 @property (nonatomic, assign) BOOL isAutoLogin;
 @property (nonatomic, assign) BOOL isRememberPwd;
 
+@property (nonatomic, retain) NSMutableDictionary *ConponNumList;
+
 - (instancetype)initWithDict:(NSDictionary *)dict;
 + (instancetype)userWithDict:(NSDictionary *)dict;
 @end

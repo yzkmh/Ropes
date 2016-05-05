@@ -46,7 +46,7 @@ static KMNetWorkingManager *_instance = nil;
                      block:(void (^)(NSDictionary *resultDic, NSError *error))block{
     
     [[self class] checkNetWorkStatus];
-    NSString *urlString = [NSString stringWithFormat:@"%@%@.htmls",kBASEURL,suburl];
+    NSString *urlString = [NSString stringWithFormat:@"%@.htmls",suburl];
     NSLog(@"urlstring = %@",urlString);
     NSLog(@"parameter = %@",parameters);
     

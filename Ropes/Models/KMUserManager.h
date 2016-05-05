@@ -36,4 +36,6 @@
                       gender:(int)gender
                      address:(NSString *)address
                    comlation:(void(^)(BOOL result,NSString *message, id user))block;
+
+
 @end

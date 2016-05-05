@@ -48,6 +48,9 @@
 {
     self.autoLoginBtn.selected = YES;
     self.remeberPwdBtn.selected = YES;
+    
+    self.phoneNumTextField.text = @"13260176978";
+    self.passwordTextField.text = @"123456789";
 }
 // 返回注册页面
 - (void)loginToRegist:(id)sender

@@ -17,7 +17,8 @@
 
 
 
-#define kBASEURL @"http://www.vbaoxiao.net/mashituone/cappController/"
+#define kBASEURL @"http://122.49.7.211/cappController/"
+#define kBASEURLLot @"http://122.49.7.211/cappControllerLot/"
 // 归档位置
 #define kPATH [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"user"]
 

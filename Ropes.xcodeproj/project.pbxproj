@@ -103,6 +103,9 @@
 		BBB019681C8693C40071362D /* KMAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB019671C8693C40071362D /* KMAlertView.xib */; };
 		BBB0196F1C86CD6D0071362D /* KMTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB0196E1C86CD6D0071362D /* KMTabBarController.m */; };
 		BBB019721C86D3F80071362D /* KMCouponCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB019711C86D3F80071362D /* KMCouponCell.xib */; };
+		ED649A2A1CDB3185005D09C1 /* KMViewsMannager.m in Sources */ = {isa = PBXBuildFile; fileRef = ED649A291CDB3185005D09C1 /* KMViewsMannager.m */; };
+		ED649A2D1CDB3D2A005D09C1 /* KMLottery.m in Sources */ = {isa = PBXBuildFile; fileRef = ED649A2C1CDB3D2A005D09C1 /* KMLottery.m */; };
+		ED649A301CDB4AA3005D09C1 /* JsonUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = ED649A2F1CDB4AA3005D09C1 /* JsonUtil.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -273,6 +276,12 @@
 		BBB0196D1C86CD6D0071362D /* KMTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMTabBarController.h; sourceTree = "<group>"; };
 		BBB0196E1C86CD6D0071362D /* KMTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMTabBarController.m; sourceTree = "<group>"; };
 		BBB019711C86D3F80071362D /* KMCouponCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KMCouponCell.xib; sourceTree = "<group>"; };
+		ED649A281CDB3185005D09C1 /* KMViewsMannager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMViewsMannager.h; sourceTree = "<group>"; };
+		ED649A291CDB3185005D09C1 /* KMViewsMannager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMViewsMannager.m; sourceTree = "<group>"; };
+		ED649A2B1CDB3D2A005D09C1 /* KMLottery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMLottery.h; sourceTree = "<group>"; };
+		ED649A2C1CDB3D2A005D09C1 /* KMLottery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMLottery.m; sourceTree = "<group>"; };
+		ED649A2E1CDB4AA3005D09C1 /* JsonUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonUtil.h; sourceTree = "<group>"; };
+		ED649A2F1CDB4AA3005D09C1 /* JsonUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonUtil.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -355,10 +364,16 @@
 		1357B66A1CA4B32300BDF221 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				ED649A2E1CDB4AA3005D09C1 /* JsonUtil.h */,
+				ED649A2F1CDB4AA3005D09C1 /* JsonUtil.m */,
+				ED649A281CDB3185005D09C1 /* KMViewsMannager.h */,
+				ED649A291CDB3185005D09C1 /* KMViewsMannager.m */,
 				1357B66E1CA4B69D00BDF221 /* KMUserManager.h */,
 				1357B66F1CA4B69D00BDF221 /* KMUserManager.m */,
 				A7D69FB11CA719550018E187 /* KMUser.h */,
 				A7D69FB21CA719550018E187 /* KMUser.m */,
+				ED649A2B1CDB3D2A005D09C1 /* KMLottery.h */,
+				ED649A2C1CDB3D2A005D09C1 /* KMLottery.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -844,6 +859,7 @@
 				BB2C98291C85431D00BAEE17 /* ViewController.m in Sources */,
 				1356886F1CB561D90017565C /* KMShopCell.m in Sources */,
 				A712D6091CB0DBF30008FB99 /* KMEditInfoViewController.m in Sources */,
+				ED649A2A1CDB3185005D09C1 /* KMViewsMannager.m in Sources */,
 				BB2C98261C85431D00BAEE17 /* AppDelegate.m in Sources */,
 				A7A972021CB1AAAF00847478 /* KMBalanceViewController.m in Sources */,
 				135688791CB743810017565C /* KMAuthenticationCell.m in Sources */,
@@ -863,12 +879,14 @@
 				A7D69FAB1CA6F6700018E187 /* AFURLRequestSerialization.m in Sources */,
 				1356885D1CB552AF0017565C /* KMVoucherViewController.m in Sources */,
 				BB2C98231C85431D00BAEE17 /* main.m in Sources */,
+				ED649A301CDB4AA3005D09C1 /* JsonUtil.m in Sources */,
 				A7A972101CB1C20E00847478 /* KMTransactionTableViewController.m in Sources */,
 				A7D69FAD1CA6F6700018E187 /* AFURLSessionManager.m in Sources */,
 				135688651CB55AD10017565C /* KMVoucherMoreViewController.m in Sources */,
 				BB8FB2B71C857C7E00EFCE91 /* KMRegistViewController.m in Sources */,
 				1356886C1CB561130017565C /* KMShopViewController.m in Sources */,
 				A741CAC71CAFBF3E001F323C /* UIImage+reSize.m in Sources */,
+				ED649A2D1CDB3D2A005D09C1 /* KMLottery.m in Sources */,
 				A741CABA1CAF7A03001F323C /* LCProgressHUD.m in Sources */,
 				BBB019661C8693B10071362D /* KMAlertView.m in Sources */,
 				BB8FB2B31C8575EC00EFCE91 /* KMNavigationController.m in Sources */,

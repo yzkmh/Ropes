@@ -15,7 +15,7 @@
     NSString *str = self.copy;
     for (int i = 0; i < times; ++i) {
         str = str.md5String;
-        NSLog(@"第%d次加密, 密文:%@",i,str);
+        //NSLog(@"第%d次加密, 密文:%@",i,str);
     }
     return str;
 }

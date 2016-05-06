@@ -7,6 +7,7 @@
 //
 
 #import "KMNetWorkingManager.h"
+#import "LCProgressHUD.h"
 
 @implementation KMNetWorkingManager
 
@@ -61,7 +62,11 @@ static KMNetWorkingManager *_instance = nil;
 
    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
        // 请求失败
+       if (error.code == -1001) {
+           [LCProgressHUD showFailure:@"请求超时，请重试"];
+       }
        NSLog(@"error -- %@",error);
+       
        if (block) {
            block(nil,error);
        }

@@ -8,10 +8,16 @@
 
 #import "KMShopViewController.h"
 #import "KMShopCell.h"
+#import "KMViewsMannager.h"
+#import "KMUserManager.h"
+#import "KMShop.h"
+#import "LCProgressHUD.h"
 
 @interface KMShopViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UITableView *_table;
+    NSArray *_shopList;
+    BOOL _isFinish;
 }
 
 @end
@@ -24,12 +30,43 @@
     self.view.backgroundColor = [UIColor colorWithRed:0.941 green:0.945 blue:0.949 alpha:1];
     self.automaticallyAdjustsScrollViewInsets = false;
     
-    _table = [[UITableView alloc]initWithFrame:CGRectMake(0, 44+20+10, self.view.frame.size.width, 300)];
+    _table = [[UITableView alloc]initWithFrame:CGRectMake(0, 44+22, self.view.frame.size.width, self.view.frame.size.height)];
     [_table setDelegate:self];
     [_table setDataSource:self];
+    _table.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     [self.view addSubview:_table];
     // Do any additional setup after loading the view.
+}
+
+- (void)setLottery:(KMLottery *)lottery
+{
+    _lottery = lottery;
+    _shopList = [NSArray new];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (_isFinish == NO) {
+        [self initData];
+    }
+
+}
+
+- (void)initData
+{
+    [LCProgressHUD showLoading:nil];
+    [[KMViewsMannager getInstance]getShopInfoWithPhoneNum:[KMUserManager getInstance].currentUser.phone tcode:_lottery.tcode comlation:^(BOOL result, NSArray *list) {
+        [LCProgressHUD hide];
+        if (result) {
+            _isFinish = YES;
+            _shopList = list;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_table reloadData];
+            });
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,7 +77,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return _shopList.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -52,11 +89,16 @@
 {
     KMShopCell *cell = nil;
     static NSString *cellIdentifier = @"KMShopCell";
+    KMShop *shop = [_shopList objectAtIndex:indexPath.row];
     //KMCouponItem *item = [items objectAtIndex:indexPath.row];
     cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
         cell = [[[NSBundle mainBundle]loadNibNamed:@"KMShopCell" owner:self options:nil]objectAtIndex:0];
     }
+    cell.title.text = shop.detailName;
+    cell.phoneNum.text = shop.telNum;
+    cell.address.text = shop.address;
+    
     return cell;
 }
 

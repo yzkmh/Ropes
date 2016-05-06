@@ -21,12 +21,14 @@
 #define CIndex @"http://122.49.7.211/cappController/cIndex"
 // 登录获取主页彩票数据
 #define CLotteryIndex @"http://122.49.7.211/cappControllerLot/cLotteryIndex"
-
 // 获取信息
 #define ViewInformation @"http://122.49.7.211/cappController/viewInformation"
-
 // 查询彩票信息
 #define LotteryInquery @"http://122.49.7.211/cappControllerLot/lotteryInquery"
+//可使用门店查询
+#define GetUsedScen @"http://122.49.7.211/cappControllerLot/getUsedScen"
+//查询彩票代金券信息
+#define LotteryInqueryVoucher @"http://122.49.7.211/cappControllerLot/lotteryInqueryVoucher"
 typedef NS_ENUM(NSInteger,KMConponType){
     KMDiscountType = 1,
     KMVoucherType,
@@ -144,8 +146,36 @@ typedef NS_ENUM(NSInteger,KMConponType){
                                    success:(void (^)(NSDictionary *))success
                                    failure:(void (^)(int, NSString *))failure;
 
-
+/**
+ *  获取彩票信息
+ *
+ *  @param phone   手机号
+ *  @param success 成功回调
+ *  @param failure 失败回调
+ */
 + (void)requestLotteryInfoWithPhoneNum:(NSString *)phone
+                               success:(void (^)(NSDictionary *))success
+                               failure:(void (^)(int, NSString *))failure;
+/**
+ *  查询可使用门店
+ *
+ *  @param phone   手机号
+ *  @param tcode   券编号
+ *  @param success 成功回调
+ *  @param failure 失败回调
+ */
++ (void)requestShopInfoWithPhoneNum:(NSString *)phone
+                              tcode:(NSString *)tcode
+                            success:(void (^)(NSDictionary *))success
+                            failure:(void (^)(int, NSString *))failure;
+/**
+ *  查询代金券信息
+ *
+ *  @param phone   电话
+ *  @param success 成功回调
+ *  @param failure 失败回调
+ */
++ (void)requestVoucherInfoWithPhoneNum:(NSString *)phone
                                success:(void (^)(NSDictionary *))success
                                failure:(void (^)(int, NSString *))failure;
 

@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KMLottery.h"
 
 @interface KMShopViewController : UIViewController
+@property (nonatomic ,strong) KMLottery *lottery;
 
 @end

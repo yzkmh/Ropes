@@ -11,12 +11,16 @@
 #import "KMVoucherViewController.h"
 #import "KMVoucherMoreViewController.h"
 #import "KMNavigationView.h"
+#import "LCProgressHUD.h"
+#import "KMViewsMannager.h"
+#import "KMUserManager.h"
 
 
 @interface KMVoucherViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UITableView *_leftTableView;
     UITableView *_rightTableView;
+    BOOL _isRequest;
     
 }
 @end
@@ -28,10 +32,14 @@
     self.view.backgroundColor = [UIColor grayColor];
     [self initNavigation];
     self.automaticallyAdjustsScrollViewInsets = false;
-    
-    
-    
     // Do any additional setup after loading the view.
+}
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (_isRequest == NO) {
+        [self initData];
+    }
 }
 
 - (void)initNavigation
@@ -52,7 +60,13 @@
     
     [self.view addSubview:naviView];
 }
-
+- (void)initData
+{
+    [LCProgressHUD showLoading:nil];
+    [[KMViewsMannager getInstance]getVoucerInfoWithPhoneNum:[KMUserManager getInstance].currentUser.phone comlation:^(BOOL result, NSArray *list) {
+        
+    }];
+}
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

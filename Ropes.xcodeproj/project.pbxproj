@@ -106,6 +106,8 @@
 		ED649A2A1CDB3185005D09C1 /* KMViewsMannager.m in Sources */ = {isa = PBXBuildFile; fileRef = ED649A291CDB3185005D09C1 /* KMViewsMannager.m */; };
 		ED649A2D1CDB3D2A005D09C1 /* KMLottery.m in Sources */ = {isa = PBXBuildFile; fileRef = ED649A2C1CDB3D2A005D09C1 /* KMLottery.m */; };
 		ED649A301CDB4AA3005D09C1 /* JsonUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = ED649A2F1CDB4AA3005D09C1 /* JsonUtil.m */; };
+		ED649A341CDC3674005D09C1 /* KMShop.m in Sources */ = {isa = PBXBuildFile; fileRef = ED649A331CDC3674005D09C1 /* KMShop.m */; };
+		ED649A371CDC474C005D09C1 /* KMVoucher.m in Sources */ = {isa = PBXBuildFile; fileRef = ED649A361CDC474C005D09C1 /* KMVoucher.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -282,6 +284,10 @@
 		ED649A2C1CDB3D2A005D09C1 /* KMLottery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMLottery.m; sourceTree = "<group>"; };
 		ED649A2E1CDB4AA3005D09C1 /* JsonUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonUtil.h; sourceTree = "<group>"; };
 		ED649A2F1CDB4AA3005D09C1 /* JsonUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonUtil.m; sourceTree = "<group>"; };
+		ED649A321CDC3674005D09C1 /* KMShop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMShop.h; sourceTree = "<group>"; };
+		ED649A331CDC3674005D09C1 /* KMShop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMShop.m; sourceTree = "<group>"; };
+		ED649A351CDC474C005D09C1 /* KMVoucher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMVoucher.h; sourceTree = "<group>"; };
+		ED649A361CDC474C005D09C1 /* KMVoucher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMVoucher.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -374,6 +380,10 @@
 				A7D69FB21CA719550018E187 /* KMUser.m */,
 				ED649A2B1CDB3D2A005D09C1 /* KMLottery.h */,
 				ED649A2C1CDB3D2A005D09C1 /* KMLottery.m */,
+				ED649A321CDC3674005D09C1 /* KMShop.h */,
+				ED649A331CDC3674005D09C1 /* KMShop.m */,
+				ED649A351CDC474C005D09C1 /* KMVoucher.h */,
+				ED649A361CDC474C005D09C1 /* KMVoucher.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -862,6 +872,7 @@
 				ED649A2A1CDB3185005D09C1 /* KMViewsMannager.m in Sources */,
 				BB2C98261C85431D00BAEE17 /* AppDelegate.m in Sources */,
 				A7A972021CB1AAAF00847478 /* KMBalanceViewController.m in Sources */,
+				ED649A371CDC474C005D09C1 /* KMVoucher.m in Sources */,
 				135688791CB743810017565C /* KMAuthenticationCell.m in Sources */,
 				A741CAC01CAF7C80001F323C /* MBProgressHUD.m in Sources */,
 				A7A971FC1CB1A66800847478 /* KMWalletViewController.m in Sources */,
@@ -888,6 +899,7 @@
 				A741CAC71CAFBF3E001F323C /* UIImage+reSize.m in Sources */,
 				ED649A2D1CDB3D2A005D09C1 /* KMLottery.m in Sources */,
 				A741CABA1CAF7A03001F323C /* LCProgressHUD.m in Sources */,
+				ED649A341CDC3674005D09C1 /* KMShop.m in Sources */,
 				BBB019661C8693B10071362D /* KMAlertView.m in Sources */,
 				BB8FB2B31C8575EC00EFCE91 /* KMNavigationController.m in Sources */,
 				A7D69FAC1CA6F6700018E187 /* AFURLResponseSerialization.m in Sources */,

@@ -10,6 +10,7 @@
 #import "KMUserManager.h"
 #import "NSString+MD5.h"
 #import "KMLottery.h"
+#import "KMShop.h"
 
 @interface KMViewsMannager ()
 {
@@ -75,4 +76,28 @@ static KMViewsMannager * _shareKMViewsManager;
     }];
 }
 
+- (void)getShopInfoWithPhoneNum:(NSString *)phone tcode:(NSString *)tcode comlation:(void(^)(BOOL result,NSArray *list))block
+{
+    [KMRequestCenter requestShopInfoWithPhoneNum:phone tcode:tcode success:^(NSDictionary *dic) {
+        //KMShop *shop = [[KMShop alloc]initWithDict:dic];
+        NSMutableArray *shopList = [NSMutableArray new];
+        for (NSDictionary *lotterydic in dic) {
+            KMShop *shop = [[KMShop alloc]initWithDict:lotterydic];
+            [shopList addObject:shop];
+            
+        }
+        block(YES,shopList);
+    } failure:^(int code, NSString *errorStr) {
+        
+    }];
+}
+
+- (void)getVoucerInfoWithPhoneNum:(NSString *)phone comlation:(void(^)(BOOL result,NSArray *list))block
+{
+    [KMRequestCenter requestVoucherInfoWithPhoneNum:phone success:^(NSDictionary *dic) {
+        
+    } failure:^(int code, NSString *errorStr) {
+        
+    }];
+}
 @end

@@ -109,6 +109,13 @@
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView   {
     [self.progressView setFrame:CGRectMake(scrollView.contentOffset.x/2, 32, self.frame.size.width/2, 1)];
+    if (scrollView.contentOffset.x < self.frame.size.width/2) {
+        [self.leftLable setTextColor:[UIColor redColor]];
+        [self.rightLable setTextColor:[UIColor grayColor]];
+    }else{
+        [self.leftLable setTextColor:[UIColor grayColor]];
+        [self.rightLable setTextColor:[UIColor redColor]];
+    }
 }
 
 

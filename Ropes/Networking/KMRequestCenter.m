@@ -272,4 +272,47 @@
                                                       }];
 }
 
+/**
+ *  查询可使用门店
+ *
+ *  @param phone   手机号
+ *  @param tcode   券编号
+ *  @param success 成功回调
+ *  @param failure 失败回调
+ */
++ (void)requestShopInfoWithPhoneNum:(NSString *)phone
+                              tcode:(NSString *)tcode
+                            success:(void (^)(NSDictionary *))success
+                            failure:(void (^)(int, NSString *))failure
+{
+    NSDictionary *paramters = [NSDictionary dictionaryWithObjectsAndKeys:
+                               phone,@"phone",
+                               tcode,@"tcode",
+                               @"6",@"type",
+                               nil];
+    [[KMNetWorkingManager sharedManager] postWithParameters:paramters subUrl:GetUsedScen block:^(NSDictionary *resultDic, NSError *error) {
+        success(resultDic);
+    }];
+    
+}
+
+/**
+ *  查询代金券信息
+ *
+ *  @param phone   电话
+ *  @param success 成功回调
+ *  @param failure 失败回调
+ */
++ (void)requestVoucherInfoWithPhoneNum:(NSString *)phone
+                               success:(void (^)(NSDictionary *))success
+                               failure:(void (^)(int, NSString *))failure
+{
+    NSDictionary *paramters = [NSDictionary dictionaryWithObjectsAndKeys:
+                               phone,@"phone",
+                               @"6",@"type",
+                               nil];
+    [[KMNetWorkingManager sharedManager] postWithParameters:paramters subUrl:LotteryInqueryVoucher block:^(NSDictionary *resultDic, NSError *error) {
+        success(resultDic);
+    }];
+}
 @end

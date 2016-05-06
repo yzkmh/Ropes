@@ -97,7 +97,11 @@
     if (indexPath.row == 1) {
         KMShopViewController *shopView = [[KMShopViewController alloc]init];
         [shopView setTitle:@"商家详情"];
+        shopView.lottery = _lottery;
         [self.navigationController pushViewController:shopView animated:YES];
+    }else if(indexPath.row == 0)
+    {
+        
     }
 }
 

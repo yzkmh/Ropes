@@ -13,8 +13,9 @@
 #import "KMRequestCenter.h"
 #import "KMViewsMannager.h"
 #import "KMLottery.h"
+#import "KMUserManager.h"
+#import "LCProgressHUD.h"
 
-#define phoenNum @"13260176978"
 
 @interface KMLotteryViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -26,7 +27,7 @@
     NSArray *lotteryCanList;
     NSArray *lotteryNotList;
     
-    BOOL _isRequst;
+    BOOL _isRequest;
 }
 @end
 
@@ -35,7 +36,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if (_isRequst == NO) {
+    if (_isRequest == NO) {
         [self initData];
     }
 }
@@ -72,10 +73,12 @@
 
 - (void)initData
 {
-    [[KMViewsMannager getInstance]getLotteryInfoWithPhoneNum:phoenNum comlation:^(BOOL result, NSArray *list) {
+    [LCProgressHUD showLoading:nil];
+    [[KMViewsMannager getInstance]getLotteryInfoWithPhoneNum:[KMUserManager getInstance].currentUser.phone comlation:^(BOOL result, NSArray *list) {
+        [LCProgressHUD hide];
         lotteryCanList = [list objectAtIndex:0];
         lotteryNotList = [list objectAtIndex:1];
-        _isRequst = YES;
+        _isRequest = YES;
         dispatch_async(dispatch_get_main_queue(), ^{
             [_leftTableView reloadData];
             [_rightTableView reloadData];

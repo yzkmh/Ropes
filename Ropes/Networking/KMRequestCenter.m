@@ -223,22 +223,12 @@
                                phone,@"phone",
                                sessionid,@"sessionid",
                                sessionidpwd,@"sessionidpwd",
-                               [NSString stringWithFormat:@"%ld",(long)type],@"type",
+                               [NSNumber numberWithInt:type],@"type",
                                nil];
     [[KMNetWorkingManager sharedManager] postWithParameters:paramters
                                                      subUrl:ViewInformation
                                                       block:^(NSDictionary *resultDic, NSError *error) {
-                                                          
-                                                          int error_code = [[resultDic objectForKey:@"error_code"] intValue];
-                                                          NSString *errorString =[resultDic objectForKey:@"error"];
-                                                          
-                                                          if ( error_code == 200) {
-                                                              NSLog(@"code : %d",error_code);
-                                                              success(resultDic);
-                                                          } else {
-                                                              NSLog(@"error_code: %d  ---- error: %@",error_code,errorString);
-                                                              failure(error_code,errorString);
-                                                          }
+                                                          success(resultDic);
                                                       }];
 }
 

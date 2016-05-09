@@ -20,7 +20,7 @@
  *  @param block 回调
  */
 - (void)getViewsInfomationWithConponType:(KMConponType)type
-                               comlation:(void(^)(BOOL result,NSString *message, id user))block;
+                               comlation:(void(^)(BOOL result,NSArray *list))block;
 
 - (void)getLotteryInfoWithPhoneNum:(NSString *)phone comlation:(void(^)(BOOL result,NSArray *list))block;
 

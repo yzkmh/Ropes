@@ -11,6 +11,7 @@
 #import "NSString+MD5.h"
 #import "KMLottery.h"
 #import "KMShop.h"
+#import "KMVoucher.h"
 
 @interface KMViewsMannager ()
 {
@@ -42,14 +43,27 @@ static KMViewsMannager * _shareKMViewsManager;
  *  @param block 回调
  */
 - (void)getViewsInfomationWithConponType:(KMConponType)type
-                               comlation:(void(^)(BOOL result,NSString *message, id user))block
+                               comlation:(void(^)(BOOL result,NSArray *list))block
 {
     NSString *phone = [KMUserManager getInstance].currentUser.phone;
     NSString *session = [KMUserManager getInstance].currentUser.sessionid;
     NSString *sessionpwd = [[KMUserManager getInstance].currentUser.sessionid md5WithTimes:6];
-    
+    NSMutableArray *voucherCanList = [NSMutableArray new];
+    NSMutableArray *voucherNotList = [NSMutableArray new];
     [KMRequestCenter requestViewInformationWithphoneNum:phone sessionId:session sessionIdPwd:sessionpwd conponType:type success:^(NSDictionary *dic) {
-        NSLog(@"%@",dic);
+        for (NSDictionary *conponInfo in dic)
+        {
+            if ([[conponInfo objectForKey:@"error"] isEqualToString:@"成功"]) {
+                KMVoucher *voucher =[[KMVoucher new]initWithDict:conponInfo];
+                if ([voucher.state  isEqual: @0]) {
+                    [voucherCanList addObject:voucher];
+                }else if([voucher.state  isEqual: @2]){
+                    [voucherNotList addObject:voucher];
+                }
+            }
+        }
+        NSLog(@"获取优惠数据成功");
+        block(YES,@[voucherCanList,voucherNotList]);
     } failure:^(int code, NSString *ErrorStr) {
         NSLog(@"%@",ErrorStr);
     }];

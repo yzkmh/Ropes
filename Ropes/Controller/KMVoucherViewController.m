@@ -14,6 +14,7 @@
 #import "LCProgressHUD.h"
 #import "KMViewsMannager.h"
 #import "KMUserManager.h"
+#import "KMVoucher.h"
 
 
 @interface KMVoucherViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -21,6 +22,9 @@
     UITableView *_leftTableView;
     UITableView *_rightTableView;
     BOOL _isRequest;
+    
+    NSArray *_leftList;
+    NSArray *_rightList;
     
 }
 @end
@@ -63,15 +67,28 @@
 - (void)initData
 {
     [LCProgressHUD showLoading:nil];
-    [[KMViewsMannager getInstance]getVoucerInfoWithPhoneNum:[KMUserManager getInstance].currentUser.phone comlation:^(BOOL result, NSArray *list) {
-        
+    [[KMViewsMannager getInstance]getViewsInfomationWithConponType:KMVoucherType comlation:^(BOOL result, NSArray *list) {
+        [LCProgressHUD hide];
+        _leftList = [list objectAtIndex:0];
+        _rightList = [list objectAtIndex:1];
+        _isRequest = YES;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_leftTableView reloadData];
+            [_rightTableView reloadData];
+        });
     }];
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    if ([tableView isEqual:_leftTableView]) {
+        return _leftList.count;
+    }else if([tableView isEqual:_rightTableView])
+    {
+        return _rightList.count;
+    }
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -82,11 +99,29 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     KMVoucherCell *cell = nil;
-    static NSString *cellIdentifier = @"KMVoucherCell";
-    //KMCouponItem *item = [items objectAtIndex:indexPath.row];
-    cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        cell = [[[NSBundle mainBundle]loadNibNamed:@"KMVoucherCell" owner:self options:nil]objectAtIndex:0];
+    if ([tableView isEqual:_leftTableView]) {
+        static NSString *KMVoucherCanCell = @"KMVoucherCanCell";
+        cell = [tableView dequeueReusableCellWithIdentifier:KMVoucherCanCell];
+        if (cell == nil) {
+            cell = [[[NSBundle mainBundle]loadNibNamed:@"KMVoucherCell" owner:self options:nil]objectAtIndex:0];
+            KMVoucher *voucher = [_leftList objectAtIndex:indexPath.row];
+            cell.title.text = voucher.senceName;
+            cell.price.text = voucher.balance;
+            cell.premise.text = voucher.policyDescription;
+            cell.validDate.text = voucher.invalidDate;
+        }
+    }else if ([tableView isEqual:_rightTableView])
+    {
+        static NSString *KMVoucherNotCell = @"KMVoucherNotCell";
+        cell = [tableView dequeueReusableCellWithIdentifier:KMVoucherNotCell];
+        if (cell == nil) {
+            cell = [[[NSBundle mainBundle]loadNibNamed:@"KMVoucherCell" owner:self options:nil]objectAtIndex:0];
+            KMVoucher *voucher = [_rightList objectAtIndex:indexPath.row];
+            cell.title.text = voucher.senceName;
+            cell.price.text = voucher.balance;
+            cell.premise.text = voucher.policyDescription;
+            cell.validDate.text = voucher.invalidDate;
+        }
     }
     return cell;
 }
@@ -94,6 +129,11 @@
 {
     KMVoucherMoreViewController *voucherMore = [[[NSBundle mainBundle]loadNibNamed:@"KMVoucherMoreViewController" owner:nil options:nil]objectAtIndex:0];
     voucherMore.title = @"代金券详情";
+    if ([tableView isEqual:_leftTableView]) {
+        voucherMore.voucher = [_leftList objectAtIndex:indexPath.row];
+    }else if([tableView isEqual:_rightTableView]){
+        voucherMore.voucher = [_rightList objectAtIndex:indexPath.row];
+    }
     [self.navigationController pushViewController:voucherMore animated:YES];
 }
 

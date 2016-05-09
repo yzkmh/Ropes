@@ -10,6 +10,6 @@
 #import "KMLottery.h"
 
 @interface KMShopViewController : UIViewController
-@property (nonatomic ,strong) KMLottery *lottery;
+@property (nonatomic ,strong) NSString *tcode;
 
 @end

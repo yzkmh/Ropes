@@ -35,9 +35,6 @@ typedef NS_ENUM(NSInteger,KMConponType){
     KMAuthenticationType
 };
 
-
-
-
 @interface KMRequestCenter : NSObject
 
 /**

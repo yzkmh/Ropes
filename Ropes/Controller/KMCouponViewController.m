@@ -8,6 +8,7 @@
 
 #import "KMCouponViewController.h"
 #import "KMVoucherViewController.h"
+#import "KMDiscountViewController.h"
 #import "KMAuthenticationViewController.h"
 #import "KMCouponCell.h"
 #import "UIImage+reSize.h"
@@ -26,6 +27,7 @@
     NSArray *imageArray;
     KMLotteryViewController *_lotteryView;
     KMVoucherViewController *_voucherView;
+    KMDiscountViewController *_discountView;
     KMAuthenticationViewController *_authenticationView;
     
     NSArray *countKeys;
@@ -120,6 +122,10 @@
         [self.navigationController pushViewController:_voucherView animated:YES];
     }else if(indexPath.row == 2)
     {
+        _discountView = [[KMDiscountViewController alloc]initWithNibName:nil bundle:nil];
+        [_discountView setTitle:@"折扣券"];
+        
+        [self.navigationController pushViewController:_discountView animated:YES];
         
     }else if (indexPath.row == 3)
     {

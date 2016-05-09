@@ -1,38 +1,48 @@
 //
-//  KMAuthenticationViewController.m
+//  KMDiscountViewController.m
 //  Ropes
 //
-//  Created by yzk on 16/4/7.
+//  Created by sunsea on 16/5/9.
 //  Copyright © 2016年 Madoka. All rights reserved.
 //
 
-#import "KMAuthenticationViewController.h"
-#import "KMAuthenticationMoreViewController.h"
+#import "KMDiscountViewController.h"
 #import "KMNavigationView.h"
-#import "KMAuthenticationCell.h"
-#import "KMViewsMannager.h"
 #import "LCProgressHUD.h"
+#import "KMViewsMannager.h"
+#import "KMUserManager.h"
 #import "KMVoucher.h"
 
+#import "KMDiscountCell.h"
 
-@interface KMAuthenticationViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface KMDiscountViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UITableView *_leftTableView;
     UITableView *_rightTableView;
-    
     BOOL _isRequest;
     
     NSArray *_leftList;
     NSArray *_rightList;
+    
 }
-
 @end
 
-@implementation KMAuthenticationViewController
+@implementation KMDiscountViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.view.backgroundColor = [UIColor grayColor];
+    [self initNavigation];
+    self.automaticallyAdjustsScrollViewInsets = false;
+    // Do any additional setup after loading the view.
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+- (void)initNavigation
+{
     KMNavigationView *naviView = [[[NSBundle mainBundle] loadNibNamed:@"KMNavigationView" owner:self options:nil]objectAtIndex:0];
     [naviView setFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64)];
     _leftTableView = [[UITableView alloc]initWithFrame:CGRectMake(naviView.bounds.origin.x, 10, naviView.bounds.size.width, naviView.bounds.size.height-45)];
@@ -41,8 +51,6 @@
     _leftTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [naviView addToShowView:_leftTableView];
     
-    
-    
     _rightTableView = [[UITableView alloc]initWithFrame:CGRectMake(naviView.bounds.size.width, 10, naviView.bounds.size.width, naviView.bounds.size.height-45)];
     [_rightTableView setDelegate:self];
     [_rightTableView setDataSource:self];
@@ -50,7 +58,6 @@
     [naviView addToShowView:_rightTableView];
     
     [self.view addSubview:naviView];
-    // Do any additional setup after loading the view.
 }
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -62,7 +69,7 @@
 - (void)initData
 {
     [LCProgressHUD showLoading:nil];
-    [[KMViewsMannager getInstance]getViewsInfomationWithConponType:KMAuthenticationType comlation:^(BOOL result, NSArray *list) {
+    [[KMViewsMannager getInstance]getViewsInfomationWithConponType:KMDiscountType comlation:^(BOOL result, NSArray *list) {
         [LCProgressHUD hide];
         _leftList = [list objectAtIndex:0];
         _rightList = [list objectAtIndex:1];
@@ -72,11 +79,6 @@
             [_rightTableView reloadData];
         });
     }];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -97,39 +99,46 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    KMAuthenticationCell *cell = nil;
+    KMDiscountCell *cell = nil;
     if ([tableView isEqual:_leftTableView]) {
-        static NSString *KMAuthenticationCanCell = @"KMAuthenticationCanCell";
-        cell = [tableView dequeueReusableCellWithIdentifier:KMAuthenticationCanCell];
+        static NSString *KMDiscountCanCell = @"KMDiscountCanCell";
+        cell = [tableView dequeueReusableCellWithIdentifier:KMDiscountCanCell];
         if (cell == nil) {
-            cell = [[[NSBundle mainBundle]loadNibNamed:@"KMAuthenticationCell" owner:self options:nil]objectAtIndex:0];
+            cell = [[[NSBundle mainBundle]loadNibNamed:@"KMDiscountCell" owner:self options:nil]objectAtIndex:0];
             KMVoucher *voucher = [_leftList objectAtIndex:indexPath.row];
             cell.title.text = voucher.senceName;
-            cell.state.text = voucher.policyName;
-            cell.infomation.text = voucher.policyDescription;
+            cell.price.text = voucher.balance;
+            //cell.state.text = @""
+            cell.premise.text = voucher.policyDescription;
             cell.validDate.text = voucher.invalidDate;
         }
-    }else if ([tableView isEqual:_rightTableView])
+    }//else if ([tableView isEqual:_rightTableView])
     {
-        static NSString *KMAuthenticationNotCell = @"KMAuthenticationNotCell";
-        cell = [tableView dequeueReusableCellWithIdentifier:KMAuthenticationNotCell];
+        static NSString *KMDiscountNotCell = @"KMDiscountNotCell";
+        cell = [tableView dequeueReusableCellWithIdentifier:KMDiscountNotCell];
         if (cell == nil) {
-            cell = [[[NSBundle mainBundle]loadNibNamed:@"KMAuthenticationCell" owner:self options:nil]objectAtIndex:0];
+            cell = [[[NSBundle mainBundle]loadNibNamed:@"KMDiscountCell" owner:self options:nil]objectAtIndex:0];
             KMVoucher *voucher = [_rightList objectAtIndex:indexPath.row];
             cell.title.text = voucher.senceName;
-            cell.state.text = voucher.balance;
-            cell.infomation.text = voucher.policyDescription;
+            cell.price.text = voucher.balance;
+            cell.premise.text = voucher.policyDescription;
             cell.validDate.text = voucher.invalidDate;
         }
     }
-    return cell;
+    return nil;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    KMAuthenticationMoreViewController *authenticationMore = [[[NSBundle mainBundle]loadNibNamed:@"KMAuthenticationMoreViewController" owner:nil options:nil]objectAtIndex:0];
-    authenticationMore.title = @"身份认证详情";
-    [self.navigationController pushViewController:authenticationMore  animated:YES];
+//    KMVoucherMoreViewController *voucherMore = [[[NSBundle mainBundle]loadNibNamed:@"KMVoucherMoreViewController" owner:nil options:nil]objectAtIndex:0];
+//    voucherMore.title = @"代金券详情";
+//    if ([tableView isEqual:_leftTableView]) {
+//        voucherMore.voucher = [_leftList objectAtIndex:indexPath.row];
+//    }else if([tableView isEqual:_rightTableView]){
+//        voucherMore.voucher = [_rightList objectAtIndex:indexPath.row];
+//    }
+//    [self.navigationController pushViewController:voucherMore animated:YES];
 }
+
 
 /*
 #pragma mark - Navigation

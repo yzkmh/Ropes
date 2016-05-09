@@ -39,9 +39,9 @@
     // Do any additional setup after loading the view.
 }
 
-- (void)setLottery:(KMLottery *)lottery
+- (void)setTcode:(NSString *)tcode
 {
-    _lottery = lottery;
+    _tcode = tcode;
     _shopList = [NSArray new];
 }
 
@@ -51,13 +51,12 @@
     if (_isFinish == NO) {
         [self initData];
     }
-
 }
 
 - (void)initData
 {
     [LCProgressHUD showLoading:nil];
-    [[KMViewsMannager getInstance]getShopInfoWithPhoneNum:[KMUserManager getInstance].currentUser.phone tcode:_lottery.tcode comlation:^(BOOL result, NSArray *list) {
+    [[KMViewsMannager getInstance]getShopInfoWithPhoneNum:[KMUserManager getInstance].currentUser.phone tcode:_tcode comlation:^(BOOL result, NSArray *list) {
         [LCProgressHUD hide];
         if (result) {
             _isFinish = YES;

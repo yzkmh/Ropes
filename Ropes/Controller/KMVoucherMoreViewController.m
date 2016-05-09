@@ -35,6 +35,24 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)setVoucher:(KMVoucher *)voucher
+{
+    _voucher = voucher;
+    self.titleLb.text = self.voucher.policyName;
+    self.price.text = self.voucher.consumeCount;
+    self.balance.text = self.voucher.balance;
+    if ([self.voucher.consumetype isEqual:@1]) {
+        self.rule.text = @"一次消费";
+    }else if([self.voucher.consumetype isEqual:@2])
+    {
+        self.rule.text = @"多次消费";
+    }else if ([self.voucher.consumetype isEqual:@3])
+    {
+        self.rule.text = @"固定消费";
+    }
+    self.condition.text = self.voucher.policyDescription;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 40;
@@ -79,7 +97,11 @@
     if (indexPath.row == 0) {
         KMShopViewController *shopView = [[KMShopViewController alloc]init];
         [shopView setTitle:@"商家详情"];
+        shopView.tcode = _voucher.tcode;
         [self.navigationController pushViewController:shopView animated:YES];
+    }else if(indexPath.row == 0)
+    {
+        
     }
 }
 

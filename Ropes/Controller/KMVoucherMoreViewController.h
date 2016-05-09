@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KMVoucher.h"
 
 @interface KMVoucherMoreViewController : UIViewController
 
@@ -21,4 +22,6 @@
 @property (nonatomic ,weak) IBOutlet UITableView *tableView;
 
 @property (nonatomic ,weak) IBOutlet UITextView *voncherDescription;
+
+@property (nonatomic ,strong) KMVoucher *voucher;
 @end

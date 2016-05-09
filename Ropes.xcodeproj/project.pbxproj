@@ -108,6 +108,11 @@
 		ED649A301CDB4AA3005D09C1 /* JsonUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = ED649A2F1CDB4AA3005D09C1 /* JsonUtil.m */; };
 		ED649A341CDC3674005D09C1 /* KMShop.m in Sources */ = {isa = PBXBuildFile; fileRef = ED649A331CDC3674005D09C1 /* KMShop.m */; };
 		ED649A371CDC474C005D09C1 /* KMVoucher.m in Sources */ = {isa = PBXBuildFile; fileRef = ED649A361CDC474C005D09C1 /* KMVoucher.m */; };
+		ED649A551CE07A7A005D09C1 /* KMDiscountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED649A541CE07A7A005D09C1 /* KMDiscountViewController.m */; };
+		ED649A571CE07B2B005D09C1 /* KMDiscountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED649A561CE07B2B005D09C1 /* KMDiscountCell.xib */; };
+		ED649A5A1CE07B81005D09C1 /* KMDiscountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED649A591CE07B81005D09C1 /* KMDiscountCell.m */; };
+		ED649A5E1CE07DDC005D09C1 /* KMDiscountMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED649A5C1CE07DDC005D09C1 /* KMDiscountMoreViewController.m */; };
+		ED649A5F1CE07DDC005D09C1 /* KMDiscountMoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED649A5D1CE07DDC005D09C1 /* KMDiscountMoreViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -288,6 +293,14 @@
 		ED649A331CDC3674005D09C1 /* KMShop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMShop.m; sourceTree = "<group>"; };
 		ED649A351CDC474C005D09C1 /* KMVoucher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMVoucher.h; sourceTree = "<group>"; };
 		ED649A361CDC474C005D09C1 /* KMVoucher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMVoucher.m; sourceTree = "<group>"; };
+		ED649A531CE07A7A005D09C1 /* KMDiscountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMDiscountViewController.h; sourceTree = "<group>"; };
+		ED649A541CE07A7A005D09C1 /* KMDiscountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMDiscountViewController.m; sourceTree = "<group>"; };
+		ED649A561CE07B2B005D09C1 /* KMDiscountCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KMDiscountCell.xib; sourceTree = "<group>"; };
+		ED649A581CE07B81005D09C1 /* KMDiscountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMDiscountCell.h; sourceTree = "<group>"; };
+		ED649A591CE07B81005D09C1 /* KMDiscountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMDiscountCell.m; sourceTree = "<group>"; };
+		ED649A5B1CE07DDC005D09C1 /* KMDiscountMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMDiscountMoreViewController.h; sourceTree = "<group>"; };
+		ED649A5C1CE07DDC005D09C1 /* KMDiscountMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMDiscountMoreViewController.m; sourceTree = "<group>"; };
+		ED649A5D1CE07DDC005D09C1 /* KMDiscountMoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KMDiscountMoreViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -391,6 +404,7 @@
 		136E1AD11CA67006005B3F4D /* 优惠 */ = {
 			isa = PBXGroup;
 			children = (
+				ED649A521CE0628F005D09C1 /* 折扣券 */,
 				135688711CB5DD890017565C /* 身份认证 */,
 				1356885A1CB551E90017565C /* 代金券 */,
 				135688401CB3F5D30017565C /* 彩票 */,
@@ -678,8 +692,23 @@
 				1356885E1CB555030017565C /* KMVoucherCell.xib */,
 				135688681CB560A80017565C /* KMShopCell.xib */,
 				135688751CB5DEE60017565C /* KMAuthenticationCell.xib */,
+				ED649A561CE07B2B005D09C1 /* KMDiscountCell.xib */,
 			);
 			path = Xib;
+			sourceTree = "<group>";
+		};
+		ED649A521CE0628F005D09C1 /* 折扣券 */ = {
+			isa = PBXGroup;
+			children = (
+				ED649A531CE07A7A005D09C1 /* KMDiscountViewController.h */,
+				ED649A541CE07A7A005D09C1 /* KMDiscountViewController.m */,
+				ED649A5B1CE07DDC005D09C1 /* KMDiscountMoreViewController.h */,
+				ED649A5C1CE07DDC005D09C1 /* KMDiscountMoreViewController.m */,
+				ED649A5D1CE07DDC005D09C1 /* KMDiscountMoreViewController.xib */,
+				ED649A581CE07B81005D09C1 /* KMDiscountCell.h */,
+				ED649A591CE07B81005D09C1 /* KMDiscountCell.m */,
+			);
+			name = "折扣券";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -793,6 +822,7 @@
 				A70B8D971CA96F7C00575096 /* backBtn.png in Resources */,
 				A70B8DA11CA96F7C00575096 /* sendLottery.png in Resources */,
 				A70B8DA61CA96F7C00575096 /* btnBg.png in Resources */,
+				ED649A5F1CE07DDC005D09C1 /* KMDiscountMoreViewController.xib in Resources */,
 				A741CAC41CAFB81A001F323C /* tag_normal.png in Resources */,
 				A70B8D981CA96F7C00575096 /* pushIcon.png in Resources */,
 				A70B8DA81CA96F7C00575096 /* messageIcon.png in Resources */,
@@ -823,6 +853,7 @@
 				A741CABC1CAF7A0A001F323C /* LCProgressHUD.bundle in Resources */,
 				A70B8D931CA96F7C00575096 /* unselected.png in Resources */,
 				135688481CB3F6170017565C /* KMLotteryMoreViewController.xib in Resources */,
+				ED649A571CE07B2B005D09C1 /* KMDiscountCell.xib in Resources */,
 				BB2C982C1C85431D00BAEE17 /* Main.storyboard in Resources */,
 				A70B8DA01CA96F7C00575096 /* lottery.png in Resources */,
 				A70B8D9A1CA96F7C00575096 /* flag.png in Resources */,
@@ -878,6 +909,7 @@
 				A7A971FC1CB1A66800847478 /* KMWalletViewController.m in Sources */,
 				A7A9720D1CB1C15E00847478 /* KMTransactionTableViewCell.m in Sources */,
 				A70B54621CA7D39B00E919C6 /* NSString+MD5.m in Sources */,
+				ED649A5A1CE07B81005D09C1 /* KMDiscountCell.m in Sources */,
 				136E1AD41CA670A2005B3F4D /* KMCouponViewController.m in Sources */,
 				1356887D1CB747640017565C /* KMAuthenticationMoreViewController.m in Sources */,
 				A7A972051CB1ADFA00847478 /* KMBankCardTableViewController.m in Sources */,
@@ -890,6 +922,7 @@
 				A7D69FAB1CA6F6700018E187 /* AFURLRequestSerialization.m in Sources */,
 				1356885D1CB552AF0017565C /* KMVoucherViewController.m in Sources */,
 				BB2C98231C85431D00BAEE17 /* main.m in Sources */,
+				ED649A551CE07A7A005D09C1 /* KMDiscountViewController.m in Sources */,
 				ED649A301CDB4AA3005D09C1 /* JsonUtil.m in Sources */,
 				A7A972101CB1C20E00847478 /* KMTransactionTableViewController.m in Sources */,
 				A7D69FAD1CA6F6700018E187 /* AFURLSessionManager.m in Sources */,
@@ -904,6 +937,7 @@
 				BB8FB2B31C8575EC00EFCE91 /* KMNavigationController.m in Sources */,
 				A7D69FAC1CA6F6700018E187 /* AFURLResponseSerialization.m in Sources */,
 				A7D69FB31CA719550018E187 /* KMUser.m in Sources */,
+				ED649A5E1CE07DDC005D09C1 /* KMDiscountMoreViewController.m in Sources */,
 				135688461CB3F60C0017565C /* KMLotteryMoreViewController.m in Sources */,
 				A7D69FA91CA6F6700018E187 /* AFNetworkReachabilityManager.m in Sources */,
 				BBB0196F1C86CD6D0071362D /* KMTabBarController.m in Sources */,

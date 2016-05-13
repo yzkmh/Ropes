@@ -112,7 +112,7 @@
             cell.premise.text = voucher.policyDescription;
             cell.validDate.text = voucher.invalidDate;
         }
-    }//else if ([tableView isEqual:_rightTableView])
+    }else if ([tableView isEqual:_rightTableView])
     {
         static NSString *KMDiscountNotCell = @"KMDiscountNotCell";
         cell = [tableView dequeueReusableCellWithIdentifier:KMDiscountNotCell];

@@ -305,4 +305,119 @@
         success(resultDic);
     }];
 }
+
+/**
+ *  查询余额
+ *
+ *  @param phone        电话号码
+ *  @param sessionId    id
+ *  @param sessionIdPwd id*6md5
+ *  @param cashrequest  电话号码?
+ */
++ (void)requestForDoBalanceInqueryWithNum:(NSString *)phone
+                                sessionId:(NSString *)sessionId
+                             sessionIdPwd:(NSString *)sessionIdPwd
+                             requestPhone:(NSString *)requestPhone
+                                  success:(void (^)(NSDictionary *))success
+                                  failure:(void (^)(int, NSString *))failure
+{
+    NSDictionary *paramters = [NSDictionary dictionaryWithObjectsAndKeys:
+                               phone,@"phone",
+                               sessionId,@"sessionid",
+                               sessionIdPwd,@"sessionidpwd",
+                               requestPhone,@"requestphone",
+                               nil];
+    [[KMNetWorkingManager sharedManager] postWithParameters:paramters subUrl:BalanceInquery block:^(NSDictionary *resultDic, NSError *error) {
+        success(resultDic);
+    }];
+}
+
+/**
+ *  收支记录
+ *
+ *  @param phone        电话号码
+ *  @param sessionId    id
+ *  @param sessionIdPwd id*6md5
+ *  @param requestPhone 电话号码
+ *  @param success      成功回调
+ *  @param failure      失败回调
+ */
++ (void)requestForCashReHisWith:(NSString *)phone
+                      sessionId:(NSString *)sessionId
+                   sessionIdPwd:(NSString *)sessionIdPwd
+                   requestPhone:(NSString *)requestPhone
+                       bankcard:(NSString *)bankcard
+                        success:(void (^)(NSDictionary *))success
+                        failure:(void (^)(int, NSString *))failure
+{
+    NSDictionary *paramters = [NSDictionary dictionaryWithObjectsAndKeys:
+                               phone,@"phone",
+                               sessionId,@"sessionid",
+                               sessionIdPwd,@"sessionidpwd",
+                               requestPhone,@"requsetphone",
+                               bankcard,@"bankcard",
+                               nil];
+    [[KMNetWorkingManager sharedManager] postWithParameters:paramters subUrl:CashReHis block:^(NSDictionary *resultDic, NSError *error) {
+        success(resultDic);
+    }];
+}
+
+/**
+ *  提现
+ *
+ *  @param phone        电话号码
+ *  @param sessionId    id
+ *  @param sessionIdPwd id*6md5
+ *  @param requestPhone 电话号码
+ *  @param cashnum      提现金额
+ *  @param bankname     银行
+ *  @param bankcard     卡号
+ *  @param requestname  银行
+ */
++ (void)requestForDoCashRe:(NSString *)phone
+                 sessionId:(NSString *)sessionId
+              sessionIdPwd:(NSString *)sessionIdPwd
+              requestPhone:(NSString *)requestPhone
+                  cacshnum:(NSString *)cashnum
+                  bankname:(NSString *)bankname
+                  bankcard:(NSString *)bankcard
+               requestname:(NSString *)requestname
+                   success:(void (^)(NSDictionary *))success
+                   failure:(void (^)(int, NSString *))failure
+{
+    NSDictionary *paramters = [NSDictionary dictionaryWithObjectsAndKeys:
+                               phone,@"phone",
+                               sessionId,@"sessionid",
+                               sessionIdPwd,@"sessionidpwd",
+                               requestPhone,@"requestphone",
+                               cashnum,@"cashnum",
+                               bankname,@"bankname",
+                               bankcard,@"bankcard",
+                               requestname,@"requestname",
+                               nil];
+    [[KMNetWorkingManager sharedManager] postWithParameters:paramters subUrl:DoCashRe block:^(NSDictionary *resultDic, NSError *error) {
+        success(resultDic);
+    }];
+}
+
++ (void)requestForDoInsertBankInfo:(NSString *)phone
+                         sessionId:(NSString *)sessionid
+                      sessionidpwd:(NSString *)sessionidpwd
+                              bank:(NSString *)bank
+                          bankcard:(NSString *)bankcard
+                           success:(void (^)(NSDictionary *))success
+                           failure:(void (^)(int, NSString *))failure
+{
+    NSDictionary *paramters = [NSDictionary dictionaryWithObjectsAndKeys:
+                               phone,@"phone",
+                               sessionid,@"sessionid",
+                               sessionidpwd,@"sessionidpwd",
+                               bank,@"bank",
+                               bankcard,@"bankcard",
+                               nil];
+    [[KMNetWorkingManager sharedManager] postWithParameters:paramters subUrl:DoInsertBankInfo block:^(NSDictionary *resultDic, NSError *error) {
+        success(resultDic);
+    }];
+
+}
 @end

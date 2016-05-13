@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface KMBalanceViewController : UIViewController
-
+@property (copy, nonatomic) NSString *cashNum;
 @end

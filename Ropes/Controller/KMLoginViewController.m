@@ -81,14 +81,14 @@
 - (IBAction)loginBtnClick:(id)sender {
     
     if ([self verifyLogin]) {
-        
+        [LCProgressHUD showLoading:nil];
         [[KMUserManager getInstance] loginWithPhoneNum:self.phoneNumTextField.text
                                               password:self.passwordTextField.text
                                              comlation:^(BOOL result, NSString *message, id user) {
             
                                                  if (result) {
                                                      self.user = user;
-                                                     [LCProgressHUD showSuccess:message];
+                                                     [LCProgressHUD showSuccess:@"登陆成功"];
                                                      
                                                      if ([self.remeberPwdBtn isSelected]) {
                                                          self.user.isRememberPwd = YES;
@@ -100,9 +100,12 @@
                                                      // 保存账号到本地
                                                      [NSKeyedArchiver archiveRootObject:self.user toFile:kPATH];
                                                      [KMUserManager getInstance].currentUser = user;
+                                                     
+                                                     [LCProgressHUD hide];
                                                      [self performSegueWithIdentifier:@"loginToTabBar" sender:self];
                                                      
                                                  } else {
+                                                     [LCProgressHUD hide];
                                                      if (message) {
                                                          [LCProgressHUD showFailure:message];
                                                          return;

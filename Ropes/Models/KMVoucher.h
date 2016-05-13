@@ -17,10 +17,10 @@
 @property (nonatomic ,strong) NSNumber *consumetype;//消费类型 1.一次2.多次3.固定
 @property (nonatomic ,strong) NSString *balance;//当前余额
 @property (nonatomic ,strong) NSString *invalidDate;//有效期
-@property (nonatomic ,strong) NSString *useCounttype;//使用次数类型 1.固定次数 不限次数
+@property (nonatomic ,strong) NSString *useCounttype;//使用次数类型 1.单 2.双
 @property (nonatomic ,strong) NSString *useCount;//可使用次数（总次数）
 @property (nonatomic ,strong) NSString *usedCount;//已使用次数
-@property (nonatomic ,strong) NSString *discountRate;//折扣率
+@property (nonatomic ,strong) NSNumber *discountRate;//折扣率 *100
 @property (nonatomic ,strong) NSString *senceName;//场景名称 企业名称
 @property (nonatomic ,strong) NSString *address;//店铺详细地址
 @property (nonatomic ,strong) NSString *detailName;//可使用门店

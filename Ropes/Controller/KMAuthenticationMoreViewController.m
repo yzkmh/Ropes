@@ -8,6 +8,9 @@
 
 #import "KMAuthenticationMoreViewController.h"
 #import "KMShopViewController.h"
+#import "LCProgressHUD.h"
+#import "KMViewsMannager.h"
+#import "KMHistoryViewController.h"
 
 @interface KMAuthenticationMoreViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -33,20 +36,19 @@
 - (void)setVoucher:(KMVoucher *)voucher
 {
     _voucher = voucher;
-    self.titleLb.text = self.voucher.policyName;
-    self.price.text = self.voucher.consumeCount;
-    self.balance.text = self.voucher.balance;
-//    if ([self.voucher.consumetype isEqual:@1]) {
-//        self.rule.text = @"一次消费";
-//    }else if([self.voucher.consumetype isEqual:@2])
-//    {
-//        self.rule.text = @"多次消费";
-//    }else if ([self.voucher.consumetype isEqual:@3])
-//    {
-//        self.rule.text = @"固定消费";
-//    }
+    self.titleLb.text = self.voucher.senceName;
+    self.price.text = self.voucher.policyName;
     self.usableDate.text = self.voucher.invalidDate;
-    self.message.text = self.voucher.policyDescription;
+    if (![self.voucher.policyDescription isKindOfClass:[NSNull class]]) {
+        self.message.text = self.voucher.policyDescription;
+    }else{
+        self.message.text = @"";
+    }
+    if ([self.voucher.policyName isEqualToString:@"扫码领彩"]) {
+        self.voncherDescription.text = @"为了感谢您的支持，请凭此领彩通知到指定门店领取彩票";
+    }else{
+        self.voncherDescription.text = @"本店会员进店消费可享受优惠";
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -67,30 +69,49 @@
         cell = [[UITableViewCell alloc]init];
         cell.textLabel.text = @"可使用门店";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }else if (indexPath.row == 1)
+    {
+        cell = [[UITableViewCell alloc]init];
+        cell.textLabel.text = @"使用记录";
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     return cell;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-
-{
-    
-    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 65)];
-    
-    v.backgroundColor = [UIColor clearColor];
-    
-    return v;
-    
-}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
         KMShopViewController *shopView = [[KMShopViewController alloc]init];
         [shopView setTitle:@"商家详情"];
-        shopView.tcode = self.voucher.tcode;
+        shopView.tcode = _voucher.tcode;
         [self.navigationController pushViewController:shopView animated:YES];
+    }else if(indexPath.row == 1)
+    {
+        KMHistoryViewController *history = [[KMHistoryViewController alloc]init];
+        [history setTitle:@"使用记录"];
+        history.tcode = _voucher.tcode;
+        [self.navigationController pushViewController:history animated:YES];
     }
+}
+- (IBAction)btnMakeUse:(id)sender
+{
+    [LCProgressHUD showLoading:@"正在发送信息"];
+    
+    [[KMViewsMannager getInstance]sendConponMessageWithtcode:_voucher.tcode comlation:^(BOOL result, NSString *message) {
+        if (result) {
+            [LCProgressHUD showSuccess:@"发送成功"];
+        }else{
+            [LCProgressHUD showFailure:message];
+        }
+    }];
+}
+
+- (void)setBtnClose
+{
+    [self.useBtn setTitle:@"已过期" forState:UIControlStateNormal];
+    [self.useBtn setBackgroundColor:[UIColor grayColor]];
+    [self.useBtn setUserInteractionEnabled:NO];
 }
 /*
 #pragma mark - Navigation

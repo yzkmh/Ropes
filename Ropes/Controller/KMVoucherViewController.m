@@ -107,7 +107,16 @@
             KMVoucher *voucher = [_leftList objectAtIndex:indexPath.row];
             cell.title.text = voucher.senceName;
             cell.price.text = voucher.balance;
-            cell.premise.text = voucher.policyDescription;
+            if (![voucher.policyDescription isKindOfClass:[NSNull class]]) {
+                cell.premise.text = voucher.policyDescription;
+            }else{
+                cell.premise.text = @"";
+            }
+            if ([voucher.useCounttype isEqual:@1]) {
+                cell.state.text = @"单";
+            }else if([voucher.useCounttype isEqual:@2]) {
+                cell.state.text = @"双";
+            }
             cell.validDate.text = voucher.invalidDate;
         }
     }else if ([tableView isEqual:_rightTableView])
@@ -119,7 +128,16 @@
             KMVoucher *voucher = [_rightList objectAtIndex:indexPath.row];
             cell.title.text = voucher.senceName;
             cell.price.text = voucher.balance;
-            cell.premise.text = voucher.policyDescription;
+            if (![voucher.policyDescription isKindOfClass:[NSNull class]]) {
+                cell.premise.text = voucher.policyDescription;
+            }else{
+                cell.premise.text = @"";
+            }
+            if ([voucher.useCounttype isEqual:@1]) {
+                cell.state.text = @"单";
+            }else if([voucher.useCounttype isEqual:@2]) {
+                cell.state.text = @"双";
+            }
             cell.validDate.text = voucher.invalidDate;
         }
     }
@@ -141,6 +159,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 /*
 #pragma mark - Navigation

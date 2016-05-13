@@ -12,6 +12,7 @@
 #import "KMLottery.h"
 #import "KMShop.h"
 #import "KMVoucher.h"
+#import "KMHistory.h"
 
 @interface KMViewsMannager ()
 {
@@ -48,8 +49,8 @@ static KMViewsMannager * _shareKMViewsManager;
     NSString *phone = [KMUserManager getInstance].currentUser.phone;
     NSString *session = [KMUserManager getInstance].currentUser.sessionid;
     NSString *sessionpwd = [[KMUserManager getInstance].currentUser.sessionid md5WithTimes:6];
-    NSMutableArray *voucherCanList = [NSMutableArray new];
-    NSMutableArray *voucherNotList = [NSMutableArray new];
+    __block NSMutableArray *voucherCanList = [NSMutableArray new];
+    __block NSMutableArray *voucherNotList = [NSMutableArray new];
     [KMRequestCenter requestViewInformationWithphoneNum:phone sessionId:session sessionIdPwd:sessionpwd conponType:type success:^(NSDictionary *dic) {
         for (NSDictionary *conponInfo in dic)
         {
@@ -57,15 +58,56 @@ static KMViewsMannager * _shareKMViewsManager;
                 KMVoucher *voucher =[[KMVoucher new]initWithDict:conponInfo];
                 if ([voucher.state  isEqual: @0]) {
                     [voucherCanList addObject:voucher];
-                }else if([voucher.state  isEqual: @2]){
+                }else{
                     [voucherNotList addObject:voucher];
                 }
             }
         }
-        NSLog(@"获取优惠数据成功");
-        block(YES,@[voucherCanList,voucherNotList]);
+        if (type  == KMVoucherType) {
+            [KMRequestCenter requestVoucherInfoWithPhoneNum:phone success:^(NSDictionary *dic) {
+                for (NSDictionary *conponInfo in dic)
+                {
+                    if ([[conponInfo objectForKey:@"error"] isEqualToString:@"成功"]) {
+                        KMVoucher *voucher =[[KMVoucher new]initWithDict:conponInfo];
+                        if ([voucher.state  isEqual: @0]) {
+                            [voucherCanList addObject:voucher];
+                        }else{
+                            [voucherNotList addObject:voucher];
+                        }
+                    }
+                }
+                NSLog(@"获取优惠数据成功");
+                block(YES,@[voucherCanList,voucherNotList]);
+            } failure:^(int result, NSString *errorStr) {
+                NSLog(@"%@",errorStr);
+                block(NO,nil);
+            }];
+        }
+        else if (type  == KMAuthenticationType) {
+            [KMRequestCenter requestAuthenticationInfoWithPhoneNum:phone success:^(NSDictionary *dic) {
+                for (NSDictionary *conponInfo in dic)
+                {
+                    if ([[conponInfo objectForKey:@"error"] isEqualToString:@"成功"]) {
+                        KMVoucher *voucher =[[KMVoucher new]initWithDict:conponInfo];
+                        if ([voucher.state  isEqual: @0]) {
+                            [voucherCanList addObject:voucher];
+                        }else{
+                            [voucherNotList addObject:voucher];
+                        }
+                    }
+                }
+                NSLog(@"获取优惠数据成功");
+                block(YES,@[voucherCanList,voucherNotList]);
+            } failure:^(int result, NSString *errorStr) {
+                block(NO,nil);
+            }];
+        }else{
+            NSLog(@"获取优惠数据成功");
+            block(YES,@[voucherCanList,voucherNotList]);
+        }
     } failure:^(int code, NSString *ErrorStr) {
         NSLog(@"%@",ErrorStr);
+        block(NO,nil);
     }];
 }
 - (void)getLotteryInfoWithPhoneNum:(NSString *)phone comlation:(void(^)(BOOL result,NSArray *list))block
@@ -79,7 +121,7 @@ static KMViewsMannager * _shareKMViewsManager;
             KMLottery *lottery = [[KMLottery alloc]initWithDict:lotterydic];
               if ([lottery.state  isEqual: @0]) {
                   [lotteryCanList addObject:lottery];
-              }else if([lottery.state  isEqual: @2]){
+              }else{
                   [lotteryNotList addObject:lottery];
               }
         }
@@ -93,7 +135,6 @@ static KMViewsMannager * _shareKMViewsManager;
 - (void)getShopInfoWithPhoneNum:(NSString *)phone tcode:(NSString *)tcode comlation:(void(^)(BOOL result,NSArray *list))block
 {
     [KMRequestCenter requestShopInfoWithPhoneNum:phone tcode:tcode success:^(NSDictionary *dic) {
-        //KMShop *shop = [[KMShop alloc]initWithDict:dic];
         NSMutableArray *shopList = [NSMutableArray new];
         for (NSDictionary *lotterydic in dic) {
             KMShop *shop = [[KMShop alloc]initWithDict:lotterydic];
@@ -102,16 +143,50 @@ static KMViewsMannager * _shareKMViewsManager;
         }
         block(YES,shopList);
     } failure:^(int code, NSString *errorStr) {
-        
+        block(NO,nil);
     }];
 }
 
-- (void)getVoucerInfoWithPhoneNum:(NSString *)phone comlation:(void(^)(BOOL result,NSArray *list))block
+- (void)sendLotteryMessageWithtcode:(NSString *)tcode comlation:(void(^)(BOOL result,NSString *message))block
 {
-    [KMRequestCenter requestVoucherInfoWithPhoneNum:phone success:^(NSDictionary *dic) {
+    NSString *phone = [KMUserManager getInstance].currentUser.phone;
+    NSString *session = [KMUserManager getInstance].currentUser.sessionid;
+    NSString *sessionpwd = [[KMUserManager getInstance].currentUser.sessionid md5WithTimes:6];
+    
+    [KMRequestCenter requestSendLotteryMessageWithPhoneNum:phone sessionId:session sessionIdPwd:sessionpwd tcode:tcode success:^(NSDictionary *dic) {
         
-    } failure:^(int code, NSString *errorStr) {
-        
+    } failure:^(int result, NSString *errorStr) {
+        block(result,errorStr);
     }];
+}
+- (void)sendConponMessageWithtcode:(NSString *)tcode comlation:(void(^)(BOOL result,NSString *message))block
+{
+    NSString *phone = [KMUserManager getInstance].currentUser.phone;
+    NSString *session = [KMUserManager getInstance].currentUser.sessionid;
+    NSString *sessionpwd = [[KMUserManager getInstance].currentUser.sessionid md5WithTimes:6];
+    
+    [KMRequestCenter requestSendConponMessageWithPhoneNum:phone sessionId:session sessionIdPwd:sessionpwd tcode:tcode success:^(NSDictionary *dic) {
+        
+    } failure:^(int result, NSString *errorStr) {
+        block(result,errorStr);
+    }];
+}
+- (void)getHistoryInfoWithtcode:(NSString *)tcode comlation:(void(^)(BOOL result,NSArray *list))block
+{
+    NSString *phone = [KMUserManager getInstance].currentUser.phone;
+    NSString *session = [KMUserManager getInstance].currentUser.sessionid;
+    NSString *sessionpwd = [[KMUserManager getInstance].currentUser.sessionid md5WithTimes:6];
+    [KMRequestCenter requestForHistoryWithPhoneNum:phone sessionId:session sessionIdPwd:sessionpwd tcode:tcode success:^(NSDictionary *dic) {
+        NSMutableArray *historyList = [NSMutableArray new];
+        for (NSDictionary *historydic in dic) {
+            KMHistory *history = [[KMHistory alloc]initWithDict:historydic];
+            [historyList addObject:history];
+            
+        }
+        block(YES,historyList);
+    } failure:^(int result, NSString *errorStr) {
+        block(NO,nil);
+    }];
+    
 }
 @end

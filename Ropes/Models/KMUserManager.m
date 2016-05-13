@@ -80,9 +80,8 @@ static KMUserManager *shareKMUserManager = nil ;
     
     __block KMUser *user;
     
-//    __block NSString * __pwd = pwd;
-    
     pwd = [pwd md5WithTimes:6];
+    
     [KMRequestCenter requestForLoginWithPhone:phoneNum
                                      password:pwd
                                       success:^(NSDictionary *resultDic) {
@@ -95,9 +94,27 @@ static KMUserManager *shareKMUserManager = nil ;
                                               }
                                               [KMRequestCenter requestMainViewLotteryInfoWithphoneNum:user.phone sessionId:user.sessionid sessionIdPwd:[user.sessionid md5WithTimes:6] success:^(NSDictionary *dic) {
                                                   for (NSString *key in dic.allKeys) {
-                                                      [user.ConponNumList setValue:[dic objectForKey:key] forKey:key];
+                                                      if ([key isEqualToString:@"ct"]) {
+                                                          int sc = (int)[[user.ConponNumList objectForKey:@"sc"]intValue] + (int)[[dic objectForKey:@"ct"]intValue];
+                                                          [user.ConponNumList setValue:[NSNumber numberWithInt:sc] forKey:@"sc"];
+                                                      }else if ([key isEqualToString:@"nt"])
+                                                      {
+                                                          int nt = (int)[[user.ConponNumList objectForKey:@"sn"]intValue] + (int)[[dic objectForKey:@"nt"]intValue];
+                                                          [user.ConponNumList setValue:[NSNumber numberWithInt:nt] forKey:@"sn"];
+                                                      }else if ([key isEqualToString:@"cv"])
+                                                      {
+                                                          int dc = (int)[[user.ConponNumList objectForKey:@"dc"]intValue] + (int)[[dic objectForKey:@"cv"]intValue];
+                                                          [user.ConponNumList setValue:[NSNumber numberWithInt:dc] forKey:@"dc"];
+                                                      }else if ([key isEqualToString:@"nv"])
+                                                      {
+                                                          int dn = (int)[[user.ConponNumList objectForKey:@"dn"]intValue] + (int)[[dic objectForKey:@"nv"]intValue];
+                                                          [user.ConponNumList setValue:[NSNumber numberWithInt:dn] forKey:@"dn"];
+                                                      }else{
+                                                          [user.ConponNumList setValue:[dic objectForKey:key] forKey:key];
+                                                      }
+                                                      
                                                   }
-                                                  block(YES,@"注册成功",user);
+                                                  block(YES,@"登录成功",user);
                                               } failure:^(int code, NSString *errorStr) {
                                                   loginFinished = NO;
                                                   NSLog(@"登录失败 errorCode: %d -- errorMsg: %@",code,errorStr);

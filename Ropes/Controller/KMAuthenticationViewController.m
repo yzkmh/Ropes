@@ -41,8 +41,6 @@
     _leftTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [naviView addToShowView:_leftTableView];
     
-    
-    
     _rightTableView = [[UITableView alloc]initWithFrame:CGRectMake(naviView.bounds.size.width, 10, naviView.bounds.size.width, naviView.bounds.size.height-45)];
     [_rightTableView setDelegate:self];
     [_rightTableView setDataSource:self];
@@ -106,7 +104,11 @@
             KMVoucher *voucher = [_leftList objectAtIndex:indexPath.row];
             cell.title.text = voucher.senceName;
             cell.state.text = voucher.policyName;
-            cell.infomation.text = voucher.policyDescription;
+            if (![voucher.policyDescription isKindOfClass:[NSNull class]]) {
+                cell.infomation.text = voucher.policyDescription;
+            }else{
+                cell.infomation.text = @"";
+            }
             cell.validDate.text = voucher.invalidDate;
         }
     }else if ([tableView isEqual:_rightTableView])
@@ -115,10 +117,14 @@
         cell = [tableView dequeueReusableCellWithIdentifier:KMAuthenticationNotCell];
         if (cell == nil) {
             cell = [[[NSBundle mainBundle]loadNibNamed:@"KMAuthenticationCell" owner:self options:nil]objectAtIndex:0];
-            KMVoucher *voucher = [_rightList objectAtIndex:indexPath.row];
+            KMVoucher *voucher = [_leftList objectAtIndex:indexPath.row];
             cell.title.text = voucher.senceName;
-            cell.state.text = voucher.balance;
-            cell.infomation.text = voucher.policyDescription;
+            cell.state.text = voucher.policyName;
+            if (![voucher.policyDescription isKindOfClass:[NSNull class]]) {
+                cell.infomation.text = voucher.policyDescription;
+            }else{
+                cell.infomation.text = @"";
+            }
             cell.validDate.text = voucher.invalidDate;
         }
     }
@@ -128,6 +134,12 @@
 {
     KMAuthenticationMoreViewController *authenticationMore = [[[NSBundle mainBundle]loadNibNamed:@"KMAuthenticationMoreViewController" owner:nil options:nil]objectAtIndex:0];
     authenticationMore.title = @"身份认证详情";
+    if ([tableView isEqual:_leftTableView]) {
+        authenticationMore.voucher = [_leftList objectAtIndex:indexPath.row];
+    }else if([tableView isEqual:_rightTableView]){
+        authenticationMore.voucher = [_rightList objectAtIndex:indexPath.row];
+        [authenticationMore setBtnClose];
+    }
     [self.navigationController pushViewController:authenticationMore  animated:YES];
 }
 

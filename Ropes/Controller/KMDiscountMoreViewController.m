@@ -8,8 +8,8 @@
 
 #import "KMDiscountMoreViewController.h"
 #import "KMShopViewController.h"
-//#import "LCProgressHUD.h"
-//#import "KMViewsMannager.h"
+#import "LCProgressHUD.h"
+#import "KMViewsMannager.h"
 #import "KMHistoryViewController.h"
 
 @interface KMDiscountMoreViewController ()<UITableViewDataSource ,UITableViewDelegate>
@@ -37,17 +37,10 @@
 {
     _voucher = voucher;
     self.titleLb.text = self.voucher.policyName;
-    self.price.text = self.voucher.consumeCount;
+    self.expirationDate.text = self.voucher.invalidDate;
+    self.price.text= [NSString stringWithFormat:@"%@折优惠",self.voucher.discountRate];
     self.balance.text = self.voucher.balance;
-    if ([self.voucher.consumetype isEqual:@1]) {
-        self.rule.text = @"一次消费";
-    }else if([self.voucher.consumetype isEqual:@2])
-    {
-        self.rule.text = @"多次消费";
-    }else if ([self.voucher.consumetype isEqual:@3])
-    {
-        self.rule.text = @"固定消费";
-    }
+    self.rule.text = self.voucher.policyName;
     self.condition.text = self.voucher.policyDescription;
 }
 
@@ -78,17 +71,6 @@
     return cell;
 }
 
-//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-//
-//{
-//    
-//    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 65)];
-//    
-//    v.backgroundColor = [UIColor clearColor];
-//    
-//    return v;
-//    
-//}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -104,6 +86,19 @@
         history.tcode = _voucher.tcode;
         [self.navigationController pushViewController:history animated:YES];
     }
+}
+
+- (IBAction)btnMakeUse:(id)sender
+{
+    [LCProgressHUD showLoading:@"正在发送信息"];
+    
+    [[KMViewsMannager getInstance]sendMessageWithtcode:_voucher.tcode comlation:^(BOOL result, NSString *message) {
+        if (result) {
+            [LCProgressHUD showSuccess:@"发送成功"];
+        }else{
+            [LCProgressHUD showFailure:message];
+        }
+    }];
 }
 /*
 #pragma mark - Navigation

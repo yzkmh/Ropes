@@ -314,7 +314,17 @@
                                @"6",@"type",
                                nil];
     [[KMNetWorkingManager sharedManager] postWithParameters:paramters subUrl:LotteryInqueryVoucher block:^(NSDictionary *resultDic, NSError *error) {
-        success(resultDic);
+        BOOL isFinished = NO;
+        for (NSDictionary *dic  in resultDic) {
+            if ([[dic objectForKey:@"error_code"] isEqual:@200]) {
+                isFinished = YES;
+            }
+        }
+        if (isFinished) {
+            success(resultDic);
+        }else{
+            failure(NO,@"获取失败");
+        }
     }];
 }
 /**
@@ -341,20 +351,16 @@
                                tcode,@"tcode",
                                nil];
     [[KMNetWorkingManager sharedManager] postWithParameters:paramters subUrl:GetMars block:^(NSDictionary *resultDic, NSError *error) {
-        if (resultDic.count == 0) {
-            failure(NO,@"发送失败");
-        }else{
-            BOOL handle_state = [resultDic objectForKey:@"handler_state"];
-            int error_code = [[resultDic objectForKey:@"error_code"] intValue];
-            NSString *errorString =[resultDic objectForKey:@"error"];
-            
-            if (handle_state && error_code == 200) {
-                NSLog(@"code : %d",error_code);
-                success(resultDic);
-            } else {
-                NSLog(@"error_code: %d  ---- error: %@",error_code,errorString);
-                failure(error_code,errorString);
+        BOOL isFinished = NO;
+        for (NSDictionary *dic  in resultDic) {
+            if ([[dic objectForKey:@"error_code"] isEqual:@200]) {
+                isFinished = YES;
             }
+        }
+        if (isFinished) {
+            success(resultDic);
+        }else{
+            failure(NO,@"获取失败");
         }
     }];
 }
@@ -382,22 +388,17 @@
                                tcode,@"tcode",
                                nil];
     [[KMNetWorkingManager sharedManager] postWithParameters:paramters subUrl:GetUsedHis block:^(NSDictionary *resultDic, NSError *error) {
-        if (resultDic.count == 0) {
-            failure(NO,@"发送失败");
-        }else{
-            BOOL handle_state = [resultDic objectForKey:@"handler_state"];
-            int error_code = [[resultDic objectForKey:@"error_code"] intValue];
-            NSString *errorString =[resultDic objectForKey:@"error"];
-            
-            if (handle_state && error_code == 200) {
-                NSLog(@"code : %d",error_code);
-                success(resultDic);
-            } else {
-                NSLog(@"error_code: %d  ---- error: %@",error_code,errorString);
-                failure(error_code,errorString);
+        BOOL isFinished = NO;
+        for (NSDictionary *dic  in resultDic) {
+            if ([[dic objectForKey:@"error_code"] isEqual:@200]) {
+                isFinished = YES;
             }
         }
+        if (isFinished) {
+            success(resultDic);
+        }else{
+            failure(NO,@"获取失败");
+        }
     }];
-    
 }
 @end

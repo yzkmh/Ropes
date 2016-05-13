@@ -81,7 +81,7 @@
 - (IBAction)loginBtnClick:(id)sender {
     
     if ([self verifyLogin]) {
-        
+        [LCProgressHUD showLoading:nil];
         [[KMUserManager getInstance] loginWithPhoneNum:self.phoneNumTextField.text
                                               password:self.passwordTextField.text
                                              comlation:^(BOOL result, NSString *message, id user) {

@@ -80,9 +80,8 @@ static KMUserManager *shareKMUserManager = nil ;
     
     __block KMUser *user;
     
-//    __block NSString * __pwd = pwd;
-    
     pwd = [pwd md5WithTimes:6];
+    
     [KMRequestCenter requestForLoginWithPhone:phoneNum
                                      password:pwd
                                       success:^(NSDictionary *resultDic) {
@@ -97,7 +96,7 @@ static KMUserManager *shareKMUserManager = nil ;
                                                   for (NSString *key in dic.allKeys) {
                                                       [user.ConponNumList setValue:[dic objectForKey:key] forKey:key];
                                                   }
-                                                  block(YES,@"注册成功",user);
+                                                  block(YES,@"登录成功",user);
                                               } failure:^(int code, NSString *errorStr) {
                                                   loginFinished = NO;
                                                   NSLog(@"登录失败 errorCode: %d -- errorMsg: %@",code,errorStr);

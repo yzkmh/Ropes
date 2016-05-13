@@ -12,6 +12,7 @@
 #import "KMLottery.h"
 #import "KMShop.h"
 #import "KMVoucher.h"
+#import "KMHistory.h"
 
 @interface KMViewsMannager ()
 {
@@ -132,9 +133,15 @@ static KMViewsMannager * _shareKMViewsManager;
     NSString *session = [KMUserManager getInstance].currentUser.sessionid;
     NSString *sessionpwd = [[KMUserManager getInstance].currentUser.sessionid md5WithTimes:6];
     [KMRequestCenter requestForHistoryWithPhoneNum:phone sessionId:session sessionIdPwd:sessionpwd tcode:tcode success:^(NSDictionary *dic) {
-        
+        NSMutableArray *historyList = [NSMutableArray new];
+        for (NSDictionary *historydic in dic) {
+            KMHistory *history = [[KMHistory alloc]initWithDict:historydic];
+            [historyList addObject:history];
+            
+        }
+        block(YES,historyList);
     } failure:^(int result, NSString *errorStr) {
-        
+        block(NO,nil);
     }];
     
 }

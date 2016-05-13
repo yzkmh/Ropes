@@ -108,8 +108,12 @@
             cell = [[[NSBundle mainBundle]loadNibNamed:@"KMDiscountCell" owner:self options:nil]objectAtIndex:0];
             KMVoucher *voucher = [_leftList objectAtIndex:indexPath.row];
             cell.title.text = voucher.senceName;
-            cell.price.text = voucher.balance;
-            //cell.state.text = @""
+            cell.price.text = [NSString stringWithFormat:@"%@折优惠",voucher.discountRate];
+            if ([voucher.useCounttype isEqual:@1]) {
+                cell.state.text = @"单";
+            }else if([voucher.useCounttype isEqual:@2]) {
+                cell.state.text = @"双";
+            }
             cell.premise.text = voucher.policyDescription;
             cell.validDate.text = voucher.invalidDate;
         }
@@ -121,7 +125,12 @@
             cell = [[[NSBundle mainBundle]loadNibNamed:@"KMDiscountCell" owner:self options:nil]objectAtIndex:0];
             KMVoucher *voucher = [_rightList objectAtIndex:indexPath.row];
             cell.title.text = voucher.senceName;
-            cell.price.text = voucher.balance;
+            cell.price.text = [NSString stringWithFormat:@"%@折优惠",voucher.discountRate];
+            if ([voucher.useCounttype isEqual:@1]) {
+                cell.state.text = @"单";
+            }else if([voucher.useCounttype isEqual:@2]) {
+                cell.state.text = @"双";
+            }
             cell.premise.text = voucher.policyDescription;
             cell.validDate.text = voucher.invalidDate;
         }

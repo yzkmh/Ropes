@@ -11,6 +11,7 @@
 #import "LCProgressHUD.h"
 #import "KMViewsMannager.h"
 #import "KMUserManager.h"
+#import "KMHistory.h"
 
 @interface KMHistoryViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -77,22 +78,22 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
+    return 90;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     KMHistoryCell *cell = nil;
-//    static NSString *cellIdentifier = @"KMShopCell";
-//    KMShop *shop = [_shopList objectAtIndex:indexPath.row];
-//    //KMCouponItem *item = [items objectAtIndex:indexPath.row];
-//    cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-//    if (cell == nil) {
-//        cell = [[[NSBundle mainBundle]loadNibNamed:@"KMShopCell" owner:self options:nil]objectAtIndex:0];
-//    }
-//    cell.title.text = shop.detailName;
-//    cell.phoneNum.text = shop.telNum;
-//    cell.address.text = shop.address;
+    static NSString *cellIdentifier = @"KMHistoryCell";
+    KMHistory *history = [_historyList objectAtIndex:indexPath.row];
+    //KMCouponItem *item = [items objectAtIndex:indexPath.row];
+    cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[[NSBundle mainBundle]loadNibNamed:@"KMHistoryCell" owner:self options:nil]objectAtIndex:0];
+    }
+    cell.price.text = history.consume;
+    cell.date.text = history.usedData;
+    cell.address.text = history.usedDetail;
     
     return cell;
 }

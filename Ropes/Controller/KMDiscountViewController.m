@@ -123,7 +123,7 @@
         cell = [tableView dequeueReusableCellWithIdentifier:KMDiscountNotCell];
         if (cell == nil) {
             cell = [[[NSBundle mainBundle]loadNibNamed:@"KMDiscountCell" owner:self options:nil]objectAtIndex:0];
-            KMVoucher *voucher = [_rightList objectAtIndex:indexPath.row];
+            KMVoucher *voucher = [_leftList objectAtIndex:indexPath.row];
             cell.title.text = voucher.senceName;
             cell.price.text = [NSString stringWithFormat:@"%@折优惠",voucher.discountRate];
             if ([voucher.useCounttype isEqual:@1]) {

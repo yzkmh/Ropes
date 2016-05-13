@@ -86,7 +86,6 @@
     KMHistoryCell *cell = nil;
     static NSString *cellIdentifier = @"KMHistoryCell";
     KMHistory *history = [_historyList objectAtIndex:indexPath.row];
-    //KMCouponItem *item = [items objectAtIndex:indexPath.row];
     cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
         cell = [[[NSBundle mainBundle]loadNibNamed:@"KMHistoryCell" owner:self options:nil]objectAtIndex:0];

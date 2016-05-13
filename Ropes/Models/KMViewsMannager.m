@@ -49,8 +49,8 @@ static KMViewsMannager * _shareKMViewsManager;
     NSString *phone = [KMUserManager getInstance].currentUser.phone;
     NSString *session = [KMUserManager getInstance].currentUser.sessionid;
     NSString *sessionpwd = [[KMUserManager getInstance].currentUser.sessionid md5WithTimes:6];
-    NSMutableArray *voucherCanList = [NSMutableArray new];
-    NSMutableArray *voucherNotList = [NSMutableArray new];
+    __block NSMutableArray *voucherCanList = [NSMutableArray new];
+    __block NSMutableArray *voucherNotList = [NSMutableArray new];
     [KMRequestCenter requestViewInformationWithphoneNum:phone sessionId:session sessionIdPwd:sessionpwd conponType:type success:^(NSDictionary *dic) {
         for (NSDictionary *conponInfo in dic)
         {
@@ -63,10 +63,51 @@ static KMViewsMannager * _shareKMViewsManager;
                 }
             }
         }
-        NSLog(@"获取优惠数据成功");
-        block(YES,@[voucherCanList,voucherNotList]);
+        if (type  == KMVoucherType) {
+            [KMRequestCenter requestVoucherInfoWithPhoneNum:phone success:^(NSDictionary *dic) {
+                for (NSDictionary *conponInfo in dic)
+                {
+                    if ([[conponInfo objectForKey:@"error"] isEqualToString:@"成功"]) {
+                        KMVoucher *voucher =[[KMVoucher new]initWithDict:conponInfo];
+                        if ([voucher.state  isEqual: @0]) {
+                            [voucherCanList addObject:voucher];
+                        }else{
+                            [voucherNotList addObject:voucher];
+                        }
+                    }
+                }
+                NSLog(@"获取优惠数据成功");
+                block(YES,@[voucherCanList,voucherNotList]);
+            } failure:^(int result, NSString *errorStr) {
+                NSLog(@"%@",errorStr);
+                block(NO,nil);
+            }];
+        }
+        else if (type  == KMAuthenticationType) {
+            [KMRequestCenter requestAuthenticationInfoWithPhoneNum:phone success:^(NSDictionary *dic) {
+                for (NSDictionary *conponInfo in dic)
+                {
+                    if ([[conponInfo objectForKey:@"error"] isEqualToString:@"成功"]) {
+                        KMVoucher *voucher =[[KMVoucher new]initWithDict:conponInfo];
+                        if ([voucher.state  isEqual: @0]) {
+                            [voucherCanList addObject:voucher];
+                        }else{
+                            [voucherNotList addObject:voucher];
+                        }
+                    }
+                }
+                NSLog(@"获取优惠数据成功");
+                block(YES,@[voucherCanList,voucherNotList]);
+            } failure:^(int result, NSString *errorStr) {
+                block(NO,nil);
+            }];
+        }else{
+            NSLog(@"获取优惠数据成功");
+            block(YES,@[voucherCanList,voucherNotList]);
+        }
     } failure:^(int code, NSString *ErrorStr) {
         NSLog(@"%@",ErrorStr);
+        block(NO,nil);
     }];
 }
 - (void)getLotteryInfoWithPhoneNum:(NSString *)phone comlation:(void(^)(BOOL result,NSArray *list))block
@@ -106,16 +147,19 @@ static KMViewsMannager * _shareKMViewsManager;
     }];
 }
 
-- (void)getVoucerInfoWithPhoneNum:(NSString *)phone comlation:(void(^)(BOOL result,NSArray *list))block
+- (void)sendLotteryMessageWithtcode:(NSString *)tcode comlation:(void(^)(BOOL result,NSString *message))block
 {
-    [KMRequestCenter requestVoucherInfoWithPhoneNum:phone success:^(NSDictionary *dic) {
+    NSString *phone = [KMUserManager getInstance].currentUser.phone;
+    NSString *session = [KMUserManager getInstance].currentUser.sessionid;
+    NSString *sessionpwd = [[KMUserManager getInstance].currentUser.sessionid md5WithTimes:6];
+    
+    [KMRequestCenter requestSendLotteryMessageWithPhoneNum:phone sessionId:session sessionIdPwd:sessionpwd tcode:tcode success:^(NSDictionary *dic) {
         
-    } failure:^(int code, NSString *errorStr) {
-        
+    } failure:^(int result, NSString *errorStr) {
+        block(result,errorStr);
     }];
 }
-
-- (void)sendMessageWithtcode:(NSString *)tcode comlation:(void(^)(BOOL result,NSString *message))block
+- (void)sendConponMessageWithtcode:(NSString *)tcode comlation:(void(^)(BOOL result,NSString *message))block
 {
     NSString *phone = [KMUserManager getInstance].currentUser.phone;
     NSString *session = [KMUserManager getInstance].currentUser.sessionid;

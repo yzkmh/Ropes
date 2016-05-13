@@ -42,14 +42,21 @@
  *  @param phone 手机号
  *  @param block 回调
  */
-- (void)getVoucerInfoWithPhoneNum:(NSString *)phone comlation:(void(^)(BOOL result,NSArray *list))block;
+//- (void)getVoucerInfoWithPhoneNum:(NSString *)phone comlation:(void(^)(BOOL result,NSArray *list))block;
 /**
- *  发送优惠券到手机
+ *  发送彩票到手机
  *
  *  @param tcode 辅助码
  *  @param block 回调
  */
-- (void)sendMessageWithtcode:(NSString *)tcode comlation:(void(^)(BOOL result,NSString *message))block;
+- (void)sendLotteryMessageWithtcode:(NSString *)tcode comlation:(void(^)(BOOL result,NSString *message))block;
+/**
+ *  发送优惠信息到手机
+ *
+ *  @param tcode 辅助码
+ *  @param block 回调
+ */
+- (void)sendConponMessageWithtcode:(NSString *)tcode comlation:(void(^)(BOOL result,NSString *message))block;
 /**
  *  获取使用记录
  *

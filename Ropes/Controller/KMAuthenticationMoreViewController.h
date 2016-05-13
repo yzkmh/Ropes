@@ -14,7 +14,6 @@
 @property (nonatomic ,weak) IBOutlet UIView *showView;
 @property (nonatomic ,weak) IBOutlet UILabel *titleLb;
 @property (nonatomic ,weak) IBOutlet UILabel *price;
-@property (nonatomic ,weak) IBOutlet UILabel *balance;
 @property (nonatomic ,weak) IBOutlet UILabel *usableDate;
 @property (nonatomic ,weak) IBOutlet UILabel *message;
 @property (nonatomic ,weak) IBOutlet UIButton *useBtn;
@@ -23,7 +22,9 @@
 
 @property (nonatomic ,weak) IBOutlet UITextView *voncherDescription;
 
-@property (nonatomic ,strong) KMVoucher *voucher;;
+@property (nonatomic ,strong) KMVoucher *voucher;
+
+- (void)setBtnClose;
 
 
 @end

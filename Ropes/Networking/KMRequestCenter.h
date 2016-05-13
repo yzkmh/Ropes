@@ -23,14 +23,16 @@
 #define CLotteryIndex @"http://122.49.7.211/cappControllerLot/cLotteryIndex"
 // 获取信息
 #define ViewInformation @"http://122.49.7.211/cappController/viewInformation"
-// 查询彩票信息
+// 查询彩票代金券信息
 #define LotteryInquery @"http://122.49.7.211/cappControllerLot/lotteryInquery"
 //可使用门店查询
 #define GetUsedScen @"http://122.49.7.211/cappControllerLot/getUsedScen"
 //查询彩票代金券信息
 #define LotteryInqueryVoucher @"http://122.49.7.211/cappControllerLot/lotteryInqueryVoucher"
-//发送短信
+//发送短信（彩票）
 #define GetMars @"http://122.49.7.211/cappControllerLot/getMars"
+//立即使用
+#define Immediately @"http://122.49.7.211/cappController/immediately"
 //获取使用记录
 #define GetUsedHis @"http://122.49.7.211/cappControllerLot/getUsedHis"
 
@@ -181,7 +183,17 @@ typedef NS_ENUM(NSInteger,KMConponType){
                                success:(void (^)(NSDictionary *))success
                                failure:(void (^)(int, NSString *))failure;
 /**
- *  彩票信息发送至手机
+ *  查询身份认证信息
+ *
+ *  @param phone   电话
+ *  @param success 成功回调
+ *  @param failure 失败回调
+ */
++ (void)requestAuthenticationInfoWithPhoneNum:(NSString *)phone
+                                      success:(void (^)(NSDictionary *))success
+                                      failure:(void (^)(int, NSString *))failure;
+/**
+ *  优惠信息发送至手机
  *
  *  @param phone      手机号
  *  @param sessionId  sessionId
@@ -196,6 +208,22 @@ typedef NS_ENUM(NSInteger,KMConponType){
                                        tcode:(NSString *)tcode
                                      success:(void (^)(NSDictionary *))success
                                      failure:(void (^)(int, NSString *))failure;
+/**
+ *  彩票信息发送至手机
+ *
+ *  @param phone      手机号
+ *  @param sessionId  sessionId
+ *  @param sessionpwd pwd
+ *  @param tcode      辅助码
+ *  @param success    成功回调
+ *  @param failure    失败回调
+ */
++ (void)requestSendLotteryMessageWithPhoneNum:(NSString *)phone
+                                    sessionId:(NSString *)sessionId
+                                 sessionIdPwd:(NSString *)sessionpwd
+                                        tcode:(NSString *)tcode
+                                      success:(void (^)(NSDictionary *))success
+                                      failure:(void (^)(int, NSString *))failure;
 /**
  *  获取使用记录
  *

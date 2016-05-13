@@ -36,20 +36,19 @@
 - (void)setVoucher:(KMVoucher *)voucher
 {
     _voucher = voucher;
-    self.titleLb.text = self.voucher.policyName;
-    self.price.text = self.voucher.consumeCount;
-    self.balance.text = self.voucher.balance;
-//    if ([self.voucher.consumetype isEqual:@1]) {
-//        self.rule.text = @"一次消费";
-//    }else if([self.voucher.consumetype isEqual:@2])
-//    {
-//        self.rule.text = @"多次消费";
-//    }else if ([self.voucher.consumetype isEqual:@3])
-//    {
-//        self.rule.text = @"固定消费";
-//    }
+    self.titleLb.text = self.voucher.senceName;
+    self.price.text = self.voucher.policyName;
     self.usableDate.text = self.voucher.invalidDate;
-    self.message.text = self.voucher.policyDescription;
+    if (![self.voucher.policyDescription isKindOfClass:[NSNull class]]) {
+        self.message.text = self.voucher.policyDescription;
+    }else{
+        self.message.text = @"";
+    }
+    if ([self.voucher.policyName isEqualToString:@"扫码领彩"]) {
+        self.voncherDescription.text = @"为了感谢您的支持，请凭此领彩通知到指定门店领取彩票";
+    }else{
+        self.voncherDescription.text = @"本店会员进店消费可享受优惠";
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -99,13 +98,20 @@
 {
     [LCProgressHUD showLoading:@"正在发送信息"];
     
-    [[KMViewsMannager getInstance]sendMessageWithtcode:_voucher.tcode comlation:^(BOOL result, NSString *message) {
+    [[KMViewsMannager getInstance]sendConponMessageWithtcode:_voucher.tcode comlation:^(BOOL result, NSString *message) {
         if (result) {
             [LCProgressHUD showSuccess:@"发送成功"];
         }else{
             [LCProgressHUD showFailure:message];
         }
     }];
+}
+
+- (void)setBtnClose
+{
+    [self.useBtn setTitle:@"已过期" forState:UIControlStateNormal];
+    [self.useBtn setBackgroundColor:[UIColor grayColor]];
+    [self.useBtn setUserInteractionEnabled:NO];
 }
 /*
 #pragma mark - Navigation

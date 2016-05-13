@@ -41,8 +41,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIBarButtonItem *searchBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:nil];
-    self.navigationItem.rightBarButtonItem = searchBtn;
+//    UIBarButtonItem *searchBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:nil];
+//    self.navigationItem.rightBarButtonItem = searchBtn;
     [self initArray];
     if(KMMainScreenBounds.size.height >= 667){
         self.tableView.scrollEnabled = NO;

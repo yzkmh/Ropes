@@ -8,7 +8,8 @@
 
 #import "KMVoucherMoreViewController.h"
 #import "KMShopViewController.h"
-
+#import "LCProgressHUD.h"
+#import "KMViewsMannager.h"
 
 
 @interface KMVoucherMoreViewController()<UITableViewDataSource ,UITableViewDelegate>
@@ -101,7 +102,15 @@
         [self.navigationController pushViewController:shopView animated:YES];
     }else if(indexPath.row == 0)
     {
+        [LCProgressHUD showLoading:@"正在发送信息"];
         
+        [[KMViewsMannager getInstance]sendMessageWithtcode:_voucher.tcode comlation:^(BOOL result, NSString *message) {
+            if (result) {
+                [LCProgressHUD showSuccess:@"发送成功"];
+            }else{
+                [LCProgressHUD showFailure:message];
+            }
+        }];
     }
 }
 

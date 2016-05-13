@@ -28,5 +28,9 @@
 
 - (void)getVoucerInfoWithPhoneNum:(NSString *)phone comlation:(void(^)(BOOL result,NSArray *list))block;
 
+- (void)sendMessageWithtcode:(NSString *)tcode comlation:(void(^)(BOOL result,NSString *message))block;
+
+- (void)getHistoryInfoWithtcode:(NSString *)tcode comlation:(void(^)(BOOL result,NSArray *list))block;
+
 
 @end

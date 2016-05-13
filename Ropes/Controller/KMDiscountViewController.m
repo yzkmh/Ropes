@@ -14,6 +14,7 @@
 #import "KMVoucher.h"
 
 #import "KMDiscountCell.h"
+#import "KMDiscountMoreViewController.h"
 
 @interface KMDiscountViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -112,7 +113,7 @@
             cell.premise.text = voucher.policyDescription;
             cell.validDate.text = voucher.invalidDate;
         }
-    }//else if ([tableView isEqual:_rightTableView])
+    }else if ([tableView isEqual:_rightTableView])
     {
         static NSString *KMDiscountNotCell = @"KMDiscountNotCell";
         cell = [tableView dequeueReusableCellWithIdentifier:KMDiscountNotCell];
@@ -125,18 +126,18 @@
             cell.validDate.text = voucher.invalidDate;
         }
     }
-    return nil;
+    return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    KMVoucherMoreViewController *voucherMore = [[[NSBundle mainBundle]loadNibNamed:@"KMVoucherMoreViewController" owner:nil options:nil]objectAtIndex:0];
-//    voucherMore.title = @"代金券详情";
-//    if ([tableView isEqual:_leftTableView]) {
-//        voucherMore.voucher = [_leftList objectAtIndex:indexPath.row];
-//    }else if([tableView isEqual:_rightTableView]){
-//        voucherMore.voucher = [_rightList objectAtIndex:indexPath.row];
-//    }
-//    [self.navigationController pushViewController:voucherMore animated:YES];
+    KMDiscountMoreViewController *discountMore = [[[NSBundle mainBundle]loadNibNamed:@"KMDiscountMoreViewController" owner:nil options:nil]objectAtIndex:0];
+    discountMore.title = @"折扣券详情";
+    if ([tableView isEqual:_leftTableView]) {
+        discountMore.voucher = [_leftList objectAtIndex:indexPath.row];
+    }else if([tableView isEqual:_rightTableView]){
+        discountMore.voucher = [_rightList objectAtIndex:indexPath.row];
+    }
+    [self.navigationController pushViewController:discountMore animated:YES];
 }
 
 

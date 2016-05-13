@@ -8,6 +8,9 @@
 
 #import "KMDiscountMoreViewController.h"
 #import "KMShopViewController.h"
+//#import "LCProgressHUD.h"
+//#import "KMViewsMannager.h"
+#import "KMHistoryViewController.h"
 
 @interface KMDiscountMoreViewController ()<UITableViewDataSource ,UITableViewDelegate>
 
@@ -75,17 +78,17 @@
     return cell;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-
-{
-    
-    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 65)];
-    
-    v.backgroundColor = [UIColor clearColor];
-    
-    return v;
-    
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+//
+//{
+//    
+//    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 65)];
+//    
+//    v.backgroundColor = [UIColor clearColor];
+//    
+//    return v;
+//    
+//}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -94,9 +97,12 @@
         [shopView setTitle:@"商家详情"];
         shopView.tcode = _voucher.tcode;
         [self.navigationController pushViewController:shopView animated:YES];
-    }else if(indexPath.row == 0)
+    }else if(indexPath.row == 1)
     {
-        
+        KMHistoryViewController *history = [[KMHistoryViewController alloc]init];
+        [history setTitle:@"使用记录"];
+        history.tcode = _voucher.tcode;
+        [self.navigationController pushViewController:history animated:YES];
     }
 }
 /*

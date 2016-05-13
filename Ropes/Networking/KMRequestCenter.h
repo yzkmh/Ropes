@@ -29,6 +29,11 @@
 #define GetUsedScen @"http://122.49.7.211/cappControllerLot/getUsedScen"
 //查询彩票代金券信息
 #define LotteryInqueryVoucher @"http://122.49.7.211/cappControllerLot/lotteryInqueryVoucher"
+//发送短信
+#define GetMars @"http://122.49.7.211/cappControllerLot/getMars"
+//获取使用记录
+#define GetUsedHis @"http://122.49.7.211/cappControllerLot/getUsedHis"
+
 typedef NS_ENUM(NSInteger,KMConponType){
     KMDiscountType = 1,
     KMVoucherType,
@@ -175,5 +180,37 @@ typedef NS_ENUM(NSInteger,KMConponType){
 + (void)requestVoucherInfoWithPhoneNum:(NSString *)phone
                                success:(void (^)(NSDictionary *))success
                                failure:(void (^)(int, NSString *))failure;
+/**
+ *  彩票信息发送至手机
+ *
+ *  @param phone      手机号
+ *  @param sessionId  sessionId
+ *  @param sessionpwd pwd
+ *  @param tcode      辅助码
+ *  @param success    成功回调
+ *  @param failure    失败回调
+ */
++ (void)requestSendConponMessageWithPhoneNum:(NSString *)phone
+                                   sessionId:(NSString *)sessionId
+                                sessionIdPwd:(NSString *)sessionpwd
+                                       tcode:(NSString *)tcode
+                                     success:(void (^)(NSDictionary *))success
+                                     failure:(void (^)(int, NSString *))failure;
+/**
+ *  获取使用记录
+ *
+ *  @param phone      手机号
+ *  @param sessionId  sid
+ *  @param sessionpwd sidpwd
+ *  @param tcode      辅助码
+ *  @param success    成功回调
+ *  @param failure    失败回调
+ */
++ (void)requestForHistoryWithPhoneNum:(NSString *)phone
+                            sessionId:(NSString *)sessionId
+                         sessionIdPwd:(NSString *)sessionpwd
+                                tcode:(NSString *)tcode
+                              success:(void (^)(NSDictionary *))success
+                              failure:(void (^)(int, NSString *))failure;
 
 @end

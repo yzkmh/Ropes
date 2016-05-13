@@ -8,6 +8,8 @@
 
 #import "KMAuthenticationMoreViewController.h"
 #import "KMShopViewController.h"
+#import "LCProgressHUD.h"
+#import "KMViewsMannager.h"
 
 @interface KMAuthenticationMoreViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -90,6 +92,17 @@
         [shopView setTitle:@"商家详情"];
         shopView.tcode = self.voucher.tcode;
         [self.navigationController pushViewController:shopView animated:YES];
+    }else if(indexPath.row == 0)
+    {
+        [LCProgressHUD showLoading:@"正在发送信息"];
+        
+        [[KMViewsMannager getInstance]sendMessageWithtcode:_voucher.tcode comlation:^(BOOL result, NSString *message) {
+            if (result) {
+                [LCProgressHUD showSuccess:@"发送成功"];
+            }else{
+                [LCProgressHUD showFailure:message];
+            }
+        }];
     }
 }
 /*

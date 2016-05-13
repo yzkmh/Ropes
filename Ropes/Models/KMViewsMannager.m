@@ -57,7 +57,7 @@ static KMViewsMannager * _shareKMViewsManager;
                 KMVoucher *voucher =[[KMVoucher new]initWithDict:conponInfo];
                 if ([voucher.state  isEqual: @0]) {
                     [voucherCanList addObject:voucher];
-                }else if([voucher.state  isEqual: @2]){
+                }else{
                     [voucherNotList addObject:voucher];
                 }
             }
@@ -79,7 +79,7 @@ static KMViewsMannager * _shareKMViewsManager;
             KMLottery *lottery = [[KMLottery alloc]initWithDict:lotterydic];
               if ([lottery.state  isEqual: @0]) {
                   [lotteryCanList addObject:lottery];
-              }else if([lottery.state  isEqual: @2]){
+              }else{
                   [lotteryNotList addObject:lottery];
               }
         }
@@ -93,7 +93,6 @@ static KMViewsMannager * _shareKMViewsManager;
 - (void)getShopInfoWithPhoneNum:(NSString *)phone tcode:(NSString *)tcode comlation:(void(^)(BOOL result,NSArray *list))block
 {
     [KMRequestCenter requestShopInfoWithPhoneNum:phone tcode:tcode success:^(NSDictionary *dic) {
-        //KMShop *shop = [[KMShop alloc]initWithDict:dic];
         NSMutableArray *shopList = [NSMutableArray new];
         for (NSDictionary *lotterydic in dic) {
             KMShop *shop = [[KMShop alloc]initWithDict:lotterydic];
@@ -102,7 +101,7 @@ static KMViewsMannager * _shareKMViewsManager;
         }
         block(YES,shopList);
     } failure:^(int code, NSString *errorStr) {
-        
+        block(NO,nil);
     }];
 }
 
@@ -113,5 +112,30 @@ static KMViewsMannager * _shareKMViewsManager;
     } failure:^(int code, NSString *errorStr) {
         
     }];
+}
+
+- (void)sendMessageWithtcode:(NSString *)tcode comlation:(void(^)(BOOL result,NSString *message))block
+{
+    NSString *phone = [KMUserManager getInstance].currentUser.phone;
+    NSString *session = [KMUserManager getInstance].currentUser.sessionid;
+    NSString *sessionpwd = [[KMUserManager getInstance].currentUser.sessionid md5WithTimes:6];
+    
+    [KMRequestCenter requestSendConponMessageWithPhoneNum:phone sessionId:session sessionIdPwd:sessionpwd tcode:tcode success:^(NSDictionary *dic) {
+        
+    } failure:^(int result, NSString *errorStr) {
+        block(result,errorStr);
+    }];
+}
+- (void)getHistoryInfoWithtcode:(NSString *)tcode comlation:(void(^)(BOOL result,NSArray *list))block
+{
+    NSString *phone = [KMUserManager getInstance].currentUser.phone;
+    NSString *session = [KMUserManager getInstance].currentUser.sessionid;
+    NSString *sessionpwd = [[KMUserManager getInstance].currentUser.sessionid md5WithTimes:6];
+    [KMRequestCenter requestForHistoryWithPhoneNum:phone sessionId:session sessionIdPwd:sessionpwd tcode:tcode success:^(NSDictionary *dic) {
+        
+    } failure:^(int result, NSString *errorStr) {
+        
+    }];
+    
 }
 @end

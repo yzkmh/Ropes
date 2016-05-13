@@ -108,6 +108,11 @@
             cell.title.text = voucher.senceName;
             cell.price.text = voucher.balance;
             cell.premise.text = voucher.policyDescription;
+            if ([voucher.useCounttype isEqual:@1]) {
+                cell.state.text = @"单";
+            }else if([voucher.useCounttype isEqual:@2]) {
+                cell.state.text = @"双";
+            }
             cell.validDate.text = voucher.invalidDate;
         }
     }else if ([tableView isEqual:_rightTableView])

@@ -119,7 +119,11 @@
             KMLottery *lottery = [lotteryCanList objectAtIndex:indexPath.row];
             cell.title.text = lottery.lotteryTypeName;
             cell.lotteryNum.text = lottery.lotteryNumber;
-            cell.state.text = lottery.lotteryPrizeResult;
+            if ([lottery.lotteryPrizeResult isEqualToString:@"未中奖"]||[lottery.lotteryPrizeResult isEqualToString:@"未开奖"]) {
+                cell.state.text = @"未中奖";
+            }else{
+                cell.state.text = @"中奖";
+            }
             cell.LotteryDate.text = lottery.lotteryPrizeDate;
             cell.validDate.text = lottery.invalidDate;
         }
@@ -132,7 +136,11 @@
             KMLottery *lottery = [lotteryNotList objectAtIndex:indexPath.row];
             cell.title.text = lottery.lotteryTypeName;
             cell.lotteryNum.text = lottery.lotteryNumber;
-            cell.state.text = lottery.lotteryPrizeResult;
+            if ([lottery.lotteryPrizeResult isEqualToString:@"未中奖"]||[lottery.lotteryPrizeResult isEqualToString:@"未开奖"]) {
+                cell.state.text = @"未中奖";
+            }else{
+                cell.state.text = @"中奖";
+            }
             cell.LotteryDate.text = lottery.lotteryPrizeDate;
             cell.validDate.text = lottery.invalidDate;
         }

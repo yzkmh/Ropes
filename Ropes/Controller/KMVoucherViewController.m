@@ -26,6 +26,9 @@
     NSArray *_leftList;
     NSArray *_rightList;
     
+    UIRefreshControl *_controlleft;
+    UIRefreshControl *_controlright;
+    
 }
 @end
 
@@ -35,6 +38,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor grayColor];
     [self initNavigation];
+    [self initRefresh];
     self.automaticallyAdjustsScrollViewInsets = false;
     // Do any additional setup after loading the view.
 }
@@ -44,6 +48,25 @@
     if (_isRequest == NO) {
         [self initData];
     }
+}
+/**
+ *  集成下拉刷新
+ */
+-(void)initRefresh
+{
+    //1.添加刷新控件
+    _controlleft=[[UIRefreshControl alloc]init];
+    [_controlleft addTarget:self action:@selector(refreshStateChange:) forControlEvents:UIControlEventValueChanged];
+    [_leftTableView addSubview:_controlleft];
+    
+    _controlright=[[UIRefreshControl alloc]init];
+    [_controlright addTarget:self action:@selector(refreshStateChange:) forControlEvents:UIControlEventValueChanged];
+    [_rightTableView addSubview:_controlright];
+}
+
+-(void)refreshStateChange:(UIRefreshControl *)control
+{
+    [self initData];
 }
 
 - (void)initNavigation
@@ -62,6 +85,8 @@
     _rightTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [naviView addToShowView:_rightTableView];
     
+        [naviView setLabelWithConponNum1:[NSString stringWithFormat:@"%@",[[KMUserManager getInstance].currentUser.ConponNumList objectForKey:@"dc"]] andNum2:[NSString stringWithFormat:@"%@",[[KMUserManager getInstance].currentUser.ConponNumList objectForKey:@"dn"]]];
+    
     [self.view addSubview:naviView];
 }
 - (void)initData
@@ -69,6 +94,7 @@
     [LCProgressHUD showLoading:nil];
     [[KMViewsMannager getInstance]getViewsInfomationWithConponType:KMVoucherType comlation:^(BOOL result, NSArray *list) {
         [LCProgressHUD hide];
+        
         _leftList = [list objectAtIndex:0];
         _rightList = [list objectAtIndex:1];
         _isRequest = YES;
@@ -151,6 +177,7 @@
         voucherMore.voucher = [_leftList objectAtIndex:indexPath.row];
     }else if([tableView isEqual:_rightTableView]){
         voucherMore.voucher = [_rightList objectAtIndex:indexPath.row];
+        [voucherMore setBtnClose];
     }
     [self.navigationController pushViewController:voucherMore animated:YES];
 }

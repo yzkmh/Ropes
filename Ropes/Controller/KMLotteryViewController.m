@@ -27,6 +27,8 @@
     NSArray *lotteryCanList;
     NSArray *lotteryNotList;
     
+    UIRefreshControl *_controlleft;
+    UIRefreshControl *_controlright;
     BOOL _isRequest;
 }
 @end
@@ -46,10 +48,29 @@
     self.view.backgroundColor = [UIColor grayColor];
     [self initNavigation];
     self.automaticallyAdjustsScrollViewInsets = false;
+    [self initRefresh];
     
     // Do any additional setup after loading the view.
 }
+/**
+ *  集成下拉刷新
+ */
+-(void)initRefresh
+{
+    //1.添加刷新控件
+    _controlleft=[[UIRefreshControl alloc]init];
+    [_controlleft addTarget:self action:@selector(refreshStateChange:) forControlEvents:UIControlEventValueChanged];
+    [_leftTableView addSubview:_controlleft];
+    
+    _controlright=[[UIRefreshControl alloc]init];
+    [_controlright addTarget:self action:@selector(refreshStateChange:) forControlEvents:UIControlEventValueChanged];
+    [_rightTableView addSubview:_controlright];
+}
 
+-(void)refreshStateChange:(UIRefreshControl *)control
+{
+    [self initData];
+}
 - (void)initNavigation
 {
     naviView = [[[NSBundle mainBundle] loadNibNamed:@"KMNavigationView" owner:self options:nil]objectAtIndex:0];
@@ -60,22 +81,29 @@
     _leftTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [naviView addToShowView:_leftTableView];
     
-    
-    
     _rightTableView = [[UITableView alloc]initWithFrame:CGRectMake(naviView.bounds.size.width, 0, naviView.bounds.size.width, naviView.bounds.size.height-45)];
     [_rightTableView setDelegate:self];
     [_rightTableView setDataSource:self];
     _rightTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [naviView addToShowView:_rightTableView];
     
+    
+    [naviView setLabelWithConponNum1:[NSString stringWithFormat:@"%@",[[KMUserManager getInstance].currentUser.ConponNumList objectForKey:@"cl"]] andNum2:[NSString stringWithFormat:@"%@",[[KMUserManager getInstance].currentUser.ConponNumList objectForKey:@"nl"]]];
+    
     [self.view addSubview:naviView];
+    
+    
 }
 
 - (void)initData
 {
-    [LCProgressHUD showLoading:nil];
+    if (!_isRequest) {
+        [LCProgressHUD showLoading:nil];
+    }
     [[KMViewsMannager getInstance]getLotteryInfoWithPhoneNum:[KMUserManager getInstance].currentUser.phone comlation:^(BOOL result, NSArray *list) {
         [LCProgressHUD hide];
+        [_controlleft endRefreshing];
+        [_controlright endRefreshing];
         lotteryCanList = [list objectAtIndex:0];
         lotteryNotList = [list objectAtIndex:1];
         _isRequest = YES;

@@ -58,6 +58,8 @@ static KMNetWorkingManager *_instance = nil;
        NSLog(@"resultDic -- %@",dic);
        if (block && dic) {
           block(dic,error);
+       }else{
+           block(nil,error);
        }
 
    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

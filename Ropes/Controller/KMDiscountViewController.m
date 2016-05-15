@@ -18,48 +18,24 @@
 
 @interface KMDiscountViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
+    KMNavigationView *naviView;
+    
     UITableView *_leftTableView;
     UITableView *_rightTableView;
+    
     BOOL _isRequest;
     
     NSArray *_leftList;
     NSArray *_rightList;
+    
+    UIRefreshControl *_controlleft;
+    UIRefreshControl *_controlright;
     
 }
 @end
 
 @implementation KMDiscountViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.view.backgroundColor = [UIColor grayColor];
-    [self initNavigation];
-    self.automaticallyAdjustsScrollViewInsets = false;
-    // Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-- (void)initNavigation
-{
-    KMNavigationView *naviView = [[[NSBundle mainBundle] loadNibNamed:@"KMNavigationView" owner:self options:nil]objectAtIndex:0];
-    [naviView setFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64)];
-    _leftTableView = [[UITableView alloc]initWithFrame:CGRectMake(naviView.bounds.origin.x, 10, naviView.bounds.size.width, naviView.bounds.size.height-45)];
-    [_leftTableView setDelegate:self];
-    [_leftTableView setDataSource:self];
-    _leftTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    [naviView addToShowView:_leftTableView];
-    
-    _rightTableView = [[UITableView alloc]initWithFrame:CGRectMake(naviView.bounds.size.width, 10, naviView.bounds.size.width, naviView.bounds.size.height-45)];
-    [_rightTableView setDelegate:self];
-    [_rightTableView setDataSource:self];
-    _rightTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    [naviView addToShowView:_rightTableView];
-    
-    [self.view addSubview:naviView];
-}
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -67,11 +43,67 @@
         [self initData];
     }
 }
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.view.backgroundColor = [UIColor grayColor];
+    [self initNavigation];
+    self.automaticallyAdjustsScrollViewInsets = false;
+    [self initRefresh];
+    
+    // Do any additional setup after loading the view.
+}
+/**
+ *  集成下拉刷新
+ */
+-(void)initRefresh
+{
+    //1.添加刷新控件
+    _controlleft=[[UIRefreshControl alloc]init];
+    [_controlleft addTarget:self action:@selector(refreshStateChange:) forControlEvents:UIControlEventValueChanged];
+    [_leftTableView addSubview:_controlleft];
+    
+    _controlright=[[UIRefreshControl alloc]init];
+    [_controlright addTarget:self action:@selector(refreshStateChange:) forControlEvents:UIControlEventValueChanged];
+    [_rightTableView addSubview:_controlright];
+}
+
+-(void)refreshStateChange:(UIRefreshControl *)control
+{
+    [self initData];
+}
+- (void)initNavigation
+{
+    naviView = [[[NSBundle mainBundle] loadNibNamed:@"KMNavigationView" owner:self options:nil]objectAtIndex:0];
+    [naviView setFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64)];
+    _leftTableView = [[UITableView alloc]initWithFrame:CGRectMake(naviView.bounds.origin.x, 0, naviView.bounds.size.width, naviView.bounds.size.height-45)];
+    [_leftTableView setDelegate:self];
+    [_leftTableView setDataSource:self];
+    _leftTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    [naviView addToShowView:_leftTableView];
+    
+    _rightTableView = [[UITableView alloc]initWithFrame:CGRectMake(naviView.bounds.size.width, 0, naviView.bounds.size.width, naviView.bounds.size.height-45)];
+    [_rightTableView setDelegate:self];
+    [_rightTableView setDataSource:self];
+    _rightTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    [naviView addToShowView:_rightTableView];
+    
+    
+    [naviView setLabelWithConponNum1:[NSString stringWithFormat:@"%@",[[KMUserManager getInstance].currentUser.ConponNumList objectForKey:@"cl"]] andNum2:[NSString stringWithFormat:@"%@",[[KMUserManager getInstance].currentUser.ConponNumList objectForKey:@"nl"]]];
+    
+    [self.view addSubview:naviView];
+    
+    
+}
+
 - (void)initData
 {
-    [LCProgressHUD showLoading:nil];
-    [[KMViewsMannager getInstance]getViewsInfomationWithConponType:KMDiscountType comlation:^(BOOL result, NSArray *list) {
+    if (!_isRequest) {
+        [LCProgressHUD showLoading:nil];
+    }
+    [[KMViewsMannager getInstance]getLotteryInfoWithPhoneNum:[KMUserManager getInstance].currentUser.phone comlation:^(BOOL result, NSArray *list) {
         [LCProgressHUD hide];
+        [_controlleft endRefreshing];
+        [_controlright endRefreshing];
         _leftList = [list objectAtIndex:0];
         _rightList = [list objectAtIndex:1];
         _isRequest = YES;
@@ -81,6 +113,7 @@
         });
     }];
 }
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -145,6 +178,7 @@
         discountMore.voucher = [_leftList objectAtIndex:indexPath.row];
     }else if([tableView isEqual:_rightTableView]){
         discountMore.voucher = [_rightList objectAtIndex:indexPath.row];
+        [discountMore setBtnClose];
     }
     [self.navigationController pushViewController:discountMore animated:YES];
 }

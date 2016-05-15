@@ -15,7 +15,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "95"
             endingLineNumber = "95"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkName = "-btnMakeUse:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -31,8 +31,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "385"
             endingLineNumber = "385"
-            landmarkName = "+requestForHistoryWithPhoneNum:sessionId:sessionIdPwd:tcode:success:failure:"
-            landmarkType = "5">
+            landmarkName = "@implementation KMRequestCenter"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -48,6 +48,22 @@
             startingLineNumber = "90"
             endingLineNumber = "90"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Ropes/Networking/KMRequestCenter.m"
+            timestampString = "485015910.619846"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "405"
+            endingLineNumber = "405"
+            landmarkName = "+requestSendLotteryMessageWithPhoneNum:sessionId:sessionIdPwd:tcode:success:failure:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

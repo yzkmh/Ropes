@@ -122,6 +122,12 @@
         }
     }];
 }
+- (void)setBtnClose
+{
+    [self.useBtn setTitle:@"已过期" forState:UIControlStateNormal];
+    [self.useBtn setBackgroundColor:[UIColor grayColor]];
+    [self.useBtn setUserInteractionEnabled:NO];
+}
 
 
 /*

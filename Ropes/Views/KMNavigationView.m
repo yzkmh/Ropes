@@ -73,7 +73,11 @@
     [self.showView addSubview:obj];
 }
 
-
+- (void)setLabelWithConponNum1:(NSString *)num1 andNum2:(NSString *)num2
+{
+    self.leftLable.text = [NSString stringWithFormat:@"未过期的(%@)",num1];
+    self.rightLable.text = [NSString stringWithFormat:@"已过期的(%@)",num2];
+}
 
 - (void)addTapGesture
 {
@@ -117,7 +121,4 @@
         [self.rightLable setTextColor:[UIColor redColor]];
     }
 }
-
-
-
 @end

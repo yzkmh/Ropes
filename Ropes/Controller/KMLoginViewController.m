@@ -29,6 +29,13 @@
     [super viewDidLoad];
     [self resetNavigationBar];
     [self resetSelectBtn];
+    
+//     读取本地账号信息
+        KMUser *localUser = [NSKeyedUnarchiver unarchiveObjectWithFile:kPATH];
+        if (localUser.isAutoLogin) {
+            [self loginBtnClick:nil];
+        }
+
 }
 
 /**

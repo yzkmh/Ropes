@@ -132,9 +132,9 @@ static KMViewsMannager * _shareKMViewsManager;
     }];
 }
 
-- (void)getShopInfoWithPhoneNum:(NSString *)phone tcode:(NSString *)tcode comlation:(void(^)(BOOL result,NSArray *list))block
+- (void)getShopInfoWithPhoneNum:(NSString *)phone tcode:(NSString *)tcode conponType:(KMConponType)type comlation:(void(^)(BOOL result,NSArray *list))block
 {
-    [KMRequestCenter requestShopInfoWithPhoneNum:phone tcode:tcode success:^(NSDictionary *dic) {
+    [KMRequestCenter requestShopInfoWithPhoneNum:phone tcode:tcode conponType:type success:^(NSDictionary *dic) {
         NSMutableArray *shopList = [NSMutableArray new];
         for (NSDictionary *lotterydic in dic) {
             KMShop *shop = [[KMShop alloc]initWithDict:lotterydic];

@@ -257,6 +257,7 @@
  */
 + (void)requestShopInfoWithPhoneNum:(NSString *)phone
                               tcode:(NSString *)tcode
+                         conponType:(KMConponType)type
                             success:(void (^)(NSDictionary *))success
                             failure:(void (^)(int, NSString *))failure
 {
@@ -265,7 +266,14 @@
                                tcode,@"tcode",
                                @"6",@"type",
                                nil];
-    [[KMNetWorkingManager sharedManager] postWithParameters:paramters subUrl:GetUsedScen block:^(NSDictionary *resultDic, NSError *error) {
+    NSString *url ;
+    if (type  == 10) {
+        url = GetUsedScen;
+    }else{
+        url = UseAble;
+    }
+    
+    [[KMNetWorkingManager sharedManager] postWithParameters:paramters subUrl:url block:^(NSDictionary *resultDic, NSError *error) {
         BOOL isFinished = NO;
         for (NSDictionary *dic  in resultDic) {
             if ([[dic objectForKey:@"error_code"] isEqual:@200]) {

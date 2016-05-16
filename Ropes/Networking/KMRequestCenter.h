@@ -35,11 +35,14 @@
 #define Immediately @"http://122.49.7.211/cappController/immediately"
 //获取使用记录
 #define GetUsedHis @"http://122.49.7.211/cappControllerLot/getUsedHis"
+//可使用门店非彩票
+#define UseAble @"http://122.49.7.211/cappController/useAble"
 
 typedef NS_ENUM(NSInteger,KMConponType){
     KMDiscountType = 1,
     KMVoucherType,
-    KMAuthenticationType
+    KMAuthenticationType,
+    KMLatteryType = 10
 };
 
 @interface KMRequestCenter : NSObject
@@ -170,6 +173,7 @@ typedef NS_ENUM(NSInteger,KMConponType){
  */
 + (void)requestShopInfoWithPhoneNum:(NSString *)phone
                               tcode:(NSString *)tcode
+                         conponType:(KMConponType)type
                             success:(void (^)(NSDictionary *))success
                             failure:(void (^)(int, NSString *))failure;
 /**

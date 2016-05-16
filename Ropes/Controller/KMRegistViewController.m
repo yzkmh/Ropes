@@ -10,6 +10,7 @@
 #import "KMUserManager.h"
 #import <QuartzCore/QuartzCore.h>
 #import "LCProgressHUD.h"
+#import "KMRulersController.h"
 @interface KMRegistViewController ()
 {
     UILabel *LBtimeoff;
@@ -191,5 +192,8 @@
         return YES;
     }
 }
-
+- (IBAction)rulersBtnClick:(id)sender {
+    KMRulersController *ruler = [[KMRulersController alloc] initWithNibName:@"KMRulers" bundle:[NSBundle mainBundle]];
+    [self presentViewController:ruler animated:YES completion:nil];
+}
 @end

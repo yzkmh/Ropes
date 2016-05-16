@@ -30,6 +30,7 @@
     [self resetNavigationBar];
     [self resetSelectBtn];
 }
+
 /**
  *  重设导航栏
  */

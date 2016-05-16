@@ -56,7 +56,7 @@
 - (void)initData
 {
     [LCProgressHUD showLoading:nil];
-    [[KMViewsMannager getInstance]getShopInfoWithPhoneNum:[KMUserManager getInstance].currentUser.phone tcode:_tcode comlation:^(BOOL result, NSArray *list) {
+    [[KMViewsMannager getInstance]getShopInfoWithPhoneNum:[KMUserManager getInstance].currentUser.phone tcode:_tcode conponType:self.type comlation:^(BOOL result, NSArray *list) {
         [LCProgressHUD hide];
         if (result) {
             _isFinish = YES;

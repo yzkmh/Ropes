@@ -49,7 +49,8 @@
 typedef NS_ENUM(NSInteger,KMConponType){
     KMDiscountType = 1,
     KMVoucherType,
-    KMAuthenticationType
+    KMAuthenticationType,
+    KMLatteryType = 10
 };
 
 @interface KMRequestCenter : NSObject
@@ -180,6 +181,7 @@ typedef NS_ENUM(NSInteger,KMConponType){
  */
 + (void)requestShopInfoWithPhoneNum:(NSString *)phone
                               tcode:(NSString *)tcode
+                         conponType:(KMConponType)type
                             success:(void (^)(NSDictionary *))success
                             failure:(void (^)(int, NSString *))failure;
 /**

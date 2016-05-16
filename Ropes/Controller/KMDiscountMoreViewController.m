@@ -78,6 +78,7 @@
         KMShopViewController *shopView = [[KMShopViewController alloc]init];
         [shopView setTitle:@"商家详情"];
         shopView.tcode = _voucher.tcode;
+        shopView.type = 2;
         [self.navigationController pushViewController:shopView animated:YES];
     }else if(indexPath.row == 1)
     {
@@ -100,6 +101,14 @@
         }
     }];
 }
+
+- (void)setBtnClose
+{
+    [self.useBtn setTitle:@"已过期" forState:UIControlStateNormal];
+    [self.useBtn setBackgroundColor:[UIColor grayColor]];
+    [self.useBtn setUserInteractionEnabled:NO];
+}
+
 /*
 #pragma mark - Navigation
 

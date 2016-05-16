@@ -24,6 +24,7 @@
 @property (nonatomic ,weak) IBOutlet UIScrollView *showView;
 
 - (void)addToShowView:(UIView *)obj;
+- (void)setLabelWithConponNum1:(NSString *)num1 andNum2:(NSString *)num2;
 
 
 @end

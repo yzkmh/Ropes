@@ -24,4 +24,6 @@
 @property (nonatomic ,weak) IBOutlet UITextView *voncherDescription;
 
 @property (nonatomic ,strong) KMVoucher *voucher;
+
+- (void)setBtnClose;
 @end

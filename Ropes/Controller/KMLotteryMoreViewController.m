@@ -100,6 +100,7 @@
         KMShopViewController *shopView = [[KMShopViewController alloc]init];
         [shopView setTitle:@"商家详情"];
         shopView.tcode = _lottery.tcode;
+        shopView.type = 10;
         [self.navigationController pushViewController:shopView animated:YES];
     }else if(indexPath.row == 0)
     {

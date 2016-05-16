@@ -35,7 +35,7 @@
  *  @param tcode 辅助码
  *  @param block 回调
  */
-- (void)getShopInfoWithPhoneNum:(NSString *)phone tcode:(NSString *)tcode comlation:(void(^)(BOOL result,NSArray *list))block;
+- (void)getShopInfoWithPhoneNum:(NSString *)phone tcode:(NSString *)tcode conponType:(KMConponType)type comlation:(void(^)(BOOL result,NSArray *list))block;
 /**
  *  查询代金券等信息
  *

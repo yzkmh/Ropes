@@ -29,6 +29,14 @@
 #define GetUsedScen @"http://122.49.7.211/cappControllerLot/getUsedScen"
 //查询彩票代金券信息
 #define LotteryInqueryVoucher @"http://122.49.7.211/cappControllerLot/lotteryInqueryVoucher"
+//发送短信（彩票）
+#define GetMars @"http://122.49.7.211/cappControllerLot/getMars"
+//立即使用
+#define Immediately @"http://122.49.7.211/cappController/immediately"
+//获取使用记录
+#define GetUsedHis @"http://122.49.7.211/cappControllerLot/getUsedHis"
+//可使用门店非彩票
+#define UseAble @"http://122.49.7.211/cappController/useAble"
 // 查询余额
 #define BalanceInquery @"http://122.49.7.211/cappController/doBalanceInquery"
 // 查询收支记录

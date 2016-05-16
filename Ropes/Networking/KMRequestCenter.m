@@ -341,6 +341,117 @@
         }
     }];
 }
+/**
+ *  优惠信息发送至手机
+ *
+ *  @param phone      手机号
+ *  @param sessionId  sessionId
+ *  @param sessionpwd pwd
+ *  @param tcode      辅助码
+ *  @param success    成功回调
+ *  @param failure    失败回调
+ */
++ (void)requestSendConponMessageWithPhoneNum:(NSString *)phone
+                                   sessionId:(NSString *)sessionId
+                                sessionIdPwd:(NSString *)sessionpwd
+                                       tcode:(NSString *)tcode
+                                     success:(void (^)(NSDictionary *))success
+                                     failure:(void (^)(int, NSString *))failure
+{
+    NSDictionary *paramters = [NSDictionary dictionaryWithObjectsAndKeys:
+                               phone,@"phone",
+                               sessionId,@"sessionid",
+                               sessionpwd,@"sessionidpwd",
+                               tcode,@"tcode",
+                               nil];
+    [[KMNetWorkingManager sharedManager] postWithParameters:paramters subUrl:Immediately block:^(NSDictionary *resultDic, NSError *error) {
+        BOOL isFinished = NO;
+        for (NSDictionary *dic  in resultDic) {
+            if ([[dic objectForKey:@"error_code"] isEqual:@200]) {
+                isFinished = YES;
+            }
+        }
+        if (isFinished) {
+            success(resultDic);
+        }else{
+            failure(NO,@"获取失败");
+        }
+    }];
+}
+/**
+ *  彩票信息发送至手机
+ *
+ *  @param phone      手机号
+ *  @param sessionId  sessionId
+ *  @param sessionpwd pwd
+ *  @param tcode      辅助码
+ *  @param success    成功回调
+ *  @param failure    失败回调
+ */
++ (void)requestSendLotteryMessageWithPhoneNum:(NSString *)phone
+                                    sessionId:(NSString *)sessionId
+                                 sessionIdPwd:(NSString *)sessionpwd
+                                        tcode:(NSString *)tcode
+                                      success:(void (^)(NSDictionary *))success
+                                      failure:(void (^)(int, NSString *))failure
+{
+    NSDictionary *paramters = [NSDictionary dictionaryWithObjectsAndKeys:
+                               phone,@"phone",
+                               sessionId,@"sessionid",
+                               sessionpwd,@"sessionidpwd",
+                               tcode,@"tcode",
+                               nil];
+    [[KMNetWorkingManager sharedManager] postWithParameters:paramters subUrl:GetMars block:^(NSDictionary *resultDic, NSError *error) {
+        BOOL isFinished = NO;
+        for (NSDictionary *dic  in resultDic) {
+            if ([[dic objectForKey:@"error_code"] isEqual:@200]) {
+                isFinished = YES;
+            }
+        }
+        if (isFinished) {
+            success(resultDic);
+        }else{
+            failure(NO,@"获取失败");
+        }
+    }];
+}
+/**
+ *  获取使用记录
+ *
+ *  @param phone      手机号
+ *  @param sessionId  sid
+ *  @param sessionpwd sidpwd
+ *  @param tcode      辅助码
+ *  @param success    成功回调
+ *  @param failure    失败回调
+ */
++ (void)requestForHistoryWithPhoneNum:(NSString *)phone
+                            sessionId:(NSString *)sessionId
+                         sessionIdPwd:(NSString *)sessionpwd
+                                tcode:(NSString *)tcode
+                              success:(void (^)(NSDictionary *))success
+                              failure:(void (^)(int, NSString *))failure
+{
+    NSDictionary *paramters = [NSDictionary dictionaryWithObjectsAndKeys:
+                               phone,@"phone",
+                               sessionId,@"sessionid",
+                               sessionpwd,@"sessionidpwd",
+                               tcode,@"tcode",
+                               nil];
+    [[KMNetWorkingManager sharedManager] postWithParameters:paramters subUrl:GetUsedHis block:^(NSDictionary *resultDic, NSError *error) {
+        BOOL isFinished = NO;
+        for (NSDictionary *dic  in resultDic) {
+            if ([[dic objectForKey:@"error_code"] isEqual:@200]) {
+                isFinished = YES;
+            }
+        }
+        if (isFinished) {
+            success(resultDic);
+        }else{
+            failure(NO,@"获取失败");
+        }
+    }];
+}
 
 /**
  *  查询余额

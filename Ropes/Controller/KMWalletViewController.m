@@ -8,18 +8,29 @@
 
 #import "KMWalletViewController.h"
 #import "NSNumber+FlickerNumber.h"
+#import "KMRequestCenter.h"
+#import "LCProgressHUD.h"
+#import "KMUserManager.h"
+#import "NSString+MD5.h"
+#import "KMBalanceViewController.h"
+#import "KMBankCardTableViewController.h"
+#import "KMTransactionTableViewController.h"
+
 @interface KMWalletViewController()
 @property (weak, nonatomic) IBOutlet UILabel *balanceLabel;
-
+@property (copy, nonatomic) NSString *cashNum;
 @end
 
 @implementation KMWalletViewController
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    NSNumber *num = [[NSNumber alloc] initWithInt:40000];
+    [self queryBalance];
+    NSNumber *num = [[NSNumber alloc] initWithInt:0];
     self.balanceLabel.text = [num formatNumberDecimal];
+    
+    
+    [LCProgressHUD showLoading:nil];
     
 }
 
@@ -39,4 +50,38 @@
     
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.destinationViewController isKindOfClass:[KMBalanceViewController class]]) {
+        KMBalanceViewController *bv = segue.destinationViewController;
+        bv.cashNum = self.cashNum;
+    }
+}
+
+- (void)queryBalance
+{
+    NSString *phone = [KMUserManager getInstance].currentUser.phone;
+    NSString *sessionId = [KMUserManager getInstance].currentUser.sessionid;
+    NSString *sessionIdPwd = [sessionId md5WithTimes:6];
+    [KMRequestCenter requestForDoBalanceInqueryWithNum:phone
+                                             sessionId:sessionId
+                                          sessionIdPwd:sessionIdPwd
+                                          requestPhone:phone
+                                               success:^(NSDictionary *resultDic) {
+                                                   
+                                                   NSString *cashnum = @"0";
+                                                   if ([resultDic objectForKey:@"cashnum"] != [NSNull null]) {
+                                                       cashnum = [resultDic objectForKey:@"cashnum"];
+                                                   }
+                                                   
+                                                   dispatch_async(dispatch_get_main_queue(), ^{
+                                                       NSNumber *num = [[NSNumber alloc] initWithFloat:[cashnum floatValue]];
+                                                       self.balanceLabel.text = [num formatNumberDecimal];
+                                                   });
+                                                   
+                                                   self.cashNum =cashnum;
+                                                   [LCProgressHUD hide];
+                                               }
+                                               failure:nil];
+}
 @end

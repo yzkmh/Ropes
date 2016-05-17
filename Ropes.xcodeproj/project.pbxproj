@@ -91,6 +91,8 @@
 		A7D69FAD1CA6F6700018E187 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D69FA71CA6F6700018E187 /* AFURLSessionManager.m */; };
 		A7D69FB01CA708330018E187 /* KMRequestCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D69FAF1CA708330018E187 /* KMRequestCenter.m */; };
 		A7D69FB31CA719550018E187 /* KMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D69FB21CA719550018E187 /* KMUser.m */; };
+		A7FA00661CE4DE23008960E9 /* KMWithdrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7FA00651CE4DE23008960E9 /* KMWithdrawViewController.m */; };
+		BB0865731CE9CEDE00D85666 /* userRulers.txt in Resources */ = {isa = PBXBuildFile; fileRef = BB0865721CE9CEDE00D85666 /* userRulers.txt */; };
 		BB2C98231C85431D00BAEE17 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2C98221C85431D00BAEE17 /* main.m */; };
 		BB2C98261C85431D00BAEE17 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2C98251C85431D00BAEE17 /* AppDelegate.m */; };
 		BB2C98291C85431D00BAEE17 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2C98281C85431D00BAEE17 /* ViewController.m */; };
@@ -99,6 +101,10 @@
 		BB2C98311C85431D00BAEE17 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB2C982F1C85431D00BAEE17 /* LaunchScreen.storyboard */; };
 		BB2C983C1C85431E00BAEE17 /* RopesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2C983B1C85431E00BAEE17 /* RopesTests.m */; };
 		BB2C98471C85431E00BAEE17 /* RopesUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2C98461C85431E00BAEE17 /* RopesUITests.m */; };
+		BB8EF3DE1CE577EF00D8AEBA /* KMTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = BB8EF3DD1CE577EF00D8AEBA /* KMTransaction.m */; };
+		BB8EF3E41CE5BB1800D8AEBA /* KMAddBankcardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB8EF3E31CE5BB1800D8AEBA /* KMAddBankcardViewController.m */; };
+		BB8EF3E71CE9CAE400D8AEBA /* KMRulersController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB8EF3E61CE9CAE400D8AEBA /* KMRulersController.m */; };
+		BB8EF3E91CE9CB6400D8AEBA /* KMRulers.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB8EF3E81CE9CB6400D8AEBA /* KMRulers.xib */; };
 		BB8FB2B01C8572FB00EFCE91 /* KMLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB8FB2AF1C8572FB00EFCE91 /* KMLogin.storyboard */; };
 		BB8FB2B31C8575EC00EFCE91 /* KMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB8FB2B21C8575EC00EFCE91 /* KMNavigationController.m */; };
 		BB8FB2B71C857C7E00EFCE91 /* KMRegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB8FB2B61C857C7E00EFCE91 /* KMRegistViewController.m */; };
@@ -265,6 +271,9 @@
 		A7D69FAF1CA708330018E187 /* KMRequestCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMRequestCenter.m; sourceTree = "<group>"; };
 		A7D69FB11CA719550018E187 /* KMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMUser.h; sourceTree = "<group>"; };
 		A7D69FB21CA719550018E187 /* KMUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMUser.m; sourceTree = "<group>"; };
+		A7FA00641CE4DE23008960E9 /* KMWithdrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMWithdrawViewController.h; sourceTree = "<group>"; };
+		A7FA00651CE4DE23008960E9 /* KMWithdrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMWithdrawViewController.m; sourceTree = "<group>"; };
+		BB0865721CE9CEDE00D85666 /* userRulers.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = userRulers.txt; sourceTree = "<group>"; };
 		BB2C981E1C85431D00BAEE17 /* Ropes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ropes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB2C98221C85431D00BAEE17 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BB2C98241C85431D00BAEE17 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -281,6 +290,13 @@
 		BB2C98421C85431E00BAEE17 /* RopesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RopesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB2C98461C85431E00BAEE17 /* RopesUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RopesUITests.m; sourceTree = "<group>"; };
 		BB2C98481C85431E00BAEE17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB8EF3DC1CE577EF00D8AEBA /* KMTransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMTransaction.h; sourceTree = "<group>"; };
+		BB8EF3DD1CE577EF00D8AEBA /* KMTransaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMTransaction.m; sourceTree = "<group>"; };
+		BB8EF3E21CE5BB1800D8AEBA /* KMAddBankcardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMAddBankcardViewController.h; sourceTree = "<group>"; };
+		BB8EF3E31CE5BB1800D8AEBA /* KMAddBankcardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMAddBankcardViewController.m; sourceTree = "<group>"; };
+		BB8EF3E51CE9CAE400D8AEBA /* KMRulersController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMRulersController.h; sourceTree = "<group>"; };
+		BB8EF3E61CE9CAE400D8AEBA /* KMRulersController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMRulersController.m; sourceTree = "<group>"; };
+		BB8EF3E81CE9CB6400D8AEBA /* KMRulers.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KMRulers.xib; path = ../KMRulers.xib; sourceTree = "<group>"; };
 		BB8FB2AF1C8572FB00EFCE91 /* KMLogin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = KMLogin.storyboard; sourceTree = "<group>"; };
 		BB8FB2B11C8575EC00EFCE91 /* KMNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMNavigationController.h; sourceTree = "<group>"; };
 		BB8FB2B21C8575EC00EFCE91 /* KMNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMNavigationController.m; sourceTree = "<group>"; };
@@ -412,6 +428,8 @@
 				133233C21CE4D71300C02C04 /* KMHistory.m */,
 				ED649A351CDC474C005D09C1 /* KMVoucher.h */,
 				ED649A361CDC474C005D09C1 /* KMVoucher.m */,
+				BB8EF3DC1CE577EF00D8AEBA /* KMTransaction.h */,
+				BB8EF3DD1CE577EF00D8AEBA /* KMTransaction.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -555,6 +573,10 @@
 				A7A9720C1CB1C15E00847478 /* KMTransactionTableViewCell.m */,
 				A7A9720E1CB1C20E00847478 /* KMTransactionTableViewController.h */,
 				A7A9720F1CB1C20E00847478 /* KMTransactionTableViewController.m */,
+				A7FA00641CE4DE23008960E9 /* KMWithdrawViewController.h */,
+				A7FA00651CE4DE23008960E9 /* KMWithdrawViewController.m */,
+				BB8EF3E21CE5BB1800D8AEBA /* KMAddBankcardViewController.h */,
+				BB8EF3E31CE5BB1800D8AEBA /* KMAddBankcardViewController.m */,
 			);
 			name = "钱包";
 			sourceTree = "<group>";
@@ -690,6 +712,8 @@
 		BB8FB2B41C857C6600EFCE91 /* RegistLogin */ = {
 			isa = PBXGroup;
 			children = (
+				BB8EF3E51CE9CAE400D8AEBA /* KMRulersController.h */,
+				BB8EF3E61CE9CAE400D8AEBA /* KMRulersController.m */,
 				A70B54631CA8088F00E919C6 /* KMForgetPwdController.h */,
 				A70B54641CA8088F00E919C6 /* KMForgetPwdController.m */,
 				BB8FB2B51C857C7E00EFCE91 /* KMRegistViewController.h */,
@@ -706,6 +730,7 @@
 		BBB019701C86D2E00071362D /* Xib */ = {
 			isa = PBXGroup;
 			children = (
+				BB8EF3E81CE9CB6400D8AEBA /* KMRulers.xib */,
 				BBB019711C86D3F80071362D /* KMCouponCell.xib */,
 				133233B91CE4D49400C02C04 /* KMHistoryCell.xib */,
 				135688491CB3F7010017565C /* KMLotteryCell.xib */,
@@ -861,6 +886,7 @@
 				135688551CB3F9B50017565C /* KMNavigationView.xib in Resources */,
 				A70B8D941CA96F7C00575096 /* searchIcon.png in Resources */,
 				A741CAC31CAFB81A001F323C /* tag_highlight.png in Resources */,
+				BB8EF3E91CE9CB6400D8AEBA /* KMRulers.xib in Resources */,
 				1356885F1CB555030017565C /* KMVoucherCell.xib in Resources */,
 				A70B8D8D1CA96F7C00575096 /* logo.png in Resources */,
 				135688761CB5DEE60017565C /* KMAuthenticationCell.xib in Resources */,
@@ -869,6 +895,7 @@
 				ED6C1E551CEB207400B81104 /* shop.png in Resources */,
 				A70B8D8C1CA96F7C00575096 /* bg2.png in Resources */,
 				A70B8DA71CA96F7C00575096 /* ma.png in Resources */,
+				BB0865731CE9CEDE00D85666 /* userRulers.txt in Resources */,
 				A70B8DA51CA96F7C00575096 /* bigBg.png in Resources */,
 				A70B8D901CA96F7C00575096 /* yellowTip.png in Resources */,
 				135688691CB560A80017565C /* KMShopCell.xib in Resources */,
@@ -922,7 +949,9 @@
 				A70B54651CA8088F00E919C6 /* KMForgetPwdController.m in Sources */,
 				BB2C98291C85431D00BAEE17 /* ViewController.m in Sources */,
 				1356886F1CB561D90017565C /* KMShopCell.m in Sources */,
+				BB8EF3DE1CE577EF00D8AEBA /* KMTransaction.m in Sources */,
 				A712D6091CB0DBF30008FB99 /* KMEditInfoViewController.m in Sources */,
+				BB8EF3E41CE5BB1800D8AEBA /* KMAddBankcardViewController.m in Sources */,
 				ED649A2A1CDB3185005D09C1 /* KMViewsMannager.m in Sources */,
 				BB2C98261C85431D00BAEE17 /* AppDelegate.m in Sources */,
 				A7A972021CB1AAAF00847478 /* KMBalanceViewController.m in Sources */,
@@ -943,6 +972,7 @@
 				135688541CB3F9B50017565C /* KMNavigationView.m in Sources */,
 				135688581CB3FA000017565C /* KMLotteryCell.m in Sources */,
 				135688741CB5DE400017565C /* KMAuthenticationViewController.m in Sources */,
+				A7FA00661CE4DE23008960E9 /* KMWithdrawViewController.m in Sources */,
 				A7D69FAB1CA6F6700018E187 /* AFURLRequestSerialization.m in Sources */,
 				1356885D1CB552AF0017565C /* KMVoucherViewController.m in Sources */,
 				BB2C98231C85431D00BAEE17 /* main.m in Sources */,
@@ -951,6 +981,7 @@
 				A7A972101CB1C20E00847478 /* KMTransactionTableViewController.m in Sources */,
 				133233BD1CE4D59300C02C04 /* KMHistoryCell.m in Sources */,
 				A7D69FAD1CA6F6700018E187 /* AFURLSessionManager.m in Sources */,
+				BB8EF3E71CE9CAE400D8AEBA /* KMRulersController.m in Sources */,
 				135688651CB55AD10017565C /* KMVoucherMoreViewController.m in Sources */,
 				BB8FB2B71C857C7E00EFCE91 /* KMRegistViewController.m in Sources */,
 				1356886C1CB561130017565C /* KMShopViewController.m in Sources */,

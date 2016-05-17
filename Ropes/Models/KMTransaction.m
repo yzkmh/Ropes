@@ -1,15 +1,14 @@
 //
-//  KMVoucher.m
+//  KMTransaction.m
 //  Ropes
 //
-//  Created by sunsea on 16/5/6.
+//  Created by Madoka on 16/5/13.
 //  Copyright © 2016年 Madoka. All rights reserved.
 //
 
-#import "KMVoucher.h"
+#import "KMTransaction.h"
 #import "JsonUtil.h"
-
-@implementation KMVoucher
+@implementation KMTransaction
 - (instancetype)initWithDict:(NSDictionary *)dict
 {
     if (self = [super init]) {
@@ -18,7 +17,7 @@
     return self;
 }
 
-+ (instancetype)userWithDict:(NSDictionary *)dict
++ (instancetype)transactionWithDict:(NSDictionary *)dict
 {
     return [[self alloc] initWithDict:dict];
 }

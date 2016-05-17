@@ -21,9 +21,9 @@
 // 密码
 @property (nonatomic, copy) NSString *pwd;
 // 银行卡
-@property (nonatomic, copy) NSString *bandcard;
+@property (nonatomic, copy) NSString *bankcard;
 // 银行
-@property (nonatomic, copy) NSString *bank;
+@property (nonatomic, copy) NSString *bankname;
 // 地址
 @property (nonatomic, copy) NSString *address;
 

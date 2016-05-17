@@ -7,12 +7,16 @@
 //
 
 #import "KMBankCardTableViewController.h"
-#import "KMBankCardCell.h"
-@interface KMBankCardTableViewController()<UITableViewDelegate, UITableViewDataSource>
+#import "KMUserManager.h"
+#import "KMUser.h"
+@interface KMBankCardTableViewController()
 {
     NSArray *bankArray;
 }
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *bankName;
+
+@property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UILabel *cardNum;
 
 @end
 
@@ -21,43 +25,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-   
-    
+    KMUser *user = [[KMUserManager getInstance] currentUser];
+    self.bankName.text = user.bankname;
+    self.name.text = user.name;
+    self.cardNum.text = user.bankcard;
+}
+
+
+- (IBAction)withdrawCashBtnClick:(id)sender {
+    [self performSegueWithIdentifier:@"bankcard2withdraw" sender:self];
 }
 
 - (IBAction)addCardBtnClick:(id)sender {
-}
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 105;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    tableView.frame = CGRectMake(0, 20, KMMainScreenBounds.size.width, 5 * 105);
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 4;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *ID = @"bankCardCell";
-    KMBankCardCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (!cell) {
-        cell = [KMBankCardCell bankCardCellWithTableView:tableView];
-    }
-    cell.bankNameLabel.text = @"民生银行";
-    cell.nameLabel.text = @"鹿目圆香";
-    cell.cardNumLabel.text = @"1234 4321 5678 8765 098";
-    return cell;
+    [self performSegueWithIdentifier:@"addbankcard" sender:self];
 }
 
 @end

@@ -39,6 +39,14 @@
 #define UsedHis @"http://122.49.7.211/cappController/usedHis"
 //可使用门店非彩票
 #define UseAble @"http://122.49.7.211/cappController/useAble"
+// 查询余额
+#define BalanceInquery @"http://122.49.7.211/cappController/doBalanceInquery"
+// 查询收支记录
+#define CashReHis @"http://122.49.7.211/cappController/doCashReHis"
+// 提现
+#define DoCashRe @"http://122.49.7.211/cappController/doCashRe"
+// 添加银行卡
+#define DoInsertBankInfo @"http://122.49.7.211/cappController/doInsertBankInfo"
 
 
 typedef NS_ENUM(NSInteger,KMConponType){
@@ -251,4 +259,67 @@ typedef NS_ENUM(NSInteger,KMConponType){
                               success:(void (^)(NSDictionary *))success
                               failure:(void (^)(int, NSString *))failure;
 
+/**
+ *  查询余额
+ *
+ *  @param phone        电话号码
+ *  @param sessionId    id
+ *  @param sessionIdPwd id*6md5
+ *  @param cashrequest  电话号码?
+ */
++ (void)requestForDoBalanceInqueryWithNum:(NSString *)phone
+                                sessionId:(NSString *)sessionId
+                             sessionIdPwd:(NSString *)sessionIdPwd
+                             requestPhone:(NSString *)requestPhone
+                                  success:(void (^)(NSDictionary *))success
+                                  failure:(void (^)(int, NSString *))failure;
+/**
+ *  收支记录
+ *
+ *  @param phone        电话号码
+ *  @param sessionId    id
+ *  @param sessionIdPwd id*6md5
+ *  @param requestPhone 电话号码
+ *  @param success      成功回调
+ *  @param failure      失败回调
+ */
++ (void)requestForCashReHisWith:(NSString *)phone
+                      sessionId:(NSString *)sessionId
+                   sessionIdPwd:(NSString *)sessionIdPwd
+                   requestPhone:(NSString *)requestPhone
+                       bankcard:(NSString *)bankcard
+                        success:(void (^)(NSDictionary *))success
+                        failure:(void (^)(int, NSString *))failure;
+
+/**
+ *  提现
+ *
+ *  @param phone        电话号码
+ *  @param sessionId    id
+ *  @param sessionIdPwd id*6md5
+ *  @param requestPhone 电话号码
+ *  @param cashnum      提现金额
+ *  @param bankname     银行
+ *  @param bankcard     卡号
+ *  @param requestname  银行
+ */
++ (void)requestForDoCashRe:(NSString *)phone
+                 sessionId:(NSString *)sessionId
+              sessionIdPwd:(NSString *)sessionIdPwd
+              requestPhone:(NSString *)requestPhone
+                  cacshnum:(NSString *)cashnum
+                  bankname:(NSString *)bankname
+                  bankcard:(NSString *)bankcard
+               requestname:(NSString *)requestname
+                   success:(void (^)(NSDictionary *))success
+                   failure:(void (^)(int, NSString *))failure;
+
+
++ (void)requestForDoInsertBankInfo:(NSString *)phone
+                         sessionId:(NSString *)sessionid
+                      sessionidpwd:(NSString *)sessionidpwd
+                              bank:(NSString *)bank
+                          bankcard:(NSString *)bankcard
+                           success:(void (^)(NSDictionary *))success
+                           failure:(void (^)(int, NSString *))failure;
 @end

@@ -29,7 +29,15 @@
     [super viewDidLoad];
     [self resetNavigationBar];
     [self resetSelectBtn];
+    
+//     读取本地账号信息
+        KMUser *localUser = [NSKeyedUnarchiver unarchiveObjectWithFile:kPATH];
+        if (localUser.isAutoLogin) {
+            [self loginBtnClick:nil];
+        }
+
 }
+
 /**
  *  重设导航栏
  */
@@ -88,7 +96,7 @@
             
                                                  if (result) {
                                                      self.user = user;
-                                                     [LCProgressHUD showSuccess:message];
+                                                     [LCProgressHUD showSuccess:@"登陆成功"];
                                                      
                                                      if ([self.remeberPwdBtn isSelected]) {
                                                          self.user.isRememberPwd = YES;
@@ -100,9 +108,12 @@
                                                      // 保存账号到本地
                                                      [NSKeyedArchiver archiveRootObject:self.user toFile:kPATH];
                                                      [KMUserManager getInstance].currentUser = user;
+                                                     
+                                                     [LCProgressHUD hide];
                                                      [self performSegueWithIdentifier:@"loginToTabBar" sender:self];
                                                      
                                                  } else {
+                                                     [LCProgressHUD hide];
                                                      if (message) {
                                                          [LCProgressHUD showFailure:message];
                                                          return;

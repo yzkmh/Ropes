@@ -23,7 +23,7 @@
 #define CLotteryIndex @"http://122.49.7.211/cappControllerLot/cLotteryIndex"
 // 获取信息
 #define ViewInformation @"http://122.49.7.211/cappController/viewInformation"
-// 查询彩票代金券信息
+// 查询身份认证信息
 #define LotteryInquery @"http://122.49.7.211/cappControllerLot/lotteryInquery"
 //可使用门店查询
 #define GetUsedScen @"http://122.49.7.211/cappControllerLot/getUsedScen"
@@ -33,10 +33,13 @@
 #define GetMars @"http://122.49.7.211/cappControllerLot/getMars"
 //立即使用
 #define Immediately @"http://122.49.7.211/cappController/immediately"
-//获取使用记录
+//获取彩票使用记录
 #define GetUsedHis @"http://122.49.7.211/cappControllerLot/getUsedHis"
+//彩票外使用记录
+#define UsedHis @"http://122.49.7.211/cappController/usedHis"
 //可使用门店非彩票
 #define UseAble @"http://122.49.7.211/cappController/useAble"
+
 
 typedef NS_ENUM(NSInteger,KMConponType){
     KMDiscountType = 1,
@@ -194,6 +197,8 @@ typedef NS_ENUM(NSInteger,KMConponType){
  *  @param failure 失败回调
  */
 + (void)requestAuthenticationInfoWithPhoneNum:(NSString *)phone
+                                    sessionId:(NSString *)sessionid
+                                 sessionIdPwd:(NSString *)sessionidpwd
                                       success:(void (^)(NSDictionary *))success
                                       failure:(void (^)(int, NSString *))failure;
 /**
@@ -242,6 +247,7 @@ typedef NS_ENUM(NSInteger,KMConponType){
                             sessionId:(NSString *)sessionId
                          sessionIdPwd:(NSString *)sessionpwd
                                 tcode:(NSString *)tcode
+                           conponType:(KMConponType)type
                               success:(void (^)(NSDictionary *))success
                               failure:(void (^)(int, NSString *))failure;
 

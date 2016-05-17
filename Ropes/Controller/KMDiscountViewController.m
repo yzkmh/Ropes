@@ -88,7 +88,7 @@
     [naviView addToShowView:_rightTableView];
     
     
-    [naviView setLabelWithConponNum1:[NSString stringWithFormat:@"%@",[[KMUserManager getInstance].currentUser.ConponNumList objectForKey:@"cl"]] andNum2:[NSString stringWithFormat:@"%@",[[KMUserManager getInstance].currentUser.ConponNumList objectForKey:@"nl"]]];
+    [naviView setLabelWithConponNum1:[NSString stringWithFormat:@"%@",[[KMUserManager getInstance].currentUser.ConponNumList objectForKey:@"zc"]] andNum2:[NSString stringWithFormat:@"%@",[[KMUserManager getInstance].currentUser.ConponNumList objectForKey:@"zn"]]];
     
     [self.view addSubview:naviView];
     
@@ -100,7 +100,8 @@
     if (!_isRequest) {
         [LCProgressHUD showLoading:nil];
     }
-    [[KMViewsMannager getInstance]getLotteryInfoWithPhoneNum:[KMUserManager getInstance].currentUser.phone comlation:^(BOOL result, NSArray *list) {
+    
+    [[KMViewsMannager getInstance]getViewsInfomationWithConponType:KMDiscountType comlation:^(BOOL result, NSArray *list)  {
         [LCProgressHUD hide];
         [_controlleft endRefreshing];
         [_controlright endRefreshing];

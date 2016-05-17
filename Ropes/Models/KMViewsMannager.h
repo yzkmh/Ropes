@@ -63,7 +63,7 @@
  *  @param tcode 辅助码
  *  @param block 回调
  */
-- (void)getHistoryInfoWithtcode:(NSString *)tcode comlation:(void(^)(BOOL result,NSArray *list))block;
+- (void)getHistoryInfoWithtcode:(NSString *)tcode conponType:(KMConponType)type comlation:(void(^)(BOOL result,NSArray *list))block;
 
 
 @end

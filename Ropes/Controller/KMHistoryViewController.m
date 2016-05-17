@@ -59,7 +59,7 @@
 - (void)initData
 {
     [LCProgressHUD showLoading:nil];
-    [[KMViewsMannager getInstance]getHistoryInfoWithtcode:_tcode comlation:^(BOOL result, NSArray *list) {
+    [[KMViewsMannager getInstance]getHistoryInfoWithtcode:_tcode conponType:self.type comlation:^(BOOL result, NSArray *list) {
         [LCProgressHUD hide];
         if (result) {
             _isFinish = YES;

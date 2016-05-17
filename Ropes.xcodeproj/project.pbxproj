@@ -117,6 +117,7 @@
 		ED649A5A1CE07B81005D09C1 /* KMDiscountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED649A591CE07B81005D09C1 /* KMDiscountCell.m */; };
 		ED649A5E1CE07DDC005D09C1 /* KMDiscountMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED649A5C1CE07DDC005D09C1 /* KMDiscountMoreViewController.m */; };
 		ED649A5F1CE07DDC005D09C1 /* KMDiscountMoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED649A5D1CE07DDC005D09C1 /* KMDiscountMoreViewController.xib */; };
+		ED6C1E551CEB207400B81104 /* shop.png in Resources */ = {isa = PBXBuildFile; fileRef = ED6C1E541CEB207400B81104 /* shop.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -312,6 +313,7 @@
 		ED649A5B1CE07DDC005D09C1 /* KMDiscountMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMDiscountMoreViewController.h; sourceTree = "<group>"; };
 		ED649A5C1CE07DDC005D09C1 /* KMDiscountMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMDiscountMoreViewController.m; sourceTree = "<group>"; };
 		ED649A5D1CE07DDC005D09C1 /* KMDiscountMoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KMDiscountMoreViewController.xib; sourceTree = "<group>"; };
+		ED6C1E541CEB207400B81104 /* shop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shop.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -474,6 +476,7 @@
 		A70B8D691CA96F7C00575096 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				ED6C1E541CEB207400B81104 /* shop.png */,
 				A7C667251CAFDB7500094D7B /* touxiang.png */,
 				A70B8D6F1CA96F7C00575096 /* user_highlight.png */,
 				A70B8D701CA96F7C00575096 /* user_normal.png */,
@@ -863,6 +866,7 @@
 				135688761CB5DEE60017565C /* KMAuthenticationCell.xib in Resources */,
 				BB8FB2B01C8572FB00EFCE91 /* KMLogin.storyboard in Resources */,
 				A70B8DA21CA96F7C00575096 /* cut.png in Resources */,
+				ED6C1E551CEB207400B81104 /* shop.png in Resources */,
 				A70B8D8C1CA96F7C00575096 /* bg2.png in Resources */,
 				A70B8DA71CA96F7C00575096 /* ma.png in Resources */,
 				A70B8DA51CA96F7C00575096 /* bigBg.png in Resources */,
@@ -1109,7 +1113,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Ropes/macro.pch;
 				INFOPLIST_FILE = Ropes/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Madoka.Ropes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1127,7 +1131,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Ropes/macro.pch;
 				INFOPLIST_FILE = Ropes/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Madoka.Ropes;
 				PRODUCT_NAME = "$(TARGET_NAME)";

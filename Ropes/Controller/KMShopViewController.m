@@ -97,6 +97,7 @@
     cell.title.text = shop.detailName;
     cell.phoneNum.text = shop.telNum;
     cell.address.text = shop.address;
+    [cell.imageView setImage:[UIImage imageNamed:@"shop"]];
     
     return cell;
 }

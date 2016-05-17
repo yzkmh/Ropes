@@ -84,7 +84,9 @@ static KMViewsMannager * _shareKMViewsManager;
             }];
         }
         else if (type  == KMAuthenticationType) {
-            [KMRequestCenter requestAuthenticationInfoWithPhoneNum:phone success:^(NSDictionary *dic) {
+            NSString *session = [KMUserManager getInstance].currentUser.sessionid;
+            NSString *sessionpwd = [[KMUserManager getInstance].currentUser.sessionid md5WithTimes:6];
+            [KMRequestCenter requestAuthenticationInfoWithPhoneNum:phone sessionId:session sessionIdPwd:sessionpwd  success:^(NSDictionary *dic) {
                 for (NSDictionary *conponInfo in dic)
                 {
                     if ([[conponInfo objectForKey:@"error"] isEqualToString:@"成功"]) {
@@ -171,12 +173,12 @@ static KMViewsMannager * _shareKMViewsManager;
         block(result,errorStr);
     }];
 }
-- (void)getHistoryInfoWithtcode:(NSString *)tcode comlation:(void(^)(BOOL result,NSArray *list))block
+- (void)getHistoryInfoWithtcode:(NSString *)tcode conponType:(KMConponType)type  comlation:(void(^)(BOOL result,NSArray *list))block
 {
     NSString *phone = [KMUserManager getInstance].currentUser.phone;
     NSString *session = [KMUserManager getInstance].currentUser.sessionid;
     NSString *sessionpwd = [[KMUserManager getInstance].currentUser.sessionid md5WithTimes:6];
-    [KMRequestCenter requestForHistoryWithPhoneNum:phone sessionId:session sessionIdPwd:sessionpwd tcode:tcode success:^(NSDictionary *dic) {
+    [KMRequestCenter requestForHistoryWithPhoneNum:phone sessionId:session sessionIdPwd:sessionpwd tcode:tcode conponType:type success:^(NSDictionary *dic) {
         NSMutableArray *historyList = [NSMutableArray new];
         for (NSDictionary *historydic in dic) {
             KMHistory *history = [[KMHistory alloc]initWithDict:historydic];

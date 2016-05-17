@@ -328,11 +328,15 @@
  *  @param failure 失败回调
  */
 + (void)requestAuthenticationInfoWithPhoneNum:(NSString *)phone
-                               success:(void (^)(NSDictionary *))success
-                               failure:(void (^)(int, NSString *))failure
+                                    sessionId:(NSString *)sessionid
+                                 sessionIdPwd:(NSString *)sessionidpwd
+                                      success:(void (^)(NSDictionary *))success
+                                      failure:(void (^)(int, NSString *))failure
 {
     NSDictionary *paramters = [NSDictionary dictionaryWithObjectsAndKeys:
                                phone,@"phone",
+                               sessionid,@"sessionid",
+                               sessionidpwd,@"sessionidpwd",
                                @"4",@"type",
                                nil];
     [[KMNetWorkingManager sharedManager] postWithParameters:paramters subUrl:LotteryInquery block:^(NSDictionary *resultDic, NSError *error) {
@@ -382,7 +386,7 @@
         if (isFinished) {
             success(resultDic);
         }else{
-            failure(NO,@"获取失败");
+            failure(NO,@"发送失败");
         }
     }];
 }
@@ -419,7 +423,7 @@
         if (isFinished) {
             success(resultDic);
         }else{
-            failure(NO,@"获取失败");
+            failure(NO,@"发送失败");
         }
     }];
 }
@@ -437,6 +441,7 @@
                             sessionId:(NSString *)sessionId
                          sessionIdPwd:(NSString *)sessionpwd
                                 tcode:(NSString *)tcode
+                           conponType:(KMConponType)type
                               success:(void (^)(NSDictionary *))success
                               failure:(void (^)(int, NSString *))failure
 {
@@ -445,8 +450,16 @@
                                sessionId,@"sessionid",
                                sessionpwd,@"sessionidpwd",
                                tcode,@"tcode",
+                               @"6",@"type",
                                nil];
-    [[KMNetWorkingManager sharedManager] postWithParameters:paramters subUrl:GetUsedHis block:^(NSDictionary *resultDic, NSError *error) {
+    NSString *url ;
+    if (type  == 10) {
+        url = GetUsedHis;
+    }else{
+        url = UsedHis;
+    }
+    
+    [[KMNetWorkingManager sharedManager] postWithParameters:paramters subUrl:url block:^(NSDictionary *resultDic, NSError *error) {
         BOOL isFinished = NO;
         for (NSDictionary *dic  in resultDic) {
             if ([[dic objectForKey:@"error_code"] isEqual:@200]) {

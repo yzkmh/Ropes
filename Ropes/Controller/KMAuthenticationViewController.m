@@ -87,7 +87,7 @@
     [naviView addToShowView:_rightTableView];
     
     
-    [naviView setLabelWithConponNum1:[NSString stringWithFormat:@"%@",[[KMUserManager getInstance].currentUser.ConponNumList objectForKey:@"cl"]] andNum2:[NSString stringWithFormat:@"%@",[[KMUserManager getInstance].currentUser.ConponNumList objectForKey:@"nl"]]];
+    [naviView setLabelWithConponNum1:[NSString stringWithFormat:@"%@",[[KMUserManager getInstance].currentUser.ConponNumList objectForKey:@"sc"]] andNum2:[NSString stringWithFormat:@"%@",[[KMUserManager getInstance].currentUser.ConponNumList objectForKey:@"sn"]]];
     
     [self.view addSubview:naviView];
     
@@ -99,7 +99,7 @@
     if (!_isRequest) {
         [LCProgressHUD showLoading:nil];
     }
-    [[KMViewsMannager getInstance]getLotteryInfoWithPhoneNum:[KMUserManager getInstance].currentUser.phone comlation:^(BOOL result, NSArray *list) {
+    [[KMViewsMannager getInstance]getViewsInfomationWithConponType:KMAuthenticationType comlation:^(BOOL result, NSArray *list) {
         [LCProgressHUD hide];
         [_controlleft endRefreshing];
         [_controlright endRefreshing];
@@ -158,7 +158,7 @@
         cell = [tableView dequeueReusableCellWithIdentifier:KMAuthenticationNotCell];
         if (cell == nil) {
             cell = [[[NSBundle mainBundle]loadNibNamed:@"KMAuthenticationCell" owner:self options:nil]objectAtIndex:0];
-            KMVoucher *voucher = [_leftList objectAtIndex:indexPath.row];
+            KMVoucher *voucher = [_rightList objectAtIndex:indexPath.row];
             cell.title.text = voucher.senceName;
             cell.state.text = voucher.policyName;
             if (![voucher.policyDescription isKindOfClass:[NSNull class]]) {

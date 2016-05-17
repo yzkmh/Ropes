@@ -10,4 +10,5 @@
 
 @interface KMHistoryViewController : UIViewController
 @property (nonatomic ,strong) NSString *tcode;
+@property (nonatomic ,assign) NSInteger type;
 @end

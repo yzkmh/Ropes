@@ -92,7 +92,6 @@
 		A7D69FB01CA708330018E187 /* KMRequestCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D69FAF1CA708330018E187 /* KMRequestCenter.m */; };
 		A7D69FB31CA719550018E187 /* KMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D69FB21CA719550018E187 /* KMUser.m */; };
 		A7FA00661CE4DE23008960E9 /* KMWithdrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7FA00651CE4DE23008960E9 /* KMWithdrawViewController.m */; };
-		BB0865731CE9CEDE00D85666 /* userRulers.txt in Resources */ = {isa = PBXBuildFile; fileRef = BB0865721CE9CEDE00D85666 /* userRulers.txt */; };
 		BB2C98231C85431D00BAEE17 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2C98221C85431D00BAEE17 /* main.m */; };
 		BB2C98261C85431D00BAEE17 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2C98251C85431D00BAEE17 /* AppDelegate.m */; };
 		BB2C98291C85431D00BAEE17 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2C98281C85431D00BAEE17 /* ViewController.m */; };
@@ -124,6 +123,7 @@
 		ED649A5E1CE07DDC005D09C1 /* KMDiscountMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED649A5C1CE07DDC005D09C1 /* KMDiscountMoreViewController.m */; };
 		ED649A5F1CE07DDC005D09C1 /* KMDiscountMoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED649A5D1CE07DDC005D09C1 /* KMDiscountMoreViewController.xib */; };
 		ED6C1E551CEB207400B81104 /* shop.png in Resources */ = {isa = PBXBuildFile; fileRef = ED6C1E541CEB207400B81104 /* shop.png */; };
+		ED6C1E5C1CEB26FC00B81104 /* userRulers.txt in Resources */ = {isa = PBXBuildFile; fileRef = ED6C1E5B1CEB26FC00B81104 /* userRulers.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -273,7 +273,6 @@
 		A7D69FB21CA719550018E187 /* KMUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMUser.m; sourceTree = "<group>"; };
 		A7FA00641CE4DE23008960E9 /* KMWithdrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMWithdrawViewController.h; sourceTree = "<group>"; };
 		A7FA00651CE4DE23008960E9 /* KMWithdrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMWithdrawViewController.m; sourceTree = "<group>"; };
-		BB0865721CE9CEDE00D85666 /* userRulers.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = userRulers.txt; sourceTree = "<group>"; };
 		BB2C981E1C85431D00BAEE17 /* Ropes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ropes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB2C98221C85431D00BAEE17 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BB2C98241C85431D00BAEE17 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -330,6 +329,7 @@
 		ED649A5C1CE07DDC005D09C1 /* KMDiscountMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMDiscountMoreViewController.m; sourceTree = "<group>"; };
 		ED649A5D1CE07DDC005D09C1 /* KMDiscountMoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KMDiscountMoreViewController.xib; sourceTree = "<group>"; };
 		ED6C1E541CEB207400B81104 /* shop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shop.png; sourceTree = "<group>"; };
+		ED6C1E5B1CEB26FC00B81104 /* userRulers.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = userRulers.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -494,6 +494,7 @@
 		A70B8D691CA96F7C00575096 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				ED6C1E5B1CEB26FC00B81104 /* userRulers.txt */,
 				ED6C1E541CEB207400B81104 /* shop.png */,
 				A7C667251CAFDB7500094D7B /* touxiang.png */,
 				A70B8D6F1CA96F7C00575096 /* user_highlight.png */,
@@ -895,7 +896,6 @@
 				ED6C1E551CEB207400B81104 /* shop.png in Resources */,
 				A70B8D8C1CA96F7C00575096 /* bg2.png in Resources */,
 				A70B8DA71CA96F7C00575096 /* ma.png in Resources */,
-				BB0865731CE9CEDE00D85666 /* userRulers.txt in Resources */,
 				A70B8DA51CA96F7C00575096 /* bigBg.png in Resources */,
 				A70B8D901CA96F7C00575096 /* yellowTip.png in Resources */,
 				135688691CB560A80017565C /* KMShopCell.xib in Resources */,
@@ -908,6 +908,7 @@
 				A70B8DA01CA96F7C00575096 /* lottery.png in Resources */,
 				A70B8D9A1CA96F7C00575096 /* flag.png in Resources */,
 				136E1AD61CA670D6005B3F4D /* KMCoupon.storyboard in Resources */,
+				ED6C1E5C1CEB26FC00B81104 /* userRulers.txt in Resources */,
 				A70B8D951CA96F7C00575096 /* card.png in Resources */,
 				135688671CB55B500017565C /* KMVoucherMoreViewController.xib in Resources */,
 				BBB019721C86D3F80071362D /* KMCouponCell.xib in Resources */,
@@ -1144,7 +1145,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Ropes/macro.pch;
 				INFOPLIST_FILE = Ropes/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Madoka.Ropes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1162,7 +1163,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Ropes/macro.pch;
 				INFOPLIST_FILE = Ropes/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Madoka.Ropes;
 				PRODUCT_NAME = "$(TARGET_NAME)";

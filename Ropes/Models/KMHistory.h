@@ -11,9 +11,10 @@
 @interface KMHistory : NSObject
 @property (nonatomic ,strong) NSString *policyName;
 @property (nonatomic ,strong) NSString *usedDetail;
-@property (nonatomic ,strong) NSString *usedData;
+@property (nonatomic ,strong) NSString *usedDate;
 @property (nonatomic ,strong) NSString *consume;
-
+@property (nonatomic ,strong) NSString *usedCount;
+@property (nonatomic ,strong) NSString *useCount;
 - (instancetype)initWithDict:(NSDictionary *)dict;
 + (instancetype)userWithDict:(NSDictionary *)dict;
 @end

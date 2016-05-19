@@ -81,27 +81,43 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="500元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahB-av-ZCt">
-                        <rect key="frame" x="225" y="8" width="105" height="25"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="500元" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahB-av-ZCt">
+                        <rect key="frame" x="213" y="23" width="117" height="14"/>
+                        <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="17"/>
+                        <color key="textColor" red="0.76862745099999996" green="0.1018434424" blue="0.068537561390000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="500元" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zC9-KK-qA7">
+                        <rect key="frame" x="213" y="8" width="117" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="S2I-Xu-FTu"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="17"/>
                         <color key="textColor" red="0.76862745099999996" green="0.1018434424" blue="0.068537561390000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="Wv4-2J-Q7b" firstAttribute="leading" secondItem="zC9-KK-qA7" secondAttribute="trailing" constant="8" id="3tK-kG-5rr"/>
                     <constraint firstItem="amz-kx-4UQ" firstAttribute="trailing" secondItem="1np-cw-JUY" secondAttribute="trailingMargin" id="4MN-NU-oqV"/>
                     <constraint firstItem="p8w-J0-9sE" firstAttribute="baseline" secondItem="BiK-iU-Roz" secondAttribute="baseline" id="5Kv-A3-gyA"/>
+                    <constraint firstItem="ahB-av-ZCt" firstAttribute="leading" secondItem="zC9-KK-qA7" secondAttribute="leading" id="779-io-kOb"/>
+                    <constraint firstItem="Wv4-2J-Q7b" firstAttribute="leading" secondItem="ahB-av-ZCt" secondAttribute="trailing" constant="8" symbolic="YES" id="C7L-dU-n3h"/>
                     <constraint firstItem="Dea-qK-vIZ" firstAttribute="baseline" secondItem="GUE-q1-quL" secondAttribute="baseline" id="DCf-eq-380"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Dea-qK-vIZ" secondAttribute="trailing" id="DHl-gT-FMN"/>
                     <constraint firstItem="BiK-iU-Roz" firstAttribute="top" secondItem="pBx-dN-r1A" secondAttribute="bottom" constant="8" id="EDp-gD-QBy"/>
                     <constraint firstItem="BiK-iU-Roz" firstAttribute="leading" secondItem="pBx-dN-r1A" secondAttribute="leading" id="GEW-rJ-bWk"/>
                     <constraint firstItem="p8w-J0-9sE" firstAttribute="leading" secondItem="BiK-iU-Roz" secondAttribute="trailing" id="Gye-jk-iAA"/>
                     <constraint firstItem="pBx-dN-r1A" firstAttribute="leading" secondItem="1np-cw-JUY" secondAttribute="leadingMargin" constant="14" id="Kek-pd-0AM"/>
+                    <constraint firstItem="ahB-av-ZCt" firstAttribute="bottom" secondItem="Wv4-2J-Q7b" secondAttribute="bottom" id="M8e-5L-s2d"/>
                     <constraint firstItem="p8w-J0-9sE" firstAttribute="trailing" secondItem="1np-cw-JUY" secondAttribute="trailingMargin" id="N8I-wt-lL5"/>
+                    <constraint firstItem="zC9-KK-qA7" firstAttribute="top" secondItem="1np-cw-JUY" secondAttribute="topMargin" id="NDl-Z0-DYT"/>
                     <constraint firstItem="Wv4-2J-Q7b" firstAttribute="trailing" secondItem="1np-cw-JUY" secondAttribute="trailingMargin" id="Oea-0O-y0Y"/>
                     <constraint firstItem="p8w-J0-9sE" firstAttribute="leading" secondItem="BiK-iU-Roz" secondAttribute="trailing" id="PPn-te-fMR"/>
                     <constraint firstItem="BiK-iU-Roz" firstAttribute="leading" secondItem="1np-cw-JUY" secondAttribute="leadingMargin" constant="14" id="Q1u-8U-xZn"/>
+                    <constraint firstItem="zC9-KK-qA7" firstAttribute="leading" secondItem="pBx-dN-r1A" secondAttribute="trailing" constant="41" id="RGu-Hg-z2U"/>
                     <constraint firstItem="p8w-J0-9sE" firstAttribute="top" secondItem="amz-kx-4UQ" secondAttribute="bottom" constant="3" id="RTF-L1-Dii"/>
+                    <constraint firstItem="ahB-av-ZCt" firstAttribute="top" secondItem="zC9-KK-qA7" secondAttribute="bottom" constant="1" id="dTk-An-KFA"/>
                     <constraint firstItem="Wv4-2J-Q7b" firstAttribute="top" secondItem="1np-cw-JUY" secondAttribute="topMargin" constant="-3" id="eg0-k5-i8w"/>
                     <constraint firstItem="Dea-qK-vIZ" firstAttribute="leading" secondItem="GUE-q1-quL" secondAttribute="trailing" constant="2" id="esh-wd-wyl"/>
                     <constraint firstItem="GUE-q1-quL" firstAttribute="leading" secondItem="1np-cw-JUY" secondAttribute="leadingMargin" constant="14" id="jFN-m3-AdR"/>
@@ -113,13 +129,14 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="banlance" destination="ahB-av-ZCt" id="mty-PZ-1uB"/>
                 <outlet property="premise" destination="p8w-J0-9sE" id="ttk-my-Src"/>
-                <outlet property="price" destination="ahB-av-ZCt" id="MNL-sJ-Nr5"/>
+                <outlet property="price" destination="zC9-KK-qA7" id="H33-lO-3wL"/>
                 <outlet property="state" destination="Wv4-2J-Q7b" id="XF8-65-cDt"/>
                 <outlet property="title" destination="pBx-dN-r1A" id="mN6-F4-xtW"/>
                 <outlet property="validDate" destination="Dea-qK-vIZ" id="mUK-Jl-oO7"/>
             </connections>
-            <point key="canvasLocation" x="217.5" y="323"/>
+            <point key="canvasLocation" x="185.5" y="289"/>
         </tableViewCell>
     </objects>
     <resources>

@@ -10,6 +10,7 @@
 
 @interface KMVoucherCell : UITableViewCell
 @property (nonatomic ,weak) IBOutlet UILabel *title;
+@property (nonatomic ,weak) IBOutlet UILabel *banlance;
 @property (nonatomic ,weak) IBOutlet UILabel *price;
 @property (nonatomic ,weak) IBOutlet UILabel *state;
 @property (nonatomic ,weak) IBOutlet UILabel *premise;

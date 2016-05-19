@@ -85,7 +85,11 @@
         KMHistoryViewController *history = [[KMHistoryViewController alloc]init];
         [history setTitle:@"使用记录"];
         history.tcode = _voucher.tcode;
-        history.type = 2;
+        if (_voucher.isLottery ==YES) {
+            history.type = 10;
+        }else{
+            history.type = 3;
+        }
         [self.navigationController pushViewController:history animated:YES];
     }
 }

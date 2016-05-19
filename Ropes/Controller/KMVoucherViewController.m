@@ -132,7 +132,8 @@
             cell = [[[NSBundle mainBundle]loadNibNamed:@"KMVoucherCell" owner:self options:nil]objectAtIndex:0];
             KMVoucher *voucher = [_leftList objectAtIndex:indexPath.row];
             cell.title.text = voucher.senceName;
-            cell.price.text = voucher.balance;
+            cell.price.text = voucher.consumeCount;
+            cell.banlance.text = voucher.balance;
             if (![voucher.policyDescription isKindOfClass:[NSNull class]]) {
                 cell.premise.text = voucher.policyDescription;
             }else{
@@ -153,7 +154,8 @@
             cell = [[[NSBundle mainBundle]loadNibNamed:@"KMVoucherCell" owner:self options:nil]objectAtIndex:0];
             KMVoucher *voucher = [_rightList objectAtIndex:indexPath.row];
             cell.title.text = voucher.senceName;
-            cell.price.text = voucher.balance;
+            cell.price.text = voucher.consumeCount;
+            cell.banlance.text = voucher.balance;
             if (![voucher.policyDescription isKindOfClass:[NSNull class]]) {
                 cell.premise.text = voucher.policyDescription;
             }else{

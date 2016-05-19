@@ -135,9 +135,7 @@
         {
             [targetObj setValue:[dicData objectForKey:prop] forKey:prop];
         }
-        
     }
-    
     return targetObj;
 }
 @end

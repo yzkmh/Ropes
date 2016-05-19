@@ -31,6 +31,8 @@
 @property (nonatomic ,strong) NSString *state;//状态
 @property (nonatomic ,strong) NSString *tcode;//券编号
 
+@property (nonatomic ,assign) BOOL isLottery;//是否彩票接口
+
 
 - (instancetype)initWithDict:(NSDictionary *)dict;
 + (instancetype)userWithDict:(NSDictionary *)dict;

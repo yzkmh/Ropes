@@ -41,12 +41,14 @@
 {
     _voucher = voucher;
     self.titleLb.text = self.voucher.senceName;
-    self.price.text = self.voucher.policyName;
-    self.condition.text = self.voucher.invalidDate;
+    self.price.text = self.voucher.consumeCount;
+    self.balance.text  = self.voucher.balance;
+    self.rule.text = self.voucher.policyName;
+    self.invalidDate.text = self.voucher.invalidDate;
     if (![self.voucher.policyDescription isKindOfClass:[NSNull class]]) {
-        self.rule.text = self.voucher.policyDescription;
+        self.condition.text = self.voucher.policyDescription;
     }else{
-        self.rule.text = @"";
+        self.condition.text = @"";
     }
 }
 
@@ -95,14 +97,23 @@
         KMShopViewController *shopView = [[KMShopViewController alloc]init];
         [shopView setTitle:@"商家详情"];
         shopView.tcode = _voucher.tcode;
-        shopView.type = 2;
+        if (_voucher.isLottery ==YES) {
+            shopView.type = 10;
+        }else{
+            shopView.type = 2;
+        }
         [self.navigationController pushViewController:shopView animated:YES];
     }else if(indexPath.row == 1)
     {
         KMHistoryViewController *history = [[KMHistoryViewController alloc]init];
         [history setTitle:@"使用记录"];
         history.tcode = _voucher.tcode;
-        history.type = 2;
+        if (_voucher.isLottery ==YES) {
+            history.type = 10;
+        }else{
+            history.type = 2;
+        }
+       
         [self.navigationController pushViewController:history animated:YES];
     }
 }

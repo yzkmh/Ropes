@@ -87,13 +87,18 @@
     static NSString *cellIdentifier = @"KMHistoryCell";
     KMHistory *history = [_historyList objectAtIndex:indexPath.row];
     cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
+    if ( self.type == 2) {
         cell = [[[NSBundle mainBundle]loadNibNamed:@"KMHistoryCell" owner:self options:nil]objectAtIndex:0];
+        cell.price.text = history.consume;
+        cell.date.text = history.usedDate;
+        cell.address.text = history.usedDetail;
+    }else if(self.type == 10){
+        cell = [[[NSBundle mainBundle]loadNibNamed:@"KMHistoryCell" owner:self options:nil]objectAtIndex:1];
+        cell.usedCount.text = [NSString stringWithFormat:@"%d次",[history.usedCount intValue]];
+        cell.useCount.text = [NSString stringWithFormat:@"%d次",[history.useCount intValue]-[history.usedCount intValue]];
+        cell.date.text = history.usedDate;
+        cell.address.text = history.usedDetail;
     }
-    cell.price.text = history.consume;
-    cell.date.text = history.usedData;
-    cell.address.text = history.usedDetail;
-    
     return cell;
 }
 

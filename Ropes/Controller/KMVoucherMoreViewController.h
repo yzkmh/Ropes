@@ -17,6 +17,7 @@
 @property (nonatomic ,weak) IBOutlet UILabel *balance;
 @property (nonatomic ,weak) IBOutlet UILabel *rule;
 @property (nonatomic ,weak) IBOutlet UILabel *condition;
+@property (nonatomic ,weak) IBOutlet UILabel *invalidDate;
 @property (nonatomic ,weak) IBOutlet UIButton *useBtn;
 
 @property (nonatomic ,weak) IBOutlet UITableView *tableView;

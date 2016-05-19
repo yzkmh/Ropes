@@ -13,6 +13,9 @@
 @property (nonatomic ,weak) IBOutlet UILabel *address;
 @property (nonatomic ,weak) IBOutlet UILabel *date;
 
+@property (nonatomic ,weak) IBOutlet UILabel *useCount;
+@property (nonatomic ,weak) IBOutlet UILabel *usedCount;
+
 @property (nonatomic ,weak) NSString *tcode;
 
 @end

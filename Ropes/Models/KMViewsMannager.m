@@ -69,6 +69,7 @@ static KMViewsMannager * _shareKMViewsManager;
                 {
                     if ([[conponInfo objectForKey:@"error"] isEqualToString:@"成功"]) {
                         KMVoucher *voucher =[[KMVoucher new]initWithDict:conponInfo];
+                        voucher.isLottery = YES;
                         if ([voucher.state  isEqual: @0]) {
                             [voucherCanList addObject:voucher];
                         }else{
@@ -91,6 +92,7 @@ static KMViewsMannager * _shareKMViewsManager;
                 {
                     if ([[conponInfo objectForKey:@"error"] isEqualToString:@"成功"]) {
                         KMVoucher *voucher =[[KMVoucher new]initWithDict:conponInfo];
+                        voucher.isLottery = YES;
                         if ([voucher.state  isEqual: @0]) {
                             [voucherCanList addObject:voucher];
                         }else{
@@ -156,7 +158,7 @@ static KMViewsMannager * _shareKMViewsManager;
     NSString *sessionpwd = [[KMUserManager getInstance].currentUser.sessionid md5WithTimes:6];
     
     [KMRequestCenter requestSendLotteryMessageWithPhoneNum:phone sessionId:session sessionIdPwd:sessionpwd tcode:tcode success:^(NSDictionary *dic) {
-        
+        block(YES,@"发送成功");
     } failure:^(int result, NSString *errorStr) {
         block(result,errorStr);
     }];
@@ -168,7 +170,7 @@ static KMViewsMannager * _shareKMViewsManager;
     NSString *sessionpwd = [[KMUserManager getInstance].currentUser.sessionid md5WithTimes:6];
     
     [KMRequestCenter requestSendConponMessageWithPhoneNum:phone sessionId:session sessionIdPwd:sessionpwd tcode:tcode success:^(NSDictionary *dic) {
-        
+        block(YES,@"发送成功");
     } failure:^(int result, NSString *errorStr) {
         block(result,errorStr);
     }];

@@ -378,10 +378,8 @@
                                nil];
     [[KMNetWorkingManager sharedManager] postWithParameters:paramters subUrl:Immediately block:^(NSDictionary *resultDic, NSError *error) {
         BOOL isFinished = NO;
-        for (NSDictionary *dic  in resultDic) {
-            if ([[dic objectForKey:@"error_code"] isEqual:@200]) {
-                isFinished = YES;
-            }
+        if ([[resultDic objectForKey:@"result"] isEqualToString:@"true"]) {
+            isFinished = YES;
         }
         if (isFinished) {
             success(resultDic);
@@ -415,10 +413,8 @@
                                nil];
     [[KMNetWorkingManager sharedManager] postWithParameters:paramters subUrl:GetMars block:^(NSDictionary *resultDic, NSError *error) {
         BOOL isFinished = NO;
-        for (NSDictionary *dic  in resultDic) {
-            if ([[dic objectForKey:@"error_code"] isEqual:@200]) {
-                isFinished = YES;
-            }
+        if ([[resultDic objectForKey:@"result"] isEqualToString:@"true"]) {
+            isFinished = YES;
         }
         if (isFinished) {
             success(resultDic);

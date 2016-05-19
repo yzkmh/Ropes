@@ -148,7 +148,7 @@
             cell.title.text = lottery.lotteryTypeName;
             cell.lotteryNum.text = lottery.lotteryNumber;
             if ([lottery.lotteryPrizeResult isEqualToString:@"未中奖"]||[lottery.lotteryPrizeResult isEqualToString:@"未开奖"]) {
-                cell.state.text = @"未中奖";
+                cell.state.text = lottery.lotteryPrizeResult;
             }else{
                 cell.state.text = @"中奖";
             }
@@ -165,7 +165,7 @@
             cell.title.text = lottery.lotteryTypeName;
             cell.lotteryNum.text = lottery.lotteryNumber;
             if ([lottery.lotteryPrizeResult isEqualToString:@"未中奖"]||[lottery.lotteryPrizeResult isEqualToString:@"未开奖"]) {
-                cell.state.text = @"未中奖";
+                cell.state.text = lottery.lotteryPrizeResult;
             }else{
                 cell.state.text = @"中奖";
             }

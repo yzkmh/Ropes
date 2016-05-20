@@ -584,4 +584,23 @@
     }];
 
 }
+
++ (void)requestForBankListWithphone:(NSString *)phone
+                          sessionId:(NSString *)sessionid
+                       sessionidpwd:(NSString *)sessionidpwd
+                            success:(void (^)(NSDictionary *))success
+                            failure:(void (^)(int, NSString *))failure
+{
+    NSDictionary *paramters = [NSDictionary dictionaryWithObjectsAndKeys:
+                               phone,@"phone",
+                               sessionid,@"sessionid",
+                               sessionidpwd,@"sessionidpwd",
+                               nil];
+    [[KMNetWorkingManager sharedManager] postWithParameters:paramters subUrl:DoRequestBankName block:^(NSDictionary *resultDic, NSError *error) {
+        success(resultDic);
+    }];
+    
+    
+    
+}
 @end

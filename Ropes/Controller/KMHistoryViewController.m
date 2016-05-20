@@ -95,7 +95,11 @@
     }else if(self.type == 10){
         cell = [[[NSBundle mainBundle]loadNibNamed:@"KMHistoryCell" owner:self options:nil]objectAtIndex:1];
         cell.usedCount.text = [NSString stringWithFormat:@"%d次",[history.usedCount intValue]];
-        cell.useCount.text = [NSString stringWithFormat:@"%d次",[history.useCount intValue]-[history.usedCount intValue]];
+        if ([history.useCount intValue] == -1) {
+            cell.useCount.text = @"无限制";
+        }else{
+            cell.useCount.text = [NSString stringWithFormat:@"%d次",[history.useCount intValue]-[history.usedCount intValue]];
+        }
         cell.date.text = history.usedDate;
         cell.address.text = history.usedDetail;
     }

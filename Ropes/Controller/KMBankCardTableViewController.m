@@ -31,11 +31,6 @@
     self.cardNum.text = user.bankcard;
 }
 
-
-- (IBAction)withdrawCashBtnClick:(id)sender {
-    [self performSegueWithIdentifier:@"bankcard2withdraw" sender:self];
-}
-
 - (IBAction)addCardBtnClick:(id)sender {
     [self performSegueWithIdentifier:@"addbankcard" sender:self];
 }

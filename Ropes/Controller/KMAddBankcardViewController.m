@@ -14,6 +14,7 @@
 @interface KMAddBankcardViewController ()<UIPickerViewDelegate,UIPickerViewDataSource>
 {
     BOOL pickerOpen;
+    BOOL _isRequest;
 }
 @property (weak, nonatomic) IBOutlet UILabel *bankname;
 @property (weak, nonatomic) IBOutlet UITextField *cardnumTextField;
@@ -30,6 +31,28 @@
     [super viewDidLoad];
     self.bankname.text = [KMUserManager getInstance].currentUser.bankname;
     self.banks = [NSArray arrayWithObjects:@"中国银行",@"中国工商银行",@"中国建设银行", nil];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    if (!_isRequest) {
+        NSString *phone = [KMUserManager getInstance].currentUser.phone;
+        NSString *session =[KMUserManager getInstance].currentUser.sessionid;
+        NSString *sessionpwd =  [session md5WithTimes:6];
+        
+        
+        [KMRequestCenter requestForBankListWithphone:phone sessionId:session sessionidpwd:sessionpwd success:^(NSDictionary *dic) {
+            NSMutableArray *array = [NSMutableArray new];
+            for (NSDictionary *bankinfo in dic) {
+                [array addObject:[bankinfo objectForKey:@"dictdataName"]];
+
+            }
+            self.banks = [array copy];
+            _isRequest =YES;
+        } failure:^(int code, NSString *result) {
+            
+        }];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -113,7 +136,7 @@
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return 3;
+    return self.banks.count;
 }
 
 

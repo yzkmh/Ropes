@@ -47,6 +47,8 @@
 #define DoCashRe @"http://122.49.7.211/cappController/doCashRe"
 // 添加银行卡
 #define DoInsertBankInfo @"http://122.49.7.211/cappController/doInsertBankInfo"
+//银行卡列表
+#define DoRequestBankName @"http://122.49.7.211/cappController/doRequestBankName"
 
 
 typedef NS_ENUM(NSInteger,KMConponType){
@@ -322,4 +324,10 @@ typedef NS_ENUM(NSInteger,KMConponType){
                           bankcard:(NSString *)bankcard
                            success:(void (^)(NSDictionary *))success
                            failure:(void (^)(int, NSString *))failure;
++ (void)requestForBankListWithphone:(NSString *)phone
+                          sessionId:(NSString *)sessionid
+                       sessionidpwd:(NSString *)sessionidpwd
+                            success:(void (^)(NSDictionary *))success
+                            failure:(void (^)(int, NSString *))failure;
+
 @end

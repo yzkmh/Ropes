@@ -14,7 +14,6 @@
 @property (nonatomic ,weak) IBOutlet UILabel *titleLb;
 @property (nonatomic ,weak) IBOutlet UILabel *price;
 @property (nonatomic ,weak) IBOutlet UILabel *expirationDate;
-@property (nonatomic ,weak) IBOutlet UILabel *balance;
 @property (nonatomic ,weak) IBOutlet UILabel *rule;
 @property (nonatomic ,weak) IBOutlet UILabel *condition;
 @property (nonatomic ,weak) IBOutlet UIButton *useBtn;

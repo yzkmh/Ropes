@@ -36,10 +36,9 @@
 - (void)setVoucher:(KMVoucher *)voucher
 {
     _voucher = voucher;
-    self.titleLb.text = self.voucher.policyName;
+    self.titleLb.text = self.voucher.senceName;
     self.expirationDate.text = self.voucher.invalidDate;
     self.price.text= [NSString stringWithFormat:@"%@折优惠",self.voucher.discountRate];
-    self.balance.text = self.voucher.balance;
     self.rule.text = self.voucher.policyName;
     self.condition.text = self.voucher.policyDescription;
 }

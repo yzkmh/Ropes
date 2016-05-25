@@ -30,16 +30,6 @@
                                 <color key="textColor" red="0.76862745099999996" green="0.1018434424" blue="0.068537561390000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="余额 200" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gLk-n1-f5a">
-                                <rect key="frame" x="259" y="32" width="108" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="rNQ-RM-Gy3"/>
-                                    <constraint firstAttribute="width" constant="108" id="ydB-XV-Beo"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" red="0.76862745099999996" green="0.1018434424" blue="0.068537561390000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="大乐透" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bND-JK-s3r">
                                 <rect key="frame" x="14" y="8" width="150" height="25"/>
                                 <constraints>
@@ -147,11 +137,9 @@
                             <constraint firstItem="rEt-zY-ejD" firstAttribute="top" secondItem="bND-JK-s3r" secondAttribute="bottom" constant="3" id="oDv-Rg-Ggm"/>
                             <constraint firstItem="hIQ-4G-733" firstAttribute="leading" secondItem="mxh-eZ-yoK" secondAttribute="leading" constant="14" id="qxW-Zg-PAy"/>
                             <constraint firstItem="vQ9-8z-wGT" firstAttribute="leading" secondItem="3fR-aP-zz3" secondAttribute="leading" id="rZn-vL-fbV"/>
-                            <constraint firstAttribute="trailing" secondItem="gLk-n1-f5a" secondAttribute="trailing" constant="16" id="s5m-22-O8x"/>
                             <constraint firstItem="vBB-tg-BL3" firstAttribute="leading" secondItem="mxh-eZ-yoK" secondAttribute="leading" constant="91" id="vCy-gm-aFw"/>
                             <constraint firstItem="vQ9-8z-wGT" firstAttribute="leading" secondItem="hIQ-4G-733" secondAttribute="leading" id="xWV-Vg-WvQ"/>
                             <constraint firstItem="hIQ-4G-733" firstAttribute="top" secondItem="rEt-zY-ejD" secondAttribute="bottom" constant="8" id="xe9-v9-6G3"/>
-                            <constraint firstItem="gLk-n1-f5a" firstAttribute="top" secondItem="RUl-7i-Yal" secondAttribute="bottom" constant="1" id="zV8-Vi-Zrb"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -225,7 +213,6 @@
             <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <connections>
-                <outlet property="balance" destination="gLk-n1-f5a" id="8LE-dC-jb1"/>
                 <outlet property="condition" destination="xDg-4z-6nT" id="b0P-Kq-BaT"/>
                 <outlet property="expirationDate" destination="rEt-zY-ejD" id="INQ-IO-hXb"/>
                 <outlet property="price" destination="RUl-7i-Yal" id="5Ae-bp-llr"/>

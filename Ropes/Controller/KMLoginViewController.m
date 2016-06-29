@@ -119,7 +119,6 @@
                                                          return;
                                                      }
                                                      [LCProgressHUD showFailure:@"服务器异常, 请稍后重试"];
-                                                     [self performSegueWithIdentifier:@"loginToTabBar" sender:self];
                                                  }
                                              }];
     }

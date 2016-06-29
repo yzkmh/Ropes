@@ -54,7 +54,7 @@ static KMViewsMannager * _shareKMViewsManager;
     [KMRequestCenter requestViewInformationWithphoneNum:phone sessionId:session sessionIdPwd:sessionpwd conponType:type success:^(NSDictionary *dic) {
         for (NSDictionary *conponInfo in dic)
         {
-            if ([[conponInfo objectForKey:@"error"] isEqualToString:@"成功"]) {
+            if ([[conponInfo objectForKey:@"error_code"] isEqual:@200]) {
                 KMVoucher *voucher =[[KMVoucher new]initWithDict:conponInfo];
                 if ([voucher.state  isEqual: @0]) {
                     [voucherCanList addObject:voucher];
@@ -67,7 +67,7 @@ static KMViewsMannager * _shareKMViewsManager;
             [KMRequestCenter requestVoucherInfoWithPhoneNum:phone success:^(NSDictionary *dic) {
                 for (NSDictionary *conponInfo in dic)
                 {
-                    if ([[conponInfo objectForKey:@"error"] isEqualToString:@"成功"]) {
+                    if ([[conponInfo objectForKey:@"error_code"] isEqual:@200]) {
                         KMVoucher *voucher =[[KMVoucher new]initWithDict:conponInfo];
                         voucher.isLottery = YES;
                         if ([voucher.state  isEqual: @0]) {
@@ -90,7 +90,7 @@ static KMViewsMannager * _shareKMViewsManager;
             [KMRequestCenter requestAuthenticationInfoWithPhoneNum:phone sessionId:session sessionIdPwd:sessionpwd  success:^(NSDictionary *dic) {
                 for (NSDictionary *conponInfo in dic)
                 {
-                    if ([[conponInfo objectForKey:@"error"] isEqualToString:@"成功"]) {
+                    if ([[conponInfo objectForKey:@"error_code"] isEqual:@200]) {
                         KMVoucher *voucher =[[KMVoucher new]initWithDict:conponInfo];
                         voucher.isLottery = YES;
                         if ([voucher.state  isEqual: @0]) {
@@ -121,13 +121,16 @@ static KMViewsMannager * _shareKMViewsManager;
     NSMutableArray *lotteryCanList = [NSMutableArray new];
     NSMutableArray *lotteryNotList = [NSMutableArray new];
     [KMRequestCenter requestLotteryInfoWithPhoneNum:phone success:^(NSDictionary *dic) {
+        
         for (NSDictionary *lotterydic in dic) {
-            KMLottery *lottery = [[KMLottery alloc]initWithDict:lotterydic];
-              if ([lottery.state  isEqual: @0]) {
-                  [lotteryCanList addObject:lottery];
-              }else{
-                  [lotteryNotList addObject:lottery];
-              }
+            if ([[lotterydic objectForKey:@"error_code"] isEqual:@200]){
+                KMLottery *lottery = [[KMLottery alloc]initWithDict:lotterydic];
+                  if ([lottery.state  isEqual: @0]) {
+                      [lotteryCanList addObject:lottery];
+                  }else{
+                      [lotteryNotList addObject:lottery];
+                  }
+            }
         }
         NSLog(@"获取彩票数据成功");
         block(YES,@[lotteryCanList,lotteryNotList]);

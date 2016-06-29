@@ -95,8 +95,8 @@
     }else if(self.type == 3){
         cell = [[[NSBundle mainBundle]loadNibNamed:@"KMHistoryCell" owner:self options:nil]objectAtIndex:1];
         cell.usedCount.text = [NSString stringWithFormat:@"%d次",[history.usedCount intValue]];
-        if ([history.useCount intValue] == -1) {
-            cell.useCount.text = @"无限制";
+        if ([history.useCount intValue] == 0) {
+            cell.useCount.text = @"不限次";
         }else{
             cell.useCount.text = [NSString stringWithFormat:@"%d次",[history.useCount intValue]-[history.usedCount intValue]];
         }

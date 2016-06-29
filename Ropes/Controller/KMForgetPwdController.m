@@ -104,7 +104,7 @@
 - (IBAction)getPhoneCode:(id)sender {
         //添加60等待提示框
         [self addTimeOff:_getVerificationCodeBtn];
-        [[KMUserManager getInstance] getPhoneCodeWithPhoneNum:self.phoneNum complation:^(BOOL result, NSString *message, id user) {
+    [[KMUserManager getInstance] getPhoneCodeWithPhoneNum:self.phoneNum andType:@"2" complation:^(BOOL result, NSString *message, id user) {
             if (result) {
                 [LCProgressHUD showSuccess:message];
             }

@@ -71,6 +71,7 @@ typedef NS_ENUM(NSInteger,KMConponType){
  *  @param failure            失败回调
  */
 + (void)requestForSendMessageWithPhone:(NSString *)phone
+                               andType:(NSString *)type
               identifyingcode:(NSString *)identifyingcode
            identifyingCodePwd:(NSString *)identifyingcodepwd
                       success:(void (^)(NSDictionary *))success

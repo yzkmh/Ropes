@@ -67,7 +67,7 @@
     if ([self verifyPhoneNum]) {
         //添加60等待提示框
         [self addTimeOff:_getVerificationCodeBtn];
-        [[KMUserManager getInstance] getPhoneCodeWithPhoneNum:self.phoneNumTextField.text complation:^(BOOL result, NSString *message, id user) {
+        [[KMUserManager getInstance] getPhoneCodeWithPhoneNum:self.phoneNumTextField.text andType:@"1" complation:^(BOOL result, NSString *message, id user) {
             if (result) {
                 [LCProgressHUD showSuccess:message];
             }

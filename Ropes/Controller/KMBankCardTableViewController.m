@@ -14,7 +14,6 @@
     NSArray *bankArray;
 }
 @property (weak, nonatomic) IBOutlet UILabel *bankName;
-
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *cardNum;
 

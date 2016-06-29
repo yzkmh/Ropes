@@ -17,6 +17,7 @@
 #pragma mark 调用方法
 // 获取验证码
 - (void)getPhoneCodeWithPhoneNum:(NSString *)phoneNum
+                         andType:(NSString *)type
                       complation:(void(^)(BOOL result,NSString *message, id user))block;
 // 注册
 - (void)registWithPhoneNum:(NSString *)phoneNum

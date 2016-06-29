@@ -30,13 +30,18 @@ static KMUserManager *shareKMUserManager = nil ;
     
 }
 
-- (void)getPhoneCodeWithPhoneNum:(NSString *)phoneNum complation:(void (^)(BOOL, NSString *, id))block
+- (void)getPhoneCodeWithPhoneNum:(NSString *)phoneNum andType:(NSString *)type complation:(void (^)(BOOL, NSString *, id))block
 {
     // 6位数字验证码
-    NSString *identifyingCode = nil;
+    NSString *identifyingCode = @"";
+    for(int i=0; i<6; i++)
+    {
+        identifyingCode = [ identifyingCode stringByAppendingFormat:@"%i",(arc4random() % 9)];
+    }
     NSString *identifyingCodePwd = [identifyingCode md5WithTimes:15];
     
     [KMRequestCenter requestForSendMessageWithPhone:phoneNum
+                                            andType:type
                                     identifyingcode:identifyingCode
                                  identifyingCodePwd:identifyingCodePwd
                                             success:^(NSDictionary *resultDic) {
@@ -88,7 +93,7 @@ static KMUserManager *shareKMUserManager = nil ;
                                           user = [KMUser userWithDict:resultDic];
                                           //查询主页数据
                                           [KMRequestCenter requestMainViewInfoWithphoneNum:user.phone sessionId:user.sessionid sessionIdPwd:[user.sessionid md5WithTimes:6]  success:^(NSDictionary *dic) {
-                                              user.ConponNumList = [NSMutableDictionary new];
+                                              user.ConponNumList = [[NSMutableDictionary alloc]initWithObjects:@[@"",@"",@"",@"",@"",@"",@"",@""] forKeys:@[@"cl",@"nl",@"dc",@"dn",@"zc",@"zn",@"sc",@"sn"]];
                                               for (NSString *key in dic.allKeys) {
                                                    [user.ConponNumList setValue:[dic objectForKey:key] forKey:key];
                                               }

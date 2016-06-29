@@ -15,6 +15,7 @@
 
 
 + (void)requestForSendMessageWithPhone:(NSString *)phone
+                               andType:(NSString *)type
               identifyingcode:(NSString *)identifyingcode
            identifyingCodePwd:(NSString *)identifyingcodepwd
                       success:(void (^)(NSDictionary *))success
@@ -22,6 +23,7 @@
 {
     NSDictionary *paramters = [NSDictionary dictionaryWithObjectsAndKeys:
                                phone,@"phone",
+                               type,@"type",
                                identifyingcode,@"identifyingcode",
                                identifyingcodepwd,@"identifyingcodepwd",
                                nil];

@@ -81,7 +81,7 @@ static KMViewsMannager * _shareKMViewsManager;
                 block(YES,@[voucherCanList,voucherNotList]);
             } failure:^(int result, NSString *errorStr) {
                 NSLog(@"%@",errorStr);
-                block(NO,nil);
+                block(YES,@[voucherCanList,voucherNotList]);
             }];
         }
         else if (type  == KMAuthenticationType) {
@@ -103,7 +103,7 @@ static KMViewsMannager * _shareKMViewsManager;
                 NSLog(@"获取优惠数据成功");
                 block(YES,@[voucherCanList,voucherNotList]);
             } failure:^(int result, NSString *errorStr) {
-                block(NO,nil);
+                block(YES,@[voucherCanList,voucherNotList]);
             }];
         }else{
             NSLog(@"获取优惠数据成功");

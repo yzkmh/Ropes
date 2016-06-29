@@ -142,7 +142,7 @@
             cell = [[[NSBundle mainBundle]loadNibNamed:@"KMDiscountCell" owner:self options:nil]objectAtIndex:0];
             KMVoucher *voucher = [_leftList objectAtIndex:indexPath.row];
             cell.title.text = voucher.senceName;
-            cell.price.text = [NSString stringWithFormat:@"%f折优惠",[voucher.discountRate intValue]/10.0f];
+            cell.price.text = [NSString stringWithFormat:@"%.1f折优惠",[voucher.discountRate floatValue]/10.0f];
             if ([voucher.useCount isEqual:@1]) {
                 cell.state.text = @"单";
             }else {
@@ -159,7 +159,7 @@
             cell = [[[NSBundle mainBundle]loadNibNamed:@"KMDiscountCell" owner:self options:nil]objectAtIndex:0];
             KMVoucher *voucher = [_leftList objectAtIndex:indexPath.row];
             cell.title.text = voucher.senceName;
-            cell.price.text = [NSString stringWithFormat:@"%f折优惠",[voucher.discountRate intValue]/10.0f];
+            cell.price.text = [NSString stringWithFormat:@"%.1f折优惠",[voucher.discountRate floatValue]/10.0f];
             if ([voucher.useCount isEqual:@1]) {
                 cell.state.text = @"单";
             }else {

@@ -57,7 +57,7 @@
     self.autoLoginBtn.selected = YES;
     self.remeberPwdBtn.selected = YES;
     
-//    self.phoneNumTextField.text = @"13260176978";
+//    self.phoneNumTextField.text = @"13483438214";
 //    self.passwordTextField.text = @"123456789";
 }
 // 返回注册页面
@@ -113,7 +113,7 @@
                                                      [self performSegueWithIdentifier:@"loginToTabBar" sender:self];
                                                      
                                                  } else {
-                                                     [LCProgressHUD hide];
+//                                                     [LCProgressHUD hide];
                                                      if (message) {
                                                          [LCProgressHUD showFailure:message];
                                                          return;

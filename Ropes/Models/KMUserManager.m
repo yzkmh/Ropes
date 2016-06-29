@@ -93,7 +93,7 @@ static KMUserManager *shareKMUserManager = nil ;
                                           user = [KMUser userWithDict:resultDic];
                                           //查询主页数据
                                           [KMRequestCenter requestMainViewInfoWithphoneNum:user.phone sessionId:user.sessionid sessionIdPwd:[user.sessionid md5WithTimes:6]  success:^(NSDictionary *dic) {
-                                              user.ConponNumList = [[NSMutableDictionary alloc]initWithObjects:@[@"",@"",@"",@"",@"",@"",@"",@""] forKeys:@[@"cl",@"nl",@"dc",@"dn",@"zc",@"zn",@"sc",@"sn"]];
+                                              user.ConponNumList = [[NSMutableDictionary alloc]initWithObjects:@[@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0"] forKeys:@[@"cl",@"nl",@"dc",@"dn",@"zc",@"zn",@"sc",@"sn"]];
                                               for (NSString *key in dic.allKeys) {
                                                    [user.ConponNumList setValue:[dic objectForKey:key] forKey:key];
                                               }

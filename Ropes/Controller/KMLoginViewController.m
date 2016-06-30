@@ -32,6 +32,10 @@
     
 //     读取本地账号信息
         KMUser *localUser = [NSKeyedUnarchiver unarchiveObjectWithFile:kPATH];
+    if (localUser) {
+        self.phoneNumTextField.text = localUser.phone;
+        self.passwordTextField.text = localUser.pwd;
+    }
         if (localUser.isAutoLogin) {
             [self loginBtnClick:nil];
         }

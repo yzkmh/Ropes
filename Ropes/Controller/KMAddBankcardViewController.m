@@ -23,6 +23,8 @@
 
 @property (weak, nonatomic) UIPickerView *pickerView;
 @property (strong, nonatomic) NSArray *banks;
+@property (strong, nonatomic) NSArray *bankCodeArray;
+@property (copy, nonatomic) NSString *bankCode;
 @end
 
 @implementation KMAddBankcardViewController
@@ -31,6 +33,7 @@
     [super viewDidLoad];
     self.bankname.text = [KMUserManager getInstance].currentUser.bankname;
     self.banks = [NSArray arrayWithObjects:@"中国银行",@"中国工商银行",@"中国建设银行", nil];
+    self.bankCode = @"3";
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -43,11 +46,13 @@
         
         [KMRequestCenter requestForBankListWithphone:phone sessionId:session sessionidpwd:sessionpwd success:^(NSDictionary *dic) {
             NSMutableArray *array = [NSMutableArray new];
+            NSMutableArray *codeArray = [NSMutableArray new];
             for (NSDictionary *bankinfo in dic) {
                 [array addObject:[bankinfo objectForKey:@"dictdataName"]];
-
+                [codeArray addObject:[bankinfo objectForKey:@"dictdataValue"]];
             }
             self.banks = [array copy];
+            self.bankCodeArray = [codeArray copy];
             _isRequest =YES;
         } failure:^(int code, NSString *result) {
             
@@ -78,20 +83,21 @@
     NSString *sessionId = [KMUserManager getInstance].currentUser.sessionid;
     NSString *sessionIdPwd = [sessionId md5WithTimes:6];
 
-    NSString *bank = nil;
-    if ([self.bankname.text isEqualToString:@"中国银行"]) {
-        bank = @"1";
-    }
-    else if ([self.bankname.text isEqualToString:@"中国工商银行"]) {
-        bank = @"2";
-    }
-    else if ([self.bankname.text isEqualToString:@"中国建设银行"]) {
-        bank = @"3";
-    }
+//    NSString *bank = nil;
+//    if ([self.bankname.text isEqualToString:@"中国银行"]) {
+//        bank = @"1";
+//    }
+//    else if ([self.bankname.text isEqualToString:@"中国工商银行"]) {
+//        bank = @"2";
+//    }
+//    else if ([self.bankname.text isEqualToString:@"中国建设银行"]) {
+//        bank = @"3";
+//    }
+    
     [KMRequestCenter requestForDoInsertBankInfo:self.phonenumTextField.text
                                       sessionId:sessionId
                                    sessionidpwd:sessionIdPwd
-                                           bank:bank
+                                           bank:self.bankCode
                                        bankcard:self.cardnumTextField.text
                                         success:^(NSDictionary *resultDic) {
                                             
@@ -143,7 +149,7 @@
 - (NSString *)pickerView:(UIPickerView *)pickerView
              titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    
+    self.bankCode = [self.bankCodeArray objectAtIndex:row];
     return [_banks objectAtIndex:row];
 }
 

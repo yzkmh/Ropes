@@ -20,9 +20,12 @@
                     <color key="textColor" red="0.76862745099999996" green="0.1018434424" blue="0.068537561390000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fkx-7w-ReD">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fkx-7w-ReD">
                     <rect key="frame" x="0.0" y="32" width="375" height="1"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="PyC-Ri-7PY"/>
+                    </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xik-vL-IVw">
                     <rect key="frame" x="0.0" y="32" width="188" height="1"/>
@@ -51,8 +54,11 @@
                 <constraint firstItem="k3O-mc-gGB" firstAttribute="width" secondItem="LSu-07-3LK" secondAttribute="width" id="3vi-w2-Nt9"/>
                 <constraint firstItem="k3O-mc-gGB" firstAttribute="leading" secondItem="LSu-07-3LK" secondAttribute="trailing" constant="1" id="B9V-yL-fa9"/>
                 <constraint firstItem="6cJ-uK-VNa" firstAttribute="top" secondItem="Xik-vL-IVw" secondAttribute="bottom" constant="8" id="Ckp-FM-Gwe"/>
+                <constraint firstItem="Fkx-7w-ReD" firstAttribute="top" secondItem="k3O-mc-gGB" secondAttribute="bottom" constant="2" id="DMn-iW-ZFm"/>
                 <constraint firstItem="6cJ-uK-VNa" firstAttribute="top" secondItem="Xik-vL-IVw" secondAttribute="bottom" constant="5" id="ELN-E1-wx3"/>
+                <constraint firstAttribute="trailing" secondItem="Fkx-7w-ReD" secondAttribute="trailing" id="G7a-Co-fiQ"/>
                 <constraint firstItem="6cJ-uK-VNa" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Gcu-aM-K8W"/>
+                <constraint firstItem="Fkx-7w-ReD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="IP5-cc-kdt"/>
                 <constraint firstItem="Xik-vL-IVw" firstAttribute="top" secondItem="LSu-07-3LK" secondAttribute="bottom" constant="2" id="Q6a-Up-TNh"/>
                 <constraint firstItem="k3O-mc-gGB" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="SRd-4I-ObL"/>
                 <constraint firstItem="k3O-mc-gGB" firstAttribute="leading" secondItem="LSu-07-3LK" secondAttribute="trailing" id="XNf-7D-GSM"/>

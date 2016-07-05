@@ -18,6 +18,7 @@
 
 @interface KMWalletViewController()
 @property (weak, nonatomic) IBOutlet UILabel *balanceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *cardNumLabel;
 @property (copy, nonatomic) NSString *cashNum;
 @end
 
@@ -25,9 +26,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     [self queryBalance];
     NSNumber *num = [[NSNumber alloc] initWithInt:0];
     self.balanceLabel.text = [num formatNumberDecimal];
+    if ([KMUserManager getInstance].currentUser.bankname && [KMUserManager getInstance].currentUser.bankcard) {
+        self.cardNumLabel.text = [NSString stringWithFormat:@"%@ **** **** **** **** %@",[KMUserManager getInstance].currentUser.bankname,[[KMUserManager getInstance].currentUser.bankcard substringFromIndex:[KMUserManager getInstance].currentUser.bankcard.length -4]];
+    }else{
+        self.cardNumLabel.text = @"";
+    }
+
     
     
     [LCProgressHUD showLoading:nil];

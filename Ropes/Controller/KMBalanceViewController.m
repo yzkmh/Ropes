@@ -10,8 +10,11 @@
 #import "NSNumber+FlickerNumber.h"
 #import "KMWithdrawViewController.h"
 #import "LCProgressHUD.h"
+#import "KMUserManager.h"
 @interface KMBalanceViewController()
 @property (weak, nonatomic) IBOutlet UILabel *cashLabel;
+@property (weak, nonatomic) IBOutlet UIButton *drawBtn;
+@property (weak, nonatomic) IBOutlet UILabel *cardNumLabel;
 
 @end
 
@@ -20,13 +23,26 @@
 {
     [super viewDidLoad];
     NSNumber *num = [[NSNumber alloc] initWithFloat:[self.cashNum floatValue]];
+    if ([KMUserManager getInstance].currentUser.bankname && [KMUserManager getInstance].currentUser.bankcard) {
+        self.cardNumLabel.text = [NSString stringWithFormat:@"%@ **** **** **** **** %@",[KMUserManager getInstance].currentUser.bankname,[[KMUserManager getInstance].currentUser.bankcard substringFromIndex:[KMUserManager getInstance].currentUser.bankcard.length -4]];
+    }else{
+        self.cardNumLabel.text = @"";
+    }
+    
     self.cashLabel.text = [num formatNumberDecimal];
+    if ([self.cashNum floatValue] == 0.0f) {
+        [self.drawBtn setTitle:@"提现" forState:UIControlStateNormal];
+        [self.drawBtn setBackgroundColor:[UIColor grayColor]];
+        [self.drawBtn setUserInteractionEnabled:NO];
+        return;
+    }else{
+        [self.drawBtn setTitle:@"提现" forState:UIControlStateNormal];
+        [self.drawBtn setBackgroundColor:[UIColor redColor]];
+        [self.drawBtn setUserInteractionEnabled:YES];
+    }
 }
 - (IBAction)withdrawBtnClick:(id)sender {
-    if ([self.cashNum floatValue] == 0.0f) {
-        [LCProgressHUD showInfoMsg:@"余额不足，无法提现"];
-        return;
-    }
+
     [self performSegueWithIdentifier:@"balance2withdraw" sender:self];
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

@@ -27,7 +27,7 @@
     KMUser *user = [[KMUserManager getInstance] currentUser];
     self.bankName.text = user.bankname;
     self.name.text = user.name;
-    self.cardNum.text = [NSString stringWithFormat:@"**** **** **** %@",[user.bankcard substringFromIndex:user.bankcard.length-4]];
+    self.cardNum.text = user.bankcard;
 }
 
 - (IBAction)addCardBtnClick:(id)sender {

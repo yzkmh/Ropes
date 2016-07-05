@@ -14,6 +14,7 @@
 #import "KMUser.h"
 @interface KMWithdrawViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *withdrawNum;
+@property (weak, nonatomic) IBOutlet UILabel *cardNumLabel;
 
 @end
 
@@ -21,6 +22,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if ([KMUserManager getInstance].currentUser.bankname && [KMUserManager getInstance].currentUser.bankcard) {
+        self.cardNumLabel.text = [NSString stringWithFormat:@"%@ **** **** **** **** %@",[KMUserManager getInstance].currentUser.bankname,[[KMUserManager getInstance].currentUser.bankcard substringFromIndex:[KMUserManager getInstance].currentUser.bankcard.length -4]];
+    }else{
+        self.cardNumLabel.text = @"";
+    }
     // Do any additional setup after loading the view.
 }
 
@@ -34,6 +40,10 @@
     }
     if ([self.withdrawNum.text floatValue] > [self.cashNum floatValue]) {
         [LCProgressHUD showFailure:@"余额不足, 无法提现"];
+        return NO;
+    }
+    if (![KMUserManager getInstance].currentUser.bankcard || ![KMUserManager getInstance].currentUser.bankname ) {
+        [LCProgressHUD showFailure:@"银行卡数据有误"];
         return NO;
     }
     return YES;

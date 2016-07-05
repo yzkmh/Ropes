@@ -142,7 +142,7 @@
             if ([voucher.useCounttype isEqual:@1]) {
                 cell.state.text = @"单";
             }else if([voucher.useCounttype isEqual:@2]) {
-                cell.state.text = @"双";
+                cell.state.text = @"多";
             }
             cell.validDate.text = voucher.invalidDate;
         }
@@ -164,7 +164,7 @@
             if ([voucher.useCounttype isEqual:@1]) {
                 cell.state.text = @"单";
             }else if([voucher.useCounttype isEqual:@2]) {
-                cell.state.text = @"双";
+                cell.state.text = @"多";
             }
             cell.validDate.text = voucher.invalidDate;
         }

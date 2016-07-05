@@ -16,36 +16,38 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="全店8折" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u9z-P4-cQd">
-                        <rect key="frame" x="22" y="36" width="51" height="20"/>
+                        <rect key="frame" x="22" y="36" width="133" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="8BE-RB-NTz"/>
+                            <constraint firstAttribute="height" constant="20" id="PwJ-bl-oWA"/>
+                            <constraint firstAttribute="width" constant="133" id="qQ1-0g-XNy"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="大乐透" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D4z-Ms-SUC">
-                        <rect key="frame" x="22" y="8" width="45" height="25"/>
+                        <rect key="frame" x="22" y="8" width="133" height="25"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="25" id="3MO-ui-d5Q"/>
+                            <constraint firstAttribute="width" constant="133" id="11y-bY-8FT"/>
+                            <constraint firstAttribute="height" constant="25" id="eXT-aV-pVb"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="金牌" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yx0-or-esx">
-                        <rect key="frame" x="320" y="8" width="30" height="25"/>
+                        <rect key="frame" x="163" y="8" width="187" height="25"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="25" id="Im9-te-cek"/>
+                            <constraint firstAttribute="height" constant="25" id="fLI-8V-oA4"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                         <color key="textColor" red="0.76862745099999996" green="0.1018434424" blue="0.068537561390000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016年03月27日10:52:46" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3iP-bB-63Y">
-                        <rect key="frame" x="184" y="36" width="166" height="20"/>
+                        <rect key="frame" x="163" y="36" width="187" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="gJU-8l-sKD"/>
+                            <constraint firstAttribute="height" constant="20" id="mMo-R9-2UZ"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -53,16 +55,16 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="3iP-bB-63Y" firstAttribute="centerY" secondItem="u9z-P4-cQd" secondAttribute="centerY" id="D1N-ln-0pl"/>
-                    <constraint firstItem="Yx0-or-esx" firstAttribute="top" secondItem="u9v-HN-ksF" secondAttribute="topMargin" id="HhO-8l-tLW"/>
-                    <constraint firstItem="u9z-P4-cQd" firstAttribute="bottom" secondItem="u9v-HN-ksF" secondAttribute="bottomMargin" id="Jix-X4-HOd"/>
-                    <constraint firstItem="3iP-bB-63Y" firstAttribute="height" secondItem="u9z-P4-cQd" secondAttribute="height" id="QLS-tU-JPU"/>
-                    <constraint firstItem="u9z-P4-cQd" firstAttribute="leading" secondItem="u9v-HN-ksF" secondAttribute="leadingMargin" constant="14" id="TMn-Z4-P1p"/>
-                    <constraint firstItem="D4z-Ms-SUC" firstAttribute="top" secondItem="u9v-HN-ksF" secondAttribute="topMargin" id="ZLe-Hh-ynn"/>
-                    <constraint firstItem="3iP-bB-63Y" firstAttribute="bottom" secondItem="u9v-HN-ksF" secondAttribute="bottomMargin" id="akL-Yi-eTJ"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="3iP-bB-63Y" secondAttribute="trailing" constant="17" id="d6i-tR-Rbi"/>
-                    <constraint firstItem="D4z-Ms-SUC" firstAttribute="leading" secondItem="u9v-HN-ksF" secondAttribute="leadingMargin" constant="14" id="dRC-YX-n9x"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="Yx0-or-esx" secondAttribute="trailing" constant="17" id="rjc-eJ-NUv"/>
+                    <constraint firstItem="u9z-P4-cQd" firstAttribute="top" secondItem="D4z-Ms-SUC" secondAttribute="bottom" constant="3" id="EZK-kP-ei5"/>
+                    <constraint firstItem="u9z-P4-cQd" firstAttribute="leading" secondItem="u9v-HN-ksF" secondAttribute="leadingMargin" constant="14" id="N5U-Ta-aVz"/>
+                    <constraint firstItem="D4z-Ms-SUC" firstAttribute="top" secondItem="u9v-HN-ksF" secondAttribute="topMargin" id="PKa-69-C7g"/>
+                    <constraint firstItem="Yx0-or-esx" firstAttribute="top" secondItem="u9v-HN-ksF" secondAttribute="topMargin" id="avU-oc-iwf"/>
+                    <constraint firstItem="D4z-Ms-SUC" firstAttribute="leading" secondItem="u9v-HN-ksF" secondAttribute="leadingMargin" constant="14" id="bzf-AQ-l0h"/>
+                    <constraint firstItem="3iP-bB-63Y" firstAttribute="leading" secondItem="u9z-P4-cQd" secondAttribute="trailing" constant="8" id="ie1-Ns-UgV"/>
+                    <constraint firstItem="3iP-bB-63Y" firstAttribute="top" secondItem="Yx0-or-esx" secondAttribute="bottom" constant="3" id="nkE-vl-jiV"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="3iP-bB-63Y" secondAttribute="trailing" constant="17" id="syy-lk-QlU"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Yx0-or-esx" secondAttribute="trailing" constant="17" id="u0f-tc-L6N"/>
+                    <constraint firstItem="Yx0-or-esx" firstAttribute="leading" secondItem="D4z-Ms-SUC" secondAttribute="trailing" constant="8" id="wpS-qy-1XX"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

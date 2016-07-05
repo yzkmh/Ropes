@@ -11,7 +11,11 @@
 #import "KMUser.h"
 #import "LCProgressHUD.h"
 
-@interface KMEditInfoViewController()
+@interface KMEditInfoViewController()<UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
+{
+    NSArray *pickarray;
+    UIPickerView *pickerView;
+}
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumTextField;
 @property (weak, nonatomic) IBOutlet UITextField *genderTextField;
@@ -34,6 +38,16 @@
     self.phoneNumTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.genderTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.addressTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    [self.genderTextField setDelegate:self];
+    
+    pickarray = @[@"男",@"女"];
+    pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-200, self.view.frame.size.width, 200)];
+    pickerView.alpha = 0;
+    [self.view addSubview:pickerView];
+    // 显示选中框
+    pickerView.showsSelectionIndicator=YES;
+    pickerView.dataSource = self;
+    pickerView.delegate = self;
     
     KMUser *currentUser = [KMUserManager getInstance].currentUser;
     self.nameTextField.text = currentUser.name;
@@ -105,4 +119,40 @@
 
     }
 }
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if ([textField isEqual:self.genderTextField]) {
+        [UIView animateWithDuration:0.3 animations:^{
+            pickerView.alpha = 1;
+        }];
+        [textField resignFirstResponder];
+    }
+}
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        pickerView.alpha = 0;
+    }];
+}
+// pickerView 列数
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return pickarray.count;
+}
+
+-(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return [pickarray objectAtIndex:row];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    self.genderTextField.text = [pickarray objectAtIndex:row];
+}
+
+
+
 @end

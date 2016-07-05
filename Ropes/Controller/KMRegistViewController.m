@@ -134,10 +134,10 @@
         LBtimeoff.layer.borderColor = [[UIColor whiteColor] CGColor];
     }
     [view setEnabled:NO];
-    [LBtimeoff setText:@"60s"];
+    [LBtimeoff setText:@"90s"];
     [view addSubview:LBtimeoff];
     timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(onTimer) userInfo:nil repeats:YES];
-    timeleft = 60;
+    timeleft = 90;
     [timer fire];
 }
 - (void)onTimer

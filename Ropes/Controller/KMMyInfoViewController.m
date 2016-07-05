@@ -8,6 +8,7 @@
 
 #import "KMMyInfoViewController.h"
 #import "KMUserManager.h"
+
 @interface KMMyInfoViewController()
 @property (weak, nonatomic) IBOutlet UIImageView *portraitImage;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -41,6 +42,7 @@
 }
 - (IBAction)logoutBtnClick:(id)sender {
     // 跳转回登录界面
+    [NSKeyedArchiver archiveRootObject:nil toFile:kPATH];
     [self.tabBarController dismissViewControllerAnimated:YES completion:nil];
 }
 

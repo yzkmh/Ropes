@@ -212,7 +212,7 @@ static KMUserManager *shareKMUserManager = nil ;
                    comlation:(void(^)(BOOL result,NSString *message, id user))block
 {
     NSString *sessionid = [KMUserManager getInstance].currentUser.sessionid;
-    NSString* sessionidpwd = [[sessionid substringToIndex:10] md5WithTimes:6];
+    NSString* sessionidpwd = [sessionid md5WithTimes:6];
     
     [KMRequestCenter requestForUpdateDetailWithName:name
                                               phone:phone

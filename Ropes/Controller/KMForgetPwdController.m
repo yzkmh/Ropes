@@ -17,6 +17,7 @@
     int timeleft;
 }
 @property (weak, nonatomic) IBOutlet UITextField *verificationTextField;
+@property (weak, nonatomic) IBOutlet UITextField *phoneNumTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UIButton *getVerificationCodeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *cancelBtn;
@@ -88,6 +89,11 @@
 
 - (BOOL)verifyRegist
 {
+    if (![self verifyPhoneNum]) {
+        NSLog(@"手机号码格式有误");
+        [LCProgressHUD showFailure:@"手机号码格式有误"];
+        return NO;
+    }
 
     if (self.verificationTextField.text.length != 6) {
         [LCProgressHUD showFailure:@"输入短信验证码有误"];
@@ -101,10 +107,27 @@
         return YES;
     }
 }
+- (BOOL)verifyPhoneNum
+{
+    
+    NSString *pattern = @"^[1][3-8]+\\d{9}";
+    //正则表达式对象
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive | NSRegularExpressionDotMatchesLineSeparators error:nil];
+    
+    NSArray *results = [regex matchesInString:self.phoneNumTextField.text options:NSMatchingReportCompletion range:NSMakeRange(0, self.phoneNumTextField.text.length)];
+    
+    if (results.count == 0) {
+        return NO;
+    }
+    else {
+        return YES;
+    }
+}
+
 - (IBAction)getPhoneCode:(id)sender {
-        //添加60等待提示框
+        //添加90等待提示框
         [self addTimeOff:_getVerificationCodeBtn];
-    [[KMUserManager getInstance] getPhoneCodeWithPhoneNum:self.phoneNum andType:@"2" complation:^(BOOL result, NSString *message, id user) {
+    [[KMUserManager getInstance] getPhoneCodeWithPhoneNum:self.phoneNumTextField.text andType:@"2" complation:^(BOOL result, NSString *message, id user) {
             if (result) {
                 [LCProgressHUD showSuccess:message];
             }

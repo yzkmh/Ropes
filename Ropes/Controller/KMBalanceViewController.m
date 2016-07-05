@@ -9,6 +9,7 @@
 #import "KMBalanceViewController.h"
 #import "NSNumber+FlickerNumber.h"
 #import "KMWithdrawViewController.h"
+#import "LCProgressHUD.h"
 @interface KMBalanceViewController()
 @property (weak, nonatomic) IBOutlet UILabel *cashLabel;
 
@@ -22,6 +23,10 @@
     self.cashLabel.text = [num formatNumberDecimal];
 }
 - (IBAction)withdrawBtnClick:(id)sender {
+    if ([self.cashNum floatValue] == 0.0f) {
+        [LCProgressHUD showInfoMsg:@"余额不足，无法提现"];
+        return;
+    }
     [self performSegueWithIdentifier:@"balance2withdraw" sender:self];
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -32,7 +37,7 @@
     }
 }
 - (IBAction)bankcardBtnClick:(id)sender {
-    [self performSegueWithIdentifier:@"balance2bankcard" sender:self];
+    //[self performSegueWithIdentifier:@"balance2addbankcard" sender:self];
 }
 
 @end

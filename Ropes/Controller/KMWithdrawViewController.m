@@ -27,6 +27,7 @@
 
 - (BOOL)verification
 {
+    
     if (self.withdrawNum.text.length == 0) {
         [LCProgressHUD showFailure:@"请输入提现金额"];
         return NO;

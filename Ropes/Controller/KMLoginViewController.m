@@ -12,6 +12,9 @@
 #import "KMUser.h"
 #import "LCProgressHUD.h"
 @interface KMLoginViewController ()<KMAlertViewDelegate>
+{
+    int times;
+}
 
 @property (nonatomic, strong) KMUser *user;
 
@@ -31,15 +34,40 @@
     [self resetSelectBtn];
     
 //     读取本地账号信息
-        KMUser *localUser = [NSKeyedUnarchiver unarchiveObjectWithFile:kPATH];
+    KMUser *localUser = [NSKeyedUnarchiver unarchiveObjectWithFile:kPATH];
     if (localUser) {
         self.phoneNumTextField.text = localUser.phone;
-        self.passwordTextField.text = localUser.pwd;
-    }
-        if (localUser.isAutoLogin) {
-            [self loginBtnClick:nil];
+        if (localUser.isRememberPwd) {
+            self.passwordTextField.text = localUser.pwd;
+        }else{
+            self.passwordTextField.text = @"";
         }
+    }else{
+        self.phoneNumTextField.text = @"";
+        self.passwordTextField.text = @"";
+    }
+    if (localUser.isAutoLogin) {
+        [self loginBtnClick:nil];
+    }
 
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    KMUser *localUser = [NSKeyedUnarchiver unarchiveObjectWithFile:kPATH];
+    if (localUser) {
+        self.phoneNumTextField.text = localUser.phone;
+        if (localUser.isRememberPwd) {
+            self.passwordTextField.text = localUser.pwd;
+        }else{
+            self.passwordTextField.text = @"";
+        }
+        
+    }else{
+        self.phoneNumTextField.text = @"";
+        self.passwordTextField.text = @"";
+    }
 }
 
 /**
@@ -58,8 +86,8 @@
 }
 - (void)resetSelectBtn
 {
-    self.autoLoginBtn.selected = YES;
-    self.remeberPwdBtn.selected = YES;
+    self.autoLoginBtn.selected = NO;
+    self.remeberPwdBtn.selected = NO;
     
 //    self.phoneNumTextField.text = @"13483438214";
 //    self.passwordTextField.text = @"123456789";
@@ -99,6 +127,7 @@
                                              comlation:^(BOOL result, NSString *message, id user) {
             
                                                  if (result) {
+                                                     times = 0;
                                                      self.user = user;
                                                      [LCProgressHUD showSuccess:@"登陆成功"];
                                                      
@@ -117,17 +146,36 @@
                                                      [self performSegueWithIdentifier:@"loginToTabBar" sender:self];
                                                      
                                                  } else {
-//                                                     [LCProgressHUD hide];
-                                                     if (message) {
-                                                         [LCProgressHUD showFailure:message];
-                                                         return;
+                                                     times ++;
+                                                     if (times == 3) {
+                                                         times =0;
+                                                         [LCProgressHUD hide];
+                                                         KMAlertView *alertView = [[KMAlertView alloc] initWithFrame:CGRectMake(0, 0, 250, 150) andDelegate:self];
+                                                         alertView.center = CGPointMake([UIScreen mainScreen].bounds.size.width * 0.5, [UIScreen mainScreen].bounds.size.height * 0.5);
+                                                         alertView.alpha = 0.0f;
+                                                         [self.view addSubview:alertView];
+                                                         [UIView animateWithDuration:0.2f animations:^{
+                                                             alertView.alpha = 1.0f;
+                                                         }];
+                                                         self.alertView = alertView;
+                                                         
+                                                         return ;
+                                                     }else{
+                                                         if (message) {
+                                                             [LCProgressHUD showFailure:message];
+                                                             return;
+                                                         }
                                                      }
+//                                                     [LCProgressHUD hide];
+                                                     
                                                      [LCProgressHUD showFailure:@"服务器异常, 请稍后重试"];
                                                  }
                                              }];
     }
     
 }
+
+
 - (IBAction)remeberBtnClick:(id)sender {
     
     self.remeberPwdBtn.selected = !self.remeberPwdBtn.selected;

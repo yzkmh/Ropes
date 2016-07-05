@@ -55,6 +55,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
     KMUser *localUser = [NSKeyedUnarchiver unarchiveObjectWithFile:kPATH];
     if (localUser) {
         self.phoneNumTextField.text = localUser.phone;
@@ -68,6 +69,7 @@
         self.phoneNumTextField.text = @"";
         self.passwordTextField.text = @"";
     }
+    [self resetSelectBtn];
 }
 
 /**

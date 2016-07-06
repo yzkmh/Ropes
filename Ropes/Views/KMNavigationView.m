@@ -44,7 +44,7 @@
 
 - (void)initView
 {
-    
+    self.isLeft = YES;
 }
 
 
@@ -97,6 +97,7 @@
         [self.rightLable setTextColor:[UIColor grayColor]];
         [self.progressView setFrame:CGRectMake(0, 32, self.frame.size.width/2, 1)];
     }];
+    self.isLeft = YES;
 
 }
 
@@ -109,14 +110,17 @@
         [self.progressView setFrame:CGRectMake(self.frame.size.width/2, 32, self.frame.size.width/2, 1)];
         
     }];
+    self.isLeft = NO;
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView   {
     [self.progressView setFrame:CGRectMake(scrollView.contentOffset.x/2, 32, self.frame.size.width/2, 1)];
     if (scrollView.contentOffset.x < self.frame.size.width/2) {
+        self.isLeft = YES;
         [self.leftLable setTextColor:[UIColor redColor]];
         [self.rightLable setTextColor:[UIColor grayColor]];
     }else{
+        self.isLeft = NO;
         [self.leftLable setTextColor:[UIColor grayColor]];
         [self.rightLable setTextColor:[UIColor redColor]];
     }

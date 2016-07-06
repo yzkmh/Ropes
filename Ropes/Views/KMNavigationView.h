@@ -22,6 +22,7 @@
 @property (nonatomic ,weak) IBOutlet UIView *progressView;
 
 @property (nonatomic ,weak) IBOutlet UIScrollView *showView;
+@property (nonatomic ,assign) BOOL isLeft;
 
 - (void)addToShowView:(UIView *)obj;
 - (void)setLabelWithConponNum1:(NSString *)num1 andNum2:(NSString *)num2;

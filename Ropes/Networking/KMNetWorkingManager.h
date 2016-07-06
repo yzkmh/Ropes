@@ -28,6 +28,16 @@
                     subUrl:(NSString *)suburl
                      block:(void (^)(NSDictionary *resultDic, NSError *error))block;
 /**
+ *  get网络请求
+ *
+ *  @param parameters 参数
+ *  @param suburl     接口
+ *  @param block      Block回调
+ */
+- (void)getWithParameters:(NSDictionary *)parameters
+                   subUrl:(NSString *)suburl
+                    block:(void (^)(NSDictionary *resultDic, NSError *error))block;
+/**
  *  取消网络请求
  */
 - (void)cancelRequest;

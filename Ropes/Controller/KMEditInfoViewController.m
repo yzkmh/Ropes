@@ -21,6 +21,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *genderTextField;
 @property (weak, nonatomic) IBOutlet UITextField *addressTextField;
 
+@property (weak, nonatomic) IBOutlet UIView *addressView;
+
 @end
 
 @implementation KMEditInfoViewController
@@ -36,12 +38,13 @@
     
     self.nameTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.phoneNumTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    [self.phoneNumTextField setUserInteractionEnabled:NO];
     self.genderTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.addressTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     [self.genderTextField setDelegate:self];
     
     pickarray = @[@"男",@"女"];
-    pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-200, self.view.frame.size.width, 200)];
+    pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, self.addressView.frame.origin.y + self.addressView.bounds.size.height, self.view.frame.size.width, 100)];
     pickerView.alpha = 0;
     [self.view addSubview:pickerView];
     // 显示选中框
@@ -141,6 +144,10 @@
 }
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     return pickarray.count;
+}
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+{
+    return 40;
 }
 
 -(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component

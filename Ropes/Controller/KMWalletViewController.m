@@ -70,7 +70,7 @@
 {
     NSString *phone = [KMUserManager getInstance].currentUser.phone;
     NSString *sessionId = [KMUserManager getInstance].currentUser.sessionid;
-    NSString *sessionIdPwd = [sessionId md5WithTimes:6];
+    NSString *sessionIdPwd = [[sessionId substringToIndex:9] md5WithTimes:6];
     [KMRequestCenter requestForDoBalanceInqueryWithNum:phone
                                              sessionId:sessionId
                                           sessionIdPwd:sessionIdPwd

@@ -88,8 +88,19 @@
 }
 - (void)resetSelectBtn
 {
-    self.autoLoginBtn.selected = NO;
-    self.remeberPwdBtn.selected = NO;
+    KMUser *localUser = [NSKeyedUnarchiver unarchiveObjectWithFile:kPATH];
+    if (localUser.isRememberPwd)
+    {
+        self.remeberPwdBtn.selected = YES;
+    }else{
+        self.remeberPwdBtn.selected = NO;
+    }
+    if (localUser.isAutoLogin)
+    {
+        self.autoLoginBtn.selected = YES;
+    }else{
+        self.autoLoginBtn.selected = NO;
+    }
     
 //    self.phoneNumTextField.text = @"13483438214";
 //    self.passwordTextField.text = @"123456789";
@@ -142,6 +153,7 @@
                                                      self.user.pwd = self.passwordTextField.text;
                                                      // 保存账号到本地
                                                      [NSKeyedArchiver archiveRootObject:self.user toFile:kPATH];
+                                                     
                                                      [KMUserManager getInstance].currentUser = user;
                                                      
                                                      [LCProgressHUD hide];
@@ -168,8 +180,6 @@
                                                              return;
                                                          }
                                                      }
-//                                                     [LCProgressHUD hide];
-                                                     
                                                      [LCProgressHUD showFailure:@"服务器异常, 请稍后重试"];
                                                  }
                                              }];
@@ -181,6 +191,9 @@
 - (IBAction)remeberBtnClick:(id)sender {
     
     self.remeberPwdBtn.selected = !self.remeberPwdBtn.selected;
+    if (![self.remeberPwdBtn isSelected]) {
+        self.autoLoginBtn.selected = NO;
+    }
 }
 
 - (IBAction)autoLoginBtnClick:(id)sender {
@@ -240,10 +253,6 @@
         
     } else {
         
-        if (![self verifyPhoneNum]) {
-            [LCProgressHUD showFailure:@"手机号码格式有误"];
-            return;
-        }
 
         [self.alertView removeFromSuperview];
         [self performSegueWithIdentifier:@"loginToForgetPwd" sender:self];

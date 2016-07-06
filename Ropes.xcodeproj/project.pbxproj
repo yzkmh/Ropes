@@ -124,6 +124,7 @@
 		ED649A5F1CE07DDC005D09C1 /* KMDiscountMoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED649A5D1CE07DDC005D09C1 /* KMDiscountMoreViewController.xib */; };
 		ED6C1E551CEB207400B81104 /* shop.png in Resources */ = {isa = PBXBuildFile; fileRef = ED6C1E541CEB207400B81104 /* shop.png */; };
 		ED6C1E5C1CEB26FC00B81104 /* userRulers.txt in Resources */ = {isa = PBXBuildFile; fileRef = ED6C1E5B1CEB26FC00B81104 /* userRulers.txt */; };
+		EDB8F0CD1D2CF77B00D58968 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDB8F0CC1D2CF77B00D58968 /* Foundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -330,6 +331,7 @@
 		ED649A5D1CE07DDC005D09C1 /* KMDiscountMoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KMDiscountMoreViewController.xib; sourceTree = "<group>"; };
 		ED6C1E541CEB207400B81104 /* shop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shop.png; sourceTree = "<group>"; };
 		ED6C1E5B1CEB26FC00B81104 /* userRulers.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = userRulers.txt; sourceTree = "<group>"; };
+		EDB8F0CC1D2CF77B00D58968 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,6 +339,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDB8F0CD1D2CF77B00D58968 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -617,6 +620,7 @@
 		BB2C98151C85431D00BAEE17 = {
 			isa = PBXGroup;
 			children = (
+				EDB8F0CC1D2CF77B00D58968 /* Foundation.framework */,
 				BB2C98201C85431D00BAEE17 /* Ropes */,
 				BB2C983A1C85431E00BAEE17 /* RopesTests */,
 				BB2C98451C85431E00BAEE17 /* RopesUITests */,
@@ -766,8 +770,8 @@
 			buildConfigurationList = BB2C984B1C85431E00BAEE17 /* Build configuration list for PBXNativeTarget "Ropes" */;
 			buildPhases = (
 				BB2C981A1C85431D00BAEE17 /* Sources */,
-				BB2C981B1C85431D00BAEE17 /* Frameworks */,
 				BB2C981C1C85431D00BAEE17 /* Resources */,
+				BB2C981B1C85431D00BAEE17 /* Frameworks */,
 			);
 			buildRules = (
 			);

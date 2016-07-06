@@ -81,6 +81,45 @@ static KMNetWorkingManager *_instance = nil;
    }];
     
 }
+
+- (void)getWithParameters:(NSDictionary *)parameters
+                   subUrl:(NSString *)suburl
+                    block:(void (^)(NSDictionary *resultDic, NSError *error))block
+{
+    [[self class] checkNetWorkStatus];
+    NSString *urlString = [NSString stringWithFormat:@"%@.htmls",suburl];
+    NSLog(@"urlstring = %@",urlString);
+    NSLog(@"parameter = %@",parameters);
+    
+    [[[self class] sharedManager] GET:urlString parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        //NSString *aString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSError *error;
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:&error];
+        NSLog(@"resultDic -- %@",dic);
+        if (block && dic) {
+            block(dic,error);
+        }else{
+            NSString *aString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+            if ([aString isEqualToString:@"true"]) {
+                block(@{@"result":@"true"},error);
+            }else{
+                block(nil,error);
+            }
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        // 请求失败
+        if (error.code == -1001) {
+            [LCProgressHUD showFailure:@"请求超时，请重试"];
+        }
+        NSLog(@"error -- %@",error);
+        
+        if (block) {
+            block(nil,error);
+        }
+        NSLog(@"%@", [error localizedDescription]);
+    }];
+}
 #pragma mark 取消网络请求
 - (void)cancelRequest{
     

@@ -16,7 +16,7 @@
 #import "KMDiscountCell.h"
 #import "KMDiscountMoreViewController.h"
 
-@interface KMDiscountViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface KMDiscountViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchDisplayDelegate>
 {
     KMNavigationView *naviView;
     
@@ -30,6 +30,10 @@
     
     UIRefreshControl *_controlleft;
     UIRefreshControl *_controlright;
+    
+    UISearchBar *_mySearchBar;
+    UISearchDisplayController *_searchDisplayController;
+    NSMutableArray *_searchList;//搜索到的列表
     
 }
 @end
@@ -49,9 +53,38 @@
     [self initNavigation];
     self.automaticallyAdjustsScrollViewInsets = false;
     [self initRefresh];
+    [self initSearch];
     
     // Do any additional setup after loading the view.
 }
+
+- (void)initSearch
+{
+    _mySearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, [UIApplication sharedApplication].statusBarFrame.size.height, [UIScreen mainScreen].bounds.size.width, 44)];
+    
+    //设置选项
+    
+    _mySearchBar.barTintColor = [UIColor whiteColor];
+    
+    _mySearchBar.searchBarStyle = UISearchBarStyleDefault;
+    
+    _mySearchBar.translucent = NO; //是否半透明
+    
+    [_mySearchBar setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+    
+    [_mySearchBar sizeToFit];
+    
+    // 用 searchbar 初始化 SearchDisplayController
+    // 并把 searchDisplayController 和当前 controller 关联起来
+    _searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:_mySearchBar contentsController:self];
+    _searchDisplayController.delegate = self;
+    // searchResultsDataSource 就是 UITableViewDataSource
+    _searchDisplayController.searchResultsDataSource = self;
+    // searchResultsDelegate 就是 UITableViewDelegate
+    _searchDisplayController.searchResultsDelegate = self;
+
+}
+
 /**
  *  集成下拉刷新
  */
@@ -73,6 +106,9 @@
 }
 - (void)initNavigation
 {
+    UIBarButtonItem *searchBar = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchBar:)];
+    self.navigationItem.rightBarButtonItem = searchBar;
+    
     naviView = [[[NSBundle mainBundle] loadNibNamed:@"KMNavigationView" owner:self options:nil]objectAtIndex:0];
     [naviView setFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64)];
     _leftTableView = [[UITableView alloc]initWithFrame:CGRectMake(naviView.bounds.origin.x, 0, naviView.bounds.size.width, naviView.bounds.size.height-45)];
@@ -123,6 +159,12 @@
     }else if([tableView isEqual:_rightTableView])
     {
         return _rightList.count;
+    }else{
+        // 谓词搜索
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self contains [cd] %@",_searchDisplayController.searchBar.text];
+        //这个地方有问题
+        _searchList =  [[NSMutableArray alloc] initWithArray:[_rightList filteredArrayUsingPredicate:predicate]];
+        return _searchList.count;
     }
     return 0;
 }
@@ -142,7 +184,11 @@
             cell = [[[NSBundle mainBundle]loadNibNamed:@"KMDiscountCell" owner:self options:nil]objectAtIndex:0];
             KMVoucher *voucher = [_leftList objectAtIndex:indexPath.row];
             cell.title.text = voucher.senceName;
-            cell.price.text = [NSString stringWithFormat:@"%.1f折优惠",[voucher.discountRate floatValue]/10.0f];
+            NSString *salaStr = [NSString stringWithFormat:@"%.1f折优惠",[voucher.discountRate floatValue]/10.0f];
+            if ([[salaStr substringFromIndex:salaStr.length-2]isEqualToString:@".0"]) {
+                salaStr = [salaStr substringToIndex:salaStr.length-2];
+            }
+            cell.price.text = salaStr;
             if ([voucher.useCount isEqual:@1]) {
                 cell.state.text = @"单";
             }else {
@@ -159,7 +205,31 @@
             cell = [[[NSBundle mainBundle]loadNibNamed:@"KMDiscountCell" owner:self options:nil]objectAtIndex:0];
             KMVoucher *voucher = [_rightList objectAtIndex:indexPath.row];
             cell.title.text = voucher.senceName;
-            cell.price.text = [NSString stringWithFormat:@"%.1f折优惠",[voucher.discountRate floatValue]/10.0f];
+            NSString *salaStr = [NSString stringWithFormat:@"%.1f折优惠",[voucher.discountRate floatValue]/10.0f];
+            if ([[salaStr substringFromIndex:salaStr.length-2]isEqualToString:@".0"]) {
+                salaStr = [salaStr substringToIndex:salaStr.length-2];
+            }
+            cell.price.text = salaStr;
+            if ([voucher.useCount isEqual:@1]) {
+                cell.state.text = @"单";
+            }else {
+                cell.state.text = @"多";
+            }
+            cell.premise.text = voucher.policyDescription;
+            cell.validDate.text = voucher.invalidDate;
+        }
+    }else{
+        static NSString *KMDiscountNotCell = @"KMDiscountSearchCell";
+        cell = [tableView dequeueReusableCellWithIdentifier:KMDiscountNotCell];
+        if (cell == nil) {
+            cell = [[[NSBundle mainBundle]loadNibNamed:@"KMDiscountCell" owner:self options:nil]objectAtIndex:0];
+            KMVoucher *voucher = [_searchList objectAtIndex:indexPath.row];
+            cell.title.text = voucher.senceName;
+            NSString *salaStr = [NSString stringWithFormat:@"%.1f折优惠",[voucher.discountRate floatValue]/10.0f];
+            if ([[salaStr substringFromIndex:salaStr.length-2]isEqualToString:@".0"]) {
+                salaStr = [salaStr substringToIndex:salaStr.length-2];
+            }
+            cell.price.text = salaStr;
             if ([voucher.useCount isEqual:@1]) {
                 cell.state.text = @"单";
             }else {
@@ -184,6 +254,27 @@
     [self.navigationController pushViewController:discountMore animated:YES];
 }
 
+#pragma UISearchDisplayDelegate
+- (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView
+{
+    CGRect frame = tableView.frame;
+    frame.origin.y = 44;
+    [tableView setFrame:frame];
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller willHideSearchResultsTableView:(UITableView *)tableView
+{
+    CGRect frame = tableView.frame;
+    frame.origin.y = 0;
+    [tableView setFrame:frame];
+}
+
+- (IBAction)searchBar:(id)sender
+{
+    [self.navigationController.view addSubview:_mySearchBar];
+    
+    [_mySearchBar becomeFirstResponder];
+}
 
 /*
 #pragma mark - Navigation

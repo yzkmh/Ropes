@@ -11,7 +11,6 @@
 @interface KMLoginViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
-
 @property (weak, nonatomic) IBOutlet UIButton *remeberPwdBtn;
 @property (weak, nonatomic) IBOutlet UIButton *autoLoginBtn;
 @end

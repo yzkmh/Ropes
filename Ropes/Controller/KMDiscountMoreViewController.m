@@ -38,7 +38,11 @@
     _voucher = voucher;
     self.titleLb.text = self.voucher.senceName;
     self.expirationDate.text = self.voucher.invalidDate;
-    self.price.text= [NSString stringWithFormat:@"%.1f折优惠",[self.voucher.discountRate floatValue]/10.0f];
+    NSString *salaStr = [NSString stringWithFormat:@"%.1f折优惠",[voucher.discountRate floatValue]/10.0f];
+    if ([[salaStr substringFromIndex:salaStr.length-2]isEqualToString:@".0"]) {
+        salaStr = [salaStr substringToIndex:salaStr.length-2];
+    }
+    self.price.text= salaStr;
     self.rule.text = self.voucher.policyName;
     self.condition.text = self.voucher.policyDescription;
 }

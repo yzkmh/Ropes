@@ -106,8 +106,8 @@
 }
 - (void)initNavigation
 {
-    UIBarButtonItem *searchBar = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchBar:)];
-    self.navigationItem.rightBarButtonItem = searchBar;
+//    UIBarButtonItem *searchBar = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchBar:)];
+//    self.navigationItem.rightBarButtonItem = searchBar;
     
     naviView = [[[NSBundle mainBundle] loadNibNamed:@"KMNavigationView" owner:self options:nil]objectAtIndex:0];
     [naviView setFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64)];
@@ -185,10 +185,7 @@
             KMVoucher *voucher = [_leftList objectAtIndex:indexPath.row];
             cell.title.text = voucher.senceName;
             NSString *salaStr = [NSString stringWithFormat:@"%.1f折优惠",[voucher.discountRate floatValue]/10.0f];
-            if ([[salaStr substringFromIndex:salaStr.length-2]isEqualToString:@".0"]) {
-                salaStr = [salaStr substringToIndex:salaStr.length-2];
-            }
-            cell.price.text = salaStr;
+            cell.price.text = [salaStr stringByReplacingOccurrencesOfString:@".0" withString:@""];
             if ([voucher.useCount isEqual:@1]) {
                 cell.state.text = @"单";
             }else {
@@ -206,10 +203,7 @@
             KMVoucher *voucher = [_rightList objectAtIndex:indexPath.row];
             cell.title.text = voucher.senceName;
             NSString *salaStr = [NSString stringWithFormat:@"%.1f折优惠",[voucher.discountRate floatValue]/10.0f];
-            if ([[salaStr substringFromIndex:salaStr.length-2]isEqualToString:@".0"]) {
-                salaStr = [salaStr substringToIndex:salaStr.length-2];
-            }
-            cell.price.text = salaStr;
+            cell.price.text = [salaStr stringByReplacingOccurrencesOfString:@".0" withString:@""];
             if ([voucher.useCount isEqual:@1]) {
                 cell.state.text = @"单";
             }else {
@@ -226,10 +220,8 @@
             KMVoucher *voucher = [_searchList objectAtIndex:indexPath.row];
             cell.title.text = voucher.senceName;
             NSString *salaStr = [NSString stringWithFormat:@"%.1f折优惠",[voucher.discountRate floatValue]/10.0f];
-            if ([[salaStr substringFromIndex:salaStr.length-2]isEqualToString:@".0"]) {
-                salaStr = [salaStr substringToIndex:salaStr.length-2];
-            }
-            cell.price.text = salaStr;
+
+            cell.price.text = [salaStr stringByReplacingOccurrencesOfString:@".0" withString:@""];
             if ([voucher.useCount isEqual:@1]) {
                 cell.state.text = @"单";
             }else {

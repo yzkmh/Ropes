@@ -491,7 +491,7 @@
                                phone,@"phone",
                                sessionId,@"sessionid",
                                sessionIdPwd,@"sessionidpwd",
-                               requestPhone,@"requestphone",
+                               requestPhone,@"requsetphone",
                                nil];
     
     [[KMNetWorkingManager sharedManager] postWithParameters:paramters subUrl:BalanceInquery block:^(NSDictionary *resultDic, NSError *error) {

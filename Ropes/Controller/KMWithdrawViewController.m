@@ -56,7 +56,6 @@
     if (![self verification]) {
         return;
     }
-    
     [self requestForWithdraw];
 }
 
@@ -65,7 +64,7 @@
     KMUser *user = [KMUserManager getInstance].currentUser;
     NSString *phone = user.phone;
     NSString *sessionId = user.sessionid;
-    NSString *sessionIdPwd = [sessionId md5WithTimes:6];
+    NSString *sessionIdPwd = [[sessionId substringToIndex:9] md5WithTimes:6];
     NSString *bankname = user.bankname;
     NSString *bankcard = user.bankcard;
     [KMRequestCenter requestForDoCashRe:phone

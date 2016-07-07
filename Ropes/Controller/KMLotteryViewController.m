@@ -17,19 +17,23 @@
 #import "LCProgressHUD.h"
 
 
-@interface KMLotteryViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface KMLotteryViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 {
     KMNavigationView *naviView;
     
     UITableView *_leftTableView;
     UITableView *_rightTableView;
     
-    NSArray *lotteryCanList;
-    NSArray *lotteryNotList;
+    NSArray *_leftList;
+    NSArray *_rightList;
     
     UIRefreshControl *_controlleft;
     UIRefreshControl *_controlright;
     BOOL _isRequest;
+    
+    UISearchBar *_mySearchBar;
+    NSArray *_tempLList;
+    NSArray *_tempRList;
 }
 @end
 
@@ -45,13 +49,35 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor grayColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     [self initNavigation];
     self.automaticallyAdjustsScrollViewInsets = false;
     [self initRefresh];
-    
+    [self initSearch];    
     // Do any additional setup after loading the view.
 }
+- (void)initSearch
+{
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchBar:)];
+    self.navigationItem.rightBarButtonItem = item;
+    
+    _mySearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, [UIApplication sharedApplication].statusBarFrame.size.height + self.navigationController.navigationBar.frame.size.height, [UIScreen mainScreen].bounds.size.width, 44)];
+    
+    //设置选项
+    
+    _mySearchBar.barTintColor = [UIColor whiteColor];
+    
+    _mySearchBar.searchBarStyle = UISearchBarStyleDefault;
+    
+    _mySearchBar.translucent = NO; //是否半透明
+    
+    [_mySearchBar setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+    
+    [_mySearchBar sizeToFit];
+    
+    _mySearchBar.delegate = self;
+}
+
 /**
  *  集成下拉刷新
  */
@@ -104,8 +130,8 @@
         [LCProgressHUD hide];
         [_controlleft endRefreshing];
         [_controlright endRefreshing];
-        lotteryCanList = [list objectAtIndex:0];
-        lotteryNotList = [list objectAtIndex:1];
+        _leftList = [list objectAtIndex:0];
+        _rightList = [list objectAtIndex:1];
         _isRequest = YES;
         dispatch_async(dispatch_get_main_queue(), ^{
             [_leftTableView reloadData];
@@ -123,10 +149,10 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if ([tableView isEqual:_leftTableView]) {
-        return lotteryCanList.count;
+        return _leftList.count;
     }else if([tableView isEqual:_rightTableView])
     {
-        return lotteryNotList.count;
+        return _rightList.count;
     }
     return 0;
 }
@@ -144,7 +170,7 @@
         cell = [tableView dequeueReusableCellWithIdentifier:KMLotteryCanCell];
         if (cell == nil) {
             cell = [[[NSBundle mainBundle]loadNibNamed:@"KMLotteryCell" owner:self options:nil]objectAtIndex:0];
-            KMLottery *lottery = [lotteryCanList objectAtIndex:indexPath.row];
+            KMLottery *lottery = [_leftList objectAtIndex:indexPath.row];
             cell.title.text = lottery.lotteryTypeName;
             cell.lotteryNum.text = lottery.lotteryNumber;
             if ([lottery.lotteryPrizeResult isEqualToString:@"未中奖"]||[lottery.lotteryPrizeResult isEqualToString:@"未开奖"]) {
@@ -161,7 +187,7 @@
         cell = [tableView dequeueReusableCellWithIdentifier:KMLotteryNotCell];
         if (cell == nil) {
             cell = [[[NSBundle mainBundle]loadNibNamed:@"KMLotteryCell" owner:self options:nil]objectAtIndex:0];
-            KMLottery *lottery = [lotteryNotList objectAtIndex:indexPath.row];
+            KMLottery *lottery = [_rightList objectAtIndex:indexPath.row];
             cell.title.text = lottery.lotteryTypeName;
             cell.lotteryNum.text = lottery.lotteryNumber;
             if ([lottery.lotteryPrizeResult isEqualToString:@"未中奖"]||[lottery.lotteryPrizeResult isEqualToString:@"未开奖"]) {
@@ -180,13 +206,74 @@
     KMLotteryMoreViewController *lotteryMore = [[[NSBundle mainBundle]loadNibNamed:@"KMLotteryMoreViewController" owner:nil options:nil]objectAtIndex:0];
     lotteryMore.title = @"彩票详情";
     if ([tableView isEqual:_leftTableView]) {
-        lotteryMore.lottery = [lotteryCanList objectAtIndex:indexPath.row];
+        lotteryMore.lottery = [_leftList objectAtIndex:indexPath.row];
     }else if([tableView isEqual:_rightTableView]){
-        lotteryMore.lottery = [lotteryNotList objectAtIndex:indexPath.row];
+        lotteryMore.lottery = [_rightList objectAtIndex:indexPath.row];
     }
     [self.navigationController pushViewController:lotteryMore animated:YES];
 }
+#pragma srarchBarDelegate
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+    _tempLList = _leftList;
+    _tempRList = _rightList;
+}
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    if ([searchBar.text isEqualToString:@""]) {
+        _leftList = _tempLList;
+        _rightList = _tempRList;
+        [naviView setLabelWithConponNum1:[NSString stringWithFormat:@"%lu",(unsigned long)_leftList.count] andNum2:[NSString stringWithFormat:@"%lu",(unsigned long)_rightList.count]];
+        [_leftTableView reloadData];
+        [_rightTableView reloadData];
+    }else{
+        NSMutableArray *tempList = [NSMutableArray new];
+        for (KMLottery *lottery in _tempLList) {
+            if([lottery.lotteryTypeName rangeOfString:searchBar.text].location !=NSNotFound)//_roaldSearchText
+            {
+                [tempList addObject:lottery];
+            }
+        }
+        _leftList = [NSArray arrayWithArray:tempList];
+        [tempList removeAllObjects];
+        for (KMLottery *lottery in _tempRList) {
+            if([lottery.lotteryTypeName rangeOfString:searchBar.text].location !=NSNotFound)//_roaldSearchText
+            {
+                [tempList addObject:lottery];
+            }
+        }
+        _rightList = [NSArray arrayWithArray:tempList];
+        [naviView setLabelWithConponNum1:[NSString stringWithFormat:@"%lu",(unsigned long)_leftList.count] andNum2:[NSString stringWithFormat:@"%lu",(unsigned long)_rightList.count]];
+        [_leftTableView reloadData];
+        [_rightTableView reloadData];
+    }
+}
 
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+}
+
+- (IBAction)searchBar:(id)sender
+{
+    if (!_mySearchBar.superview) {
+        CGRect frame = naviView.frame;
+        frame.origin.y += 44;
+        [UIView animateWithDuration:0.3 animations:^{
+            [self.view addSubview:_mySearchBar];
+            naviView.frame = frame;
+        }];
+        [_mySearchBar becomeFirstResponder];
+    }else{
+        CGRect frame = naviView.frame;
+        frame.origin.y -= 44;
+        [UIView animateWithDuration:0.3 animations:^{
+            [_mySearchBar removeFromSuperview];
+            naviView.frame = frame;
+        }];
+        [_mySearchBar resignFirstResponder];
+    }
+}
 
 /*
 #pragma mark - Navigation

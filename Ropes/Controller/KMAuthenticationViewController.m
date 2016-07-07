@@ -16,7 +16,7 @@
 #import "KMUserManager.h"
 
 
-@interface KMAuthenticationViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface KMAuthenticationViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 {
     KMNavigationView *naviView;
     
@@ -30,6 +30,10 @@
     
     UIRefreshControl *_controlleft;
     UIRefreshControl *_controlright;
+    
+    UISearchBar *_mySearchBar;
+    NSArray *_tempLList;
+    NSArray *_tempRList;
 }
 
 @end
@@ -44,13 +48,36 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor grayColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     [self initNavigation];
     self.automaticallyAdjustsScrollViewInsets = false;
     [self initRefresh];
+    [self initSearch];
     
     // Do any additional setup after loading the view.
 }
+- (void)initSearch
+{
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchBar:)];
+    self.navigationItem.rightBarButtonItem = item;
+    
+    _mySearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, [UIApplication sharedApplication].statusBarFrame.size.height + self.navigationController.navigationBar.frame.size.height, [UIScreen mainScreen].bounds.size.width, 44)];
+    
+    //设置选项
+    
+    _mySearchBar.barTintColor = [UIColor whiteColor];
+    
+    _mySearchBar.searchBarStyle = UISearchBarStyleDefault;
+    
+    _mySearchBar.translucent = NO; //是否半透明
+    
+    [_mySearchBar setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+    
+    [_mySearchBar sizeToFit];
+    
+    _mySearchBar.delegate = self;
+}
+
 /**
  *  集成下拉刷新
  */
@@ -182,6 +209,68 @@
         [authenticationMore setBtnClose];
     }
     [self.navigationController pushViewController:authenticationMore  animated:YES];
+}
+#pragma srarchBarDelegate
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+    _tempLList = _leftList;
+    _tempRList = _rightList;
+}
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    if ([searchBar.text isEqualToString:@""]) {
+        _leftList = _tempLList;
+        _rightList = _tempRList;
+        [naviView setLabelWithConponNum1:[NSString stringWithFormat:@"%lu",(unsigned long)_leftList.count] andNum2:[NSString stringWithFormat:@"%lu",(unsigned long)_rightList.count]];
+        [_leftTableView reloadData];
+        [_rightTableView reloadData];
+    }else{
+        NSMutableArray *tempList = [NSMutableArray new];
+        for (KMVoucher *voucher in _tempLList) {
+            if([voucher.senceName rangeOfString:searchBar.text].location !=NSNotFound)//_roaldSearchText
+            {
+                [tempList addObject:voucher];
+            }
+        }
+        _leftList = [NSArray arrayWithArray:tempList];
+        [tempList removeAllObjects];
+        for (KMVoucher *voucher in _tempRList) {
+            if([voucher.senceName rangeOfString:searchBar.text].location !=NSNotFound)//_roaldSearchText
+            {
+                [tempList addObject:voucher];
+            }
+        }
+        _rightList = [NSArray arrayWithArray:tempList];
+        [naviView setLabelWithConponNum1:[NSString stringWithFormat:@"%lu",(unsigned long)_leftList.count] andNum2:[NSString stringWithFormat:@"%lu",(unsigned long)_rightList.count]];
+        [_leftTableView reloadData];
+        [_rightTableView reloadData];
+    }
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+}
+
+- (IBAction)searchBar:(id)sender
+{
+    if (!_mySearchBar.superview) {
+        CGRect frame = naviView.frame;
+        frame.origin.y += 44;
+        [UIView animateWithDuration:0.3 animations:^{
+            [self.view addSubview:_mySearchBar];
+            naviView.frame = frame;
+        }];
+        [_mySearchBar becomeFirstResponder];
+    }else{
+        CGRect frame = naviView.frame;
+        frame.origin.y -= 44;
+        [UIView animateWithDuration:0.3 animations:^{
+            [_mySearchBar removeFromSuperview];
+            naviView.frame = frame;
+        }];
+        [_mySearchBar resignFirstResponder];
+    }
 }
 
 /*

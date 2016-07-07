@@ -556,7 +556,7 @@
                                phone,@"phone",
                                sessionId,@"sessionid",
                                sessionIdPwd,@"sessionidpwd",
-                               requestPhone,@"requestphone",
+                               requestPhone,@"requsetphone",
                                cashnum,@"cashnum",
                                bankname,@"bankname",
                                bankcard,@"bankcard",
@@ -602,8 +602,5 @@
     [[KMNetWorkingManager sharedManager] postWithParameters:paramters subUrl:DoRequestBankName block:^(NSDictionary *resultDic, NSError *error) {
         success(resultDic);
     }];
-    
-    
-    
 }
 @end

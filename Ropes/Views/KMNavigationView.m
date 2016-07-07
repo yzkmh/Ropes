@@ -98,6 +98,9 @@
         [self.progressView setFrame:CGRectMake(0, 32, self.frame.size.width/2, 1)];
     }];
     self.isLeft = YES;
+    if (_delegate && [_delegate respondsToSelector:@selector(didSelectAtIndex:)]) {
+        [_delegate didSelectAtIndex:0];
+    }
 
 }
 
@@ -111,6 +114,9 @@
         
     }];
     self.isLeft = NO;
+    if (_delegate && [_delegate respondsToSelector:@selector(didSelectAtIndex:)]) {
+        [_delegate didSelectAtIndex:1];
+    }
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView   {
@@ -119,10 +125,16 @@
         self.isLeft = YES;
         [self.leftLable setTextColor:[UIColor redColor]];
         [self.rightLable setTextColor:[UIColor grayColor]];
+        if (_delegate && [_delegate respondsToSelector:@selector(didSelectAtIndex:)]) {
+            [_delegate didSelectAtIndex:0];
+        }
     }else{
         self.isLeft = NO;
         [self.leftLable setTextColor:[UIColor grayColor]];
         [self.rightLable setTextColor:[UIColor redColor]];
+        if (_delegate && [_delegate respondsToSelector:@selector(didSelectAtIndex:)]) {
+            [_delegate didSelectAtIndex:1];
+        }
     }
 }
 @end

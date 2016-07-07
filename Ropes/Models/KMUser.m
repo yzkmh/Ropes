@@ -8,32 +8,14 @@
 
 #import "KMUser.h"
 #import <objc/runtime.h>
+#import "JsonUtil.h"
 
 @implementation KMUser
 
 - (instancetype)initWithDict:(NSDictionary *)dict
 {
     if (self = [super init]) {
-        //获取成员变量列表
-        unsigned int count;
-        objc_property_t *list = class_copyPropertyList([self class], &count);
-        for (unsigned int i; i<count; i++) {
-            objc_property_t pty = list[i];
-            const char *cname = property_getName(pty);
-            NSString *propertyName = [NSString stringWithUTF8String:cname];
-            
-            if (![propertyName isEqualToString:@"isAutoLogin"] && ![propertyName isEqualToString:@"isRememberPwd"]) {
-                if ([propertyName isEqualToString:@"gender"]) {
-                    if(dict[@"gender"] != [NSNull null]){
-                        self.gender = [dict[@"gender"] intValue];
-                    }
-                } else {
-                    if(dict[propertyName] != [NSNull null]){
-                        [self setValue:dict[propertyName] forKey:propertyName];
-                    }
-                }
-            }
-        }
+        [JsonUtil bindDicData:dict Object:self];
     }
     return self;
 }
@@ -48,42 +30,35 @@
 {
     // 把自定义对象归档的时候, 必须遵守NSCoding协议
     // 获取成员变量列表
-    unsigned int count;
-    objc_property_t *list = class_copyPropertyList([self class], &count);
-    for (unsigned int i; i<count; i++) {
-        objc_property_t pty = list[i];
-        const char *cname = property_getName(pty);
-        NSString *propertyName = [NSString stringWithUTF8String:cname];
-        if ([propertyName isEqualToString:@"gender"]) {
-            
-            [aCoder encodeInt:[[self valueForKey:propertyName] intValue] forKey:propertyName];
-        } else {
-            [aCoder encodeObject:[self valueForKey:propertyName] forKey:propertyName];
-        }
-    }
+    [aCoder encodeObject:self.userId forKey:@"userid"];
+    [aCoder encodeObject:self.name forKey:@"name"];
+    [aCoder encodeObject:self.phone forKey:@"phone"];
+    [aCoder encodeObject:[NSString stringWithFormat:@"%d",self.gender] forKey:@"gender"];
+    [aCoder encodeObject:self.pwd forKey:@"pwd"];
+    [aCoder encodeObject:self.bankcard forKey:@"bankcard"];
+    [aCoder encodeObject:self.bankname forKey:@"bankname"];
+    [aCoder encodeObject:self.address forKey:@"address"];
+    [aCoder encodeObject:self.sessionid forKey:@"sessionid"];
+    [aCoder encodeObject:[NSString stringWithFormat:@"%d",self.isAutoLogin] forKey:@"isAutoLogin"];
+    [aCoder encodeObject:[NSString stringWithFormat:@"%d",self.isRememberPwd] forKey:@"isRememberPwd"];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     // 反归档 从文件中还原对象
-    if(self = [super init])
-    {
-        unsigned int count;
-        objc_property_t *list = class_copyPropertyList([self class], &count);
-        for (unsigned int i; i<count; i++) {
-            objc_property_t pty = list[i];
-            const char *cname = property_getName(pty);
-            NSString *propertyName = [NSString stringWithUTF8String:cname];
-            if ([propertyName isEqualToString:@"gender"]) {
-                if([aDecoder decodeObjectForKey:propertyName] != [NSNull null]){
-                    self.gender = [[aDecoder decodeObjectForKey:propertyName] intValue];
-                }
-            } else {
-                [self setValue:[aDecoder decodeObjectForKey:propertyName] forKey:propertyName];
-            }
-        }
-    }
+    self.userId = [aDecoder decodeObjectForKey:@"userId"];
+    self.name = [aDecoder decodeObjectForKey:@"name"];
+    self.phone = [aDecoder decodeObjectForKey:@"phone"];
+    self.gender = [[aDecoder decodeObjectForKey:@"gender"]intValue];
+    self.pwd = [aDecoder decodeObjectForKey:@"pwd"];
+    self.bankcard = [aDecoder decodeObjectForKey:@"bankcard"];
+    self.bankname = [aDecoder decodeObjectForKey:@"bankname"];
+    self.address = [aDecoder decodeObjectForKey:@"address"];
+    self.sessionid = [aDecoder decodeObjectForKey:@"sessionid"];
+    self.isAutoLogin = [[aDecoder decodeObjectForKey:@"isAutoLogin"]boolValue];
+    self.isRememberPwd = [[aDecoder decodeObjectForKey:@"isRememberPwd"]boolValue];
     return self;
 }
+
 
 @end

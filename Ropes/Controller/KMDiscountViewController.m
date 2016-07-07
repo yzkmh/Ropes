@@ -32,9 +32,8 @@
     UIRefreshControl *_controlright;
     
     UISearchBar *_mySearchBar;
-    UISearchDisplayController *_searchDisplayController;
-    NSMutableArray *_searchList;//搜索到的列表
-    NSArray *_tempList;
+    NSArray *_tempLList;
+    NSArray *_tempRList;
     
 }
 @end
@@ -50,7 +49,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor grayColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     [self initNavigation];
     self.automaticallyAdjustsScrollViewInsets = false;
     [self initRefresh];
@@ -64,7 +63,7 @@
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchBar:)];
     self.navigationItem.rightBarButtonItem = item;
     
-    _mySearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, [UIApplication sharedApplication].statusBarFrame.size.height, [UIScreen mainScreen].bounds.size.width, 44)];
+    _mySearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, [UIApplication sharedApplication].statusBarFrame.size.height + self.navigationController.navigationBar.frame.size.height, [UIScreen mainScreen].bounds.size.width, 44)];
     
     //设置选项
     
@@ -78,15 +77,7 @@
     
     [_mySearchBar sizeToFit];
     
-    // 用 searchbar 初始化 SearchDisplayController
-    // 并把 searchDisplayController 和当前 controller 关联起来
-//    _searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:_mySearchBar contentsController:self];
-//    _searchDisplayController.delegate = self;
-//    // searchResultsDataSource 就是 UITableViewDataSource
-//    _searchDisplayController.searchResultsDataSource = self;
-//    // searchResultsDelegate 就是 UITableViewDelegate
-//    _searchDisplayController.searchResultsDelegate = self;
-
+    _mySearchBar.delegate = self;
 }
 
 /**
@@ -159,8 +150,6 @@
     }else if([tableView isEqual:_rightTableView])
     {
         return _rightList.count;
-    }else{
-        return _searchList.count;
     }
     return 0;
 }
@@ -208,24 +197,6 @@
             cell.premise.text = voucher.policyDescription;
             cell.validDate.text = voucher.invalidDate;
         }
-    }else{
-        static NSString *KMDiscountNotCell = @"KMDiscountSearchCell";
-        cell = [tableView dequeueReusableCellWithIdentifier:KMDiscountNotCell];
-        if (cell == nil) {
-            cell = [[[NSBundle mainBundle]loadNibNamed:@"KMDiscountCell" owner:self options:nil]objectAtIndex:0];
-            KMVoucher *voucher = [_searchList objectAtIndex:indexPath.row];
-            cell.title.text = voucher.senceName;
-            NSString *salaStr = [NSString stringWithFormat:@"%.1f折优惠",[voucher.discountRate floatValue]/10.0f];
-
-            cell.price.text = [salaStr stringByReplacingOccurrencesOfString:@".0" withString:@""];
-            if ([voucher.useCount isEqual:@1]) {
-                cell.state.text = @"单";
-            }else {
-                cell.state.text = @"多";
-            }
-            cell.premise.text = voucher.policyDescription;
-            cell.validDate.text = voucher.invalidDate;
-        }
     }
     return cell;
 }
@@ -244,68 +215,65 @@
 #pragma srarchBarDelegate
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
-    if (naviView.isLeft) {
-        _tempList = _leftList;
-    }else{
-        _tempList = _rightList;
-    }
+    _tempLList = _leftList;
+    _tempRList = _rightList;
 }
-
-- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    if (naviView.isLeft) {
-        if ([searchBar.text isEqualToString:@""]) {
-            _leftList = _tempList;
-            [_leftTableView reloadData];
-        }else{
-            for (KMVoucher *voucher in _leftList) {
-                if([voucher.senceName rangeOfString:searchBar.text].location !=NSNotFound)//_roaldSearchText
-                {
-                    [_searchList addObject:voucher];
-                }
-            }
-            _leftList = _searchList;
-            [_leftTableView reloadData];
-        }
+    if ([searchBar.text isEqualToString:@""]) {
+        _leftList = _tempLList;
+        _rightList = _tempRList;
+        [naviView setLabelWithConponNum1:[NSString stringWithFormat:@"%lu",(unsigned long)_leftList.count] andNum2:[NSString stringWithFormat:@"%lu",(unsigned long)_rightList.count]];
+        [_leftTableView reloadData];
+        [_rightTableView reloadData];
     }else{
-        if ([searchBar.text isEqualToString:@""]) {
-            _rightList = _tempList;
-            [_rightTableView reloadData];
-        }else{
-            for (KMVoucher *voucher in _rightList) {
-                if([voucher.senceName rangeOfString:searchBar.text].location !=NSNotFound)//_roaldSearchText
-                {
-                    [_searchList addObject:voucher];
-                }
+        NSMutableArray *tempList = [NSMutableArray new];
+        for (KMVoucher *voucher in _tempLList) {
+            if([voucher.senceName rangeOfString:searchBar.text].location !=NSNotFound)//_roaldSearchText
+            {
+                [tempList addObject:voucher];
             }
-            _rightList = _searchList;
-            [_rightTableView reloadData];
         }
+        _leftList = [NSArray arrayWithArray:tempList];
+        [tempList removeAllObjects];
+        for (KMVoucher *voucher in _tempRList) {
+            if([voucher.senceName rangeOfString:searchBar.text].location !=NSNotFound)//_roaldSearchText
+            {
+                [tempList addObject:voucher];
+            }
+        }
+        _rightList = [NSArray arrayWithArray:tempList];
+        [naviView setLabelWithConponNum1:[NSString stringWithFormat:@"%lu",(unsigned long)_leftList.count] andNum2:[NSString stringWithFormat:@"%lu",(unsigned long)_rightList.count]];
+        [_leftTableView reloadData];
+        [_rightTableView reloadData];
     }
 }
 
-#pragma UISearchDisplayDelegate
-//- (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView
-//{
-//    CGRect frame = tableView.frame;
-//    frame.origin.y = 44;
-//    [tableView setFrame:frame];
-//}
-//
-//- (void)searchDisplayController:(UISearchDisplayController *)controller willHideSearchResultsTableView:(UITableView *)tableView
-//{
-//    CGRect frame = tableView.frame;
-//    frame.origin.y = 0;
-//    [tableView setFrame:frame];
-//}
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+}
 
 - (IBAction)searchBar:(id)sender
 {
-    [self.navigationController.view addSubview:_mySearchBar];
-    
-    [_mySearchBar becomeFirstResponder];
+    if (!_mySearchBar.superview) {
+        CGRect frame = naviView.frame;
+        frame.origin.y += 44;
+        [UIView animateWithDuration:0.3 animations:^{
+            [self.view addSubview:_mySearchBar];
+            naviView.frame = frame;
+        }];
+        [_mySearchBar becomeFirstResponder];
+    }else{
+        CGRect frame = naviView.frame;
+        frame.origin.y -= 44;
+        [UIView animateWithDuration:0.3 animations:^{
+            [_mySearchBar removeFromSuperview];
+            naviView.frame = frame;
+        }];
+        [_mySearchBar resignFirstResponder];
+    }
 }
-
 /*
 #pragma mark - Navigation
 

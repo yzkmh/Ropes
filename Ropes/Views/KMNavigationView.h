@@ -20,8 +20,9 @@
 @property (nonatomic ,weak) IBOutlet UILabel *leftLable;
 @property (nonatomic ,weak) IBOutlet UILabel *rightLable;
 @property (nonatomic ,weak) IBOutlet UIView *progressView;
-
 @property (nonatomic ,weak) IBOutlet UIScrollView *showView;
+
+@property (nonatomic ,weak) id<KMNavigationViewDelegate> delegate;
 @property (nonatomic ,assign) BOOL isLeft;
 
 - (void)addToShowView:(UIView *)obj;

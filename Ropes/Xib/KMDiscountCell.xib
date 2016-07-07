@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VXl-SU-EhQ" id="0JK-fY-QlY">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="89"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使用条件：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SmV-i0-7kY">
@@ -36,21 +36,21 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="星巴克" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HgS-EY-2wD">
-                        <rect key="frame" x="22" y="8" width="150" height="25"/>
+                        <rect key="frame" x="22" y="8" width="125" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="9p4-sw-fbt"/>
-                            <constraint firstAttribute="width" constant="150" id="Ub9-HO-Lfz"/>
+                            <constraint firstAttribute="width" constant="125" id="Ub9-HO-Lfz"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="500元" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UBM-R9-zSw">
-                        <rect key="frame" x="192" y="8" width="126" height="25"/>
+                        <rect key="frame" x="163" y="8" width="155" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="0BE-QC-ded"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="15"/>
                         <color key="textColor" red="0.76862745099999996" green="0.1018434424" blue="0.068537561390000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -104,7 +104,7 @@
                     <constraint firstItem="JR5-TT-kal" firstAttribute="leading" secondItem="0JK-fY-QlY" secondAttribute="leadingMargin" constant="14" id="cc2-Hl-uo4"/>
                     <constraint firstItem="GXT-Iy-7rQ" firstAttribute="centerY" secondItem="JR5-TT-kal" secondAttribute="centerY" id="e6W-MY-qh3"/>
                     <constraint firstItem="Dqd-6e-cMW" firstAttribute="leading" secondItem="UBM-R9-zSw" secondAttribute="trailing" constant="20" id="h5p-LG-gLJ"/>
-                    <constraint firstItem="UBM-R9-zSw" firstAttribute="leading" secondItem="HgS-EY-2wD" secondAttribute="trailing" constant="20" id="kaR-gn-V2K"/>
+                    <constraint firstItem="UBM-R9-zSw" firstAttribute="leading" secondItem="HgS-EY-2wD" secondAttribute="trailing" constant="16" id="kaR-gn-V2K"/>
                     <constraint firstItem="GXT-Iy-7rQ" firstAttribute="leading" secondItem="JR5-TT-kal" secondAttribute="trailing" id="nL6-7r-HMC"/>
                     <constraint firstItem="JR5-TT-kal" firstAttribute="top" secondItem="SmV-i0-7kY" secondAttribute="bottom" id="nus-cY-m0d"/>
                     <constraint firstItem="Meg-Lf-VYa" firstAttribute="trailing" secondItem="0JK-fY-QlY" secondAttribute="trailingMargin" id="r9X-jg-fqe"/>

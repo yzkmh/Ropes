@@ -101,9 +101,6 @@
     }else{
         self.autoLoginBtn.selected = NO;
     }
-    
-//    self.phoneNumTextField.text = @"13483438214";
-//    self.passwordTextField.text = @"123456789";
 }
 // 返回注册页面
 - (void)loginToRegist:(id)sender

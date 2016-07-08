@@ -42,6 +42,11 @@
     {
         self.phoneNumTextField.text = [KMUserManager getInstance].currentUser.phone;
         [self.phoneNumTextField setUserInteractionEnabled:NO];
+//        self.phoneNumTextField.alpha = 0;
+//        
+//        CGRect frame = self.view.frame;
+//        frame.origin.y -= 60;
+//        [self.view setFrame:frame];
     }
 }
 
@@ -137,7 +142,8 @@
 
 - (IBAction)getPhoneCode:(id)sender {
         //添加90等待提示框
-        [self addTimeOff:_getVerificationCodeBtn];
+    [self addTimeOff:_getVerificationCodeBtn];
+    self.getVerificationCodeBtn.titleLabel.text = @"重新获取";
     [[KMUserManager getInstance] getPhoneCodeWithPhoneNum:self.phoneNumTextField.text andType:@"2" complation:^(BOOL result, NSString *message, id user) {
             if (result) {
                 [LCProgressHUD showSuccess:message];

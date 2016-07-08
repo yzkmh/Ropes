@@ -958,7 +958,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A3S-sA-kRK">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A3S-sA-kRK">
                                 <rect key="frame" x="-4" y="74" width="383" height="116"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提现金额:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FiL-fu-vhj">
@@ -1003,7 +1003,7 @@
                                     <constraint firstItem="Sfv-PB-Faq" firstAttribute="leading" secondItem="UAL-bh-YvJ" secondAttribute="trailing" constant="10" id="uf4-b4-V8D"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3mW-Ra-0oz">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3mW-Ra-0oz">
                                 <rect key="frame" x="-4" y="195" width="383" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TQ1-Li-W8j">
@@ -1051,7 +1051,7 @@
                                     <constraint firstItem="gKX-Hd-wMo" firstAttribute="centerY" secondItem="qA2-Cg-ifd" secondAttribute="centerY" id="xMN-7K-mJo"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="94R-wH-mey">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="94R-wH-mey">
                                 <rect key="frame" x="20" y="273" width="335" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="nC9-yW-bwU"/>
@@ -1103,7 +1103,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已添加的银行卡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCA-Ax-IQv">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="已添加的银行卡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCA-Ax-IQv">
                                 <rect key="frame" x="11" y="21" width="218" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="29" id="1s4-KT-WQl"/>
@@ -1113,7 +1113,7 @@
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="frP-mR-5vZ">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="frP-mR-5vZ">
                                 <rect key="frame" x="-4" y="163" width="383" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q2V-4G-7A5">
@@ -1144,7 +1144,7 @@
                                     <constraint firstItem="Q2V-4G-7A5" firstAttribute="leading" secondItem="frP-mR-5vZ" secondAttribute="leading" id="obJ-kk-sVz"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lzc-HO-fa2">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lzc-HO-fa2">
                                 <rect key="frame" x="-4" y="50" width="383" height="105"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="银行名:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L7P-Qd-rFt">
@@ -1264,7 +1264,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YJo-jj-C6U">
-                                <rect key="frame" x="0.0" y="76" width="383" height="58"/>
+                                <rect key="frame" x="0.0" y="74" width="375" height="58"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择银行" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sDn-KD-WaG">
                                         <rect key="frame" x="13" y="18" width="66" height="21"/>
@@ -1277,7 +1277,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NULL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hn7-fT-E8J">
-                                        <rect key="frame" x="212" y="18" width="116" height="21"/>
+                                        <rect key="frame" x="204" y="18" width="116" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="116" id="k6J-2o-O7v"/>
                                             <constraint firstAttribute="height" constant="21" id="lYj-MH-113"/>
@@ -1287,7 +1287,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pushIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="HP7-QN-ggX">
-                                        <rect key="frame" x="342" y="20" width="11" height="19"/>
+                                        <rect key="frame" x="334" y="20" width="11" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="11" id="jpD-Ur-plH"/>
                                             <constraint firstAttribute="height" constant="19" id="pHC-04-hFJ"/>
@@ -1297,12 +1297,6 @@
                                         <rect key="frame" x="87" y="8" width="288" height="39"/>
                                         <connections>
                                             <action selector="choseBankBtnClick:" destination="vFZ-2S-XHJ" eventType="touchUpInside" id="ZKX-jD-Vb5"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nvm-oS-SSV">
-                                        <rect key="frame" x="0.0" y="4" width="375" height="52"/>
-                                        <connections>
-                                            <action selector="addCardBtnClick:" destination="P0b-Yc-cvh" eventType="touchUpInside" id="NOB-BD-xqa"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1318,7 +1312,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tGV-Tz-CiT">
-                                <rect key="frame" x="0.0" y="137" width="375" height="100"/>
+                                <rect key="frame" x="0.0" y="135" width="375" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="卡  号:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gXV-0d-C9K">
                                         <rect key="frame" x="19" y="17" width="48" height="21"/>
@@ -1379,7 +1373,7 @@
                                 </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dlo-ns-RCL">
-                                <rect key="frame" x="0.0" y="240" width="375" height="92"/>
+                                <rect key="frame" x="0.0" y="238" width="375" height="92"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="持卡人 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HC8-pY-sa8">
                                         <rect key="frame" x="17" y="15" width="58" height="21"/>
@@ -1434,7 +1428,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8si-qU-FFT">
-                                <rect key="frame" x="20" y="340" width="335" height="50"/>
+                                <rect key="frame" x="20" y="338" width="335" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="xqb-Cy-fjh"/>
                                 </constraints>
@@ -1452,10 +1446,10 @@
                             <constraint firstItem="tGV-Tz-CiT" firstAttribute="leading" secondItem="SNh-Le-dKv" secondAttribute="leading" id="958-WP-ZLM"/>
                             <constraint firstItem="8si-qU-FFT" firstAttribute="top" secondItem="dlo-ns-RCL" secondAttribute="bottom" constant="8" id="M9X-pv-fP1"/>
                             <constraint firstItem="8si-qU-FFT" firstAttribute="leading" secondItem="SNh-Le-dKv" secondAttribute="leading" constant="20" id="TAE-dz-WhA"/>
-                            <constraint firstAttribute="trailing" secondItem="YJo-jj-C6U" secondAttribute="trailing" constant="-8" id="Tyh-Pf-nym"/>
+                            <constraint firstAttribute="trailing" secondItem="YJo-jj-C6U" secondAttribute="trailing" id="Tyh-Pf-nym"/>
                             <constraint firstAttribute="trailing" secondItem="8si-qU-FFT" secondAttribute="trailing" constant="20" id="Xth-xy-TqX"/>
                             <constraint firstItem="dlo-ns-RCL" firstAttribute="top" secondItem="tGV-Tz-CiT" secondAttribute="bottom" constant="3" id="Zqn-N8-Ulu"/>
-                            <constraint firstItem="YJo-jj-C6U" firstAttribute="top" secondItem="rgE-J7-Bc3" secondAttribute="bottom" constant="56" id="cJM-Vh-VRL"/>
+                            <constraint firstItem="YJo-jj-C6U" firstAttribute="top" secondItem="rgE-J7-Bc3" secondAttribute="bottom" constant="10" id="cJM-Vh-VRL"/>
                             <constraint firstItem="dlo-ns-RCL" firstAttribute="leading" secondItem="SNh-Le-dKv" secondAttribute="leading" id="dEb-ZZ-NEQ"/>
                             <constraint firstItem="YJo-jj-C6U" firstAttribute="leading" secondItem="SNh-Le-dKv" secondAttribute="leading" id="mBb-kU-fNb"/>
                             <constraint firstItem="tGV-Tz-CiT" firstAttribute="top" secondItem="YJo-jj-C6U" secondAttribute="bottom" constant="3" id="ogN-2y-89U"/>

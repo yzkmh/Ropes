@@ -11,7 +11,7 @@
 #import "LCProgressHUD.h"
 #import "NSString+MD5.h"
 #import "KMRequestCenter.h"
-@interface KMAddBankcardViewController ()<UIPickerViewDelegate,UIPickerViewDataSource>
+@interface KMAddBankcardViewController ()<UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDelegate>
 {
     BOOL pickerOpen;
     BOOL _isRequest;
@@ -34,6 +34,14 @@
     self.bankname.text = [KMUserManager getInstance].currentUser.bankname;
     self.banks = [NSArray arrayWithObjects:@"中国银行",@"中国工商银行",@"中国建设银行", nil];
     self.bankCode = @"3";
+}
+
+- (void)setTextField
+{
+    self.cardnumTextField.delegate = self;
+    self.nameTextField.delegate = self;
+    self.phonenumTextField.delegate = self;
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -115,7 +123,7 @@
         if (self.pickerView) {
             return;
         }
-        UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 154, KMMainScreenBounds.size.width, 150)];
+        UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, self.cardnumTextField.frame.origin.y, KMMainScreenBounds.size.width, 100)];
         pickerView.backgroundColor = [UIColor whiteColor];
         pickerView.dataSource = self;
         pickerView.delegate = self;
@@ -155,6 +163,12 @@
 - (void)SingleTap
 {
     [self.pickerView removeFromSuperview];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (BOOL)verifyPhoneNum
@@ -221,7 +235,6 @@
             break ;
         }
     }
-    
     return bankname;
 }
 

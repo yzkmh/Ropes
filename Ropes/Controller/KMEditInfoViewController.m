@@ -37,10 +37,13 @@
 {
     
     self.nameTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.nameTextField.delegate = self;
     self.phoneNumTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.phoneNumTextField.delegate = self;
     [self.phoneNumTextField setUserInteractionEnabled:NO];
     self.genderTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.addressTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.addressTextField.delegate = self;
     [self.genderTextField setDelegate:self];
     
     pickarray = @[@"男",@"女"];
@@ -132,11 +135,18 @@
         [textField resignFirstResponder];
     }
 }
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [UIView animateWithDuration:0.3 animations:^{
         pickerView.alpha = 0;
     }];
+    [self.view becomeFirstResponder];
 }
 // pickerView 列数
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {

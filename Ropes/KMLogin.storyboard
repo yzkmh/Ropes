@@ -1462,6 +1462,7 @@
                     <connections>
                         <outlet property="bankname" destination="Hn7-fT-E8J" id="FC7-vp-Zuy"/>
                         <outlet property="cardnumTextField" destination="RSj-og-nl0" id="fNw-gI-XZQ"/>
+                        <outlet property="cardnumView" destination="YJo-jj-C6U" id="VHu-yB-Vwg"/>
                         <outlet property="nameTextField" destination="O3Y-N0-UBf" id="rU7-Ga-XPp"/>
                         <outlet property="phonenumTextField" destination="k44-wu-z9U" id="w8O-U4-u4a"/>
                     </connections>

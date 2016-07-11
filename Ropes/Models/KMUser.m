@@ -33,7 +33,7 @@
     [aCoder encodeObject:self.userId forKey:@"userid"];
     [aCoder encodeObject:self.name forKey:@"name"];
     [aCoder encodeObject:self.phone forKey:@"phone"];
-    [aCoder encodeObject:[NSString stringWithFormat:@"%d",self.gender] forKey:@"gender"];
+    [aCoder encodeObject:[NSString stringWithFormat:@"%ld",(long)self.gender] forKey:@"gender"];
     [aCoder encodeObject:self.pwd forKey:@"pwd"];
     [aCoder encodeObject:self.bankcard forKey:@"bankcard"];
     [aCoder encodeObject:self.bankname forKey:@"bankname"];
@@ -41,6 +41,7 @@
     [aCoder encodeObject:self.sessionid forKey:@"sessionid"];
     [aCoder encodeObject:[NSString stringWithFormat:@"%d",self.isAutoLogin] forKey:@"isAutoLogin"];
     [aCoder encodeObject:[NSString stringWithFormat:@"%d",self.isRememberPwd] forKey:@"isRememberPwd"];
+    [aCoder encodeObject:self.loginDate forKey:@"loginDate"];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -57,6 +58,7 @@
     self.sessionid = [aDecoder decodeObjectForKey:@"sessionid"];
     self.isAutoLogin = [[aDecoder decodeObjectForKey:@"isAutoLogin"]boolValue];
     self.isRememberPwd = [[aDecoder decodeObjectForKey:@"isRememberPwd"]boolValue];
+    self.loginDate = [aDecoder decodeObjectForKey:@"loginDate"];
     return self;
 }
 

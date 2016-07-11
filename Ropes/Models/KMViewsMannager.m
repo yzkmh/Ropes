@@ -13,6 +13,8 @@
 #import "KMShop.h"
 #import "KMVoucher.h"
 #import "KMHistory.h"
+#import <UIKit/UIKit.h>
+#import "LCProgressHUD.h"
 
 @interface KMViewsMannager ()
 {
@@ -159,8 +161,12 @@ static KMViewsMannager * _shareKMViewsManager;
     NSString *phone = [KMUserManager getInstance].currentUser.phone;
     NSString *session = [KMUserManager getInstance].currentUser.sessionid;
     NSString *sessionpwd = [[KMUserManager getInstance].currentUser.sessionid md5WithTimes:6];
-    
+    [self checkConponMessageSendStatusInfo];
+    if ([self checkConponMessageSendStatusWithtcode:tcode]) {
+        return;
+    }
     [KMRequestCenter requestSendLotteryMessageWithPhoneNum:phone sessionId:session sessionIdPwd:sessionpwd tcode:tcode success:^(NSDictionary *dic) {
+        [self writeConponMessageSendStatusWithtcode:tcode];
         block(YES,@"发送成功");
     } failure:^(int result, NSString *errorStr) {
         block(result,errorStr);
@@ -168,11 +174,16 @@ static KMViewsMannager * _shareKMViewsManager;
 }
 - (void)sendConponMessageWithtcode:(NSString *)tcode comlation:(void(^)(BOOL result,NSString *message))block
 {
+    
     NSString *phone = [KMUserManager getInstance].currentUser.phone;
     NSString *session = [KMUserManager getInstance].currentUser.sessionid;
     NSString *sessionpwd = [[KMUserManager getInstance].currentUser.sessionid md5WithTimes:6];
-    
+    [self checkConponMessageSendStatusInfo];
+    if ([self checkConponMessageSendStatusWithtcode:tcode]) {
+        return;
+    }
     [KMRequestCenter requestSendConponMessageWithPhoneNum:phone sessionId:session sessionIdPwd:sessionpwd tcode:tcode success:^(NSDictionary *dic) {
+        [self writeConponMessageSendStatusWithtcode:tcode];
         block(YES,@"发送成功");
     } failure:^(int result, NSString *errorStr) {
         block(result,errorStr);
@@ -196,4 +207,68 @@ static KMViewsMannager * _shareKMViewsManager;
     }];
     
 }
+- (BOOL)checkConponMessageSendStatusWithtcode:(NSString *)tcode
+{
+    NSMutableDictionary *dic = [[[NSUserDefaults standardUserDefaults]objectForKey:@"MessageStatus"]objectForKey:@"tcodes"];
+    int times = [[dic objectForKey:tcode]intValue];
+    if (times >= 3) {
+        [LCProgressHUD showInfoMsg:@"此信息今日已发送3次，请查看您的手机"];
+        return YES;
+    }
+    return NO;
+}
+
+
+- (BOOL)writeConponMessageSendStatusWithtcode:(NSString *)tcode
+{
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[[[NSUserDefaults standardUserDefaults]objectForKey:@"MessageStatus"]objectForKey:@"tcodes"]];
+    int times = [[dic objectForKey:tcode]intValue];
+    if (times>0) {
+        times ++;
+        [dic setObject:[NSString stringWithFormat:@"%d",times] forKey:tcode];
+    }else{
+        [dic setObject:@"1" forKey:tcode];
+    }
+    NSMutableDictionary *statusDic =  [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults]objectForKey:@"MessageStatus"]];
+    [statusDic setObject:dic forKey:@"tcodes"];
+    
+    [[NSUserDefaults standardUserDefaults]setObject:statusDic forKey:@"MessageStatus"];
+    return [[NSUserDefaults standardUserDefaults]synchronize];
+}
+
+
+- (void)checkConponMessageSendStatusInfo
+{
+    NSDictionary *dic = [[NSUserDefaults standardUserDefaults]objectForKey:@"MessageStatus"];
+    if (dic) {
+        NSDate *sendDate = [dic objectForKey:@"sendDate"];
+        if ([self isSendDateBeyondOnedayWithDate:sendDate]) {
+            //生成一个新的字典记录发送状态
+            NSMutableDictionary *statusDic = [NSMutableDictionary new];
+            [statusDic setObject:[NSMutableDictionary new] forKey:@"tcodes"];
+            [statusDic setObject:[NSDate date] forKey:@"sendDate"];
+            [[NSUserDefaults standardUserDefaults]setObject:statusDic forKey:@"MessageStatus"];
+            [[NSUserDefaults standardUserDefaults]synchronize];
+        }
+    }else{
+        NSMutableDictionary *statusDic = [NSMutableDictionary new];
+        [statusDic setObject:[NSMutableDictionary new] forKey:@"tcodes"];
+        [statusDic setObject:[NSDate date] forKey:@"sendDate"];
+        [[NSUserDefaults standardUserDefaults]setObject:statusDic forKey:@"MessageStatus"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+    }
+}
+
+- (BOOL)isSendDateBeyondOnedayWithDate:(NSDate *)date
+{
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    unsigned int unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    NSDateComponents *d = [cal components:unitFlags fromDate:date toDate:[NSDate date] options:0];
+    BOOL result = NO;
+    if (d.day >0) {
+        result = YES;
+    }
+    return result;
+}
+
 @end

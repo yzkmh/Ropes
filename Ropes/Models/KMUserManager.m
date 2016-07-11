@@ -47,7 +47,7 @@ static KMUserManager *shareKMUserManager = nil ;
                                             success:^(NSDictionary *resultDic) {
                                                 
                                                 NSLog(@"发送短信成功");
-                                                block(YES, @"发送短信成功", [KMUser userWithDict:resultDic]);
+                                                block(YES, @"发送短信成功",nil);
                                         
                                             } failure:^(int code, NSString *errorStr) {
                                                 NSLog(@"发送短信失败, errorCode: %d -- errorMsg: %@",code,errorStr);
@@ -67,7 +67,9 @@ static KMUserManager *shareKMUserManager = nil ;
                                         password:pwd type:@"1"
                                          success:^(NSDictionary *resultDic) {
                                              
-                                             KMUser *user = [KMUser userWithDict:resultDic];
+                                             KMUser *user = [KMUser new];
+                                             user.phone = phoneNum;
+                                             user.pwd = pwd;
                                              NSLog(@"注册成功 user:%@",user);
                                              block(YES, @"注册成功", user);
                                              
@@ -192,7 +194,8 @@ static KMUserManager *shareKMUserManager = nil ;
                                         password:pwd type:@"2"
                                          success:^(NSDictionary *resultDic) {
                                              
-                                             KMUser *user = [KMUser userWithDict:resultDic];
+                                             KMUser *user = [KMUserManager getInstance].currentUser;
+                                             user.pwd = pwd;
                                              NSLog(@"修改密码成功 user:%@",user);
                                              block(YES, @"修改密码成功", user);
                                              
@@ -222,7 +225,10 @@ static KMUserManager *shareKMUserManager = nil ;
                                        sessionIdPwd:sessionidpwd
                                             success:^(NSDictionary *resultDic) {
                                                 
-                                                KMUser *user = [KMUser userWithDict:resultDic];
+                                                KMUser *user = [KMUserManager getInstance].currentUser;
+                                                user.name = name;
+                                                user.gender = gender;
+                                                user.address = address;
                                                 NSLog(@"完善用户信息成功");
                                                 block(YES, @"修改个人信息成功", user);
                                                 

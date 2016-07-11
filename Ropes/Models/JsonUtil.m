@@ -133,7 +133,11 @@
     {
         if([dicData objectForKey:prop])
         {
-            [targetObj setValue:[dicData objectForKey:prop] forKey:prop];
+            if ([[dicData objectForKey:prop] isKindOfClass:[NSNull class]]) {
+                [targetObj setValue:@"" forKey:prop];
+            }else{
+                [targetObj setValue:[dicData objectForKey:prop] forKey:prop];
+            }
         }
     }
     return targetObj;

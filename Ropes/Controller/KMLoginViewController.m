@@ -35,6 +35,9 @@
     
 //     读取本地账号信息
     KMUser *localUser = [NSKeyedUnarchiver unarchiveObjectWithFile:kPATH];
+
+
+    
     if (localUser) {
         self.phoneNumTextField.text = localUser.phone;
         if (localUser.isRememberPwd) {
@@ -46,10 +49,37 @@
         self.phoneNumTextField.text = @"";
         self.passwordTextField.text = @"";
     }
+
     if (localUser.isAutoLogin) {
-        [self loginBtnClick:nil];
+        if ([self checkLoginDateValidityWithDate:localUser.loginDate]) {
+            localUser.isRememberPwd = NO;
+            localUser.isAutoLogin = NO;
+            self.passwordTextField.text = @"";
+            [NSKeyedArchiver archiveRootObject:self.user toFile:kPATH];
+            [[[UIAlertView alloc]initWithTitle:@"提示" message:@"由于你长时间未登录，请重新输入密码" delegate:nil cancelButtonTitle:@"好" otherButtonTitles: nil] show];
+        }else{
+            [self loginBtnClick:nil];
+        }
     }
 
+}
+/**
+ *  验证登录有效性 30天
+ *
+ *  @param date 上次登录时间
+ *
+ *  @return
+ */
+- (BOOL)checkLoginDateValidityWithDate:(NSDate *)date
+{
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    unsigned int unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    NSDateComponents *d = [cal components:unitFlags fromDate:date toDate:[NSDate date] options:0];
+    BOOL result = NO;
+    if (d.hour >30*24) {
+        result = YES;
+    }
+    return result;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -110,8 +140,7 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self.phoneNumTextField resignFirstResponder];
-    [self.passwordTextField resignFirstResponder];
+    [self.view endEditing:YES];
 }
 
 // 忘记密码
@@ -148,6 +177,7 @@
                                                          self.user.isAutoLogin = YES;
                                                      }
                                                      self.user.pwd = self.passwordTextField.text;
+                                                     self.user.loginDate = [NSDate date];
                                                      // 保存账号到本地
                                                      [NSKeyedArchiver archiveRootObject:self.user toFile:kPATH];
                                                      

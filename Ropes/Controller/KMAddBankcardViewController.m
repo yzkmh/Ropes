@@ -11,17 +11,21 @@
 #import "LCProgressHUD.h"
 #import "NSString+MD5.h"
 #import "KMRequestCenter.h"
+//判断系统版本是否为参数版本
+#define LKSystemVersionGreaterOrEqualThan(version) ([[[UIDevice currentDevice] systemVersion] floatValue] >= version)
+
 @interface KMAddBankcardViewController ()<UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDelegate>
 {
     BOOL pickerOpen;
     BOOL _isRequest;
+    UIPickerView *_pickerView;
 }
 @property (weak, nonatomic) IBOutlet UILabel *bankname;
 @property (weak, nonatomic) IBOutlet UITextField *cardnumTextField;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *phonenumTextField;
-
-@property (weak, nonatomic) UIPickerView *pickerView;
+@property (weak, nonatomic) IBOutlet UIView *cardnumView;
+@property (nonatomic,assign)           CGRect currentTFFrameBeforeKBShow;        //处理第三方键盘（搜狗）高度问题
 @property (strong, nonatomic) NSArray *banks;
 @property (strong, nonatomic) NSArray *bankCodeArray;
 @property (copy, nonatomic) NSString *bankCode;
@@ -31,9 +35,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setTextField];
+    [self setNotification];
     self.bankname.text = [KMUserManager getInstance].currentUser.bankname;
     self.banks = [NSArray arrayWithObjects:@"中国银行",@"中国工商银行",@"中国建设银行", nil];
     self.bankCode = @"3";
+    
+    _pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, self.cardnumView.frame.origin.y+self.cardnumView.frame.size.height, KMMainScreenBounds.size.width, 100)];
+    _pickerView.backgroundColor = [UIColor whiteColor];
+    _pickerView.dataSource = self;
+    _pickerView.delegate = self;
+    _pickerView.alpha = 0;
+    [self.view addSubview:_pickerView];
+    
 }
 
 - (void)setTextField
@@ -43,6 +57,14 @@
     self.phonenumTextField.delegate = self;
     
 }
+
+- (void)setNotification
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+
 
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -119,22 +141,15 @@
 }
 
 - (IBAction)choseBankBtnClick:(id)sender {
-    if (!pickerOpen) {
-        if (self.pickerView) {
-            return;
-        }
-        UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, self.cardnumTextField.frame.origin.y, KMMainScreenBounds.size.width, 100)];
-        pickerView.backgroundColor = [UIColor whiteColor];
-        pickerView.dataSource = self;
-        pickerView.delegate = self;
-        
-        [self.view addSubview:pickerView];
-        self.pickerView = pickerView;
-        pickerOpen = YES;
-        return;
+    if (_pickerView.alpha == 0) {
+        [UIView animateWithDuration:0.3 animations:^{
+            _pickerView.alpha = 1;
+        }];
+    }else{
+        [UIView animateWithDuration:0.3 animations:^{
+            _pickerView.alpha = 0;
+        }];
     }
-    [self.pickerView removeFromSuperview];
-    pickerOpen = NO;
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView*)pickerView
@@ -160,16 +175,117 @@
 {
     self.bankname.text = [_banks objectAtIndex:row];
 }
-- (void)SingleTap
-{
-    [self.pickerView removeFromSuperview];
-}
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
     return YES;
 }
+
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    if (!self.view.superview) {
+        return;
+    }
+    UIWindow *keyWindow             =   [[UIApplication sharedApplication] keyWindow];
+    NSValue *rectValue              =   [notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect frame                    =   [rectValue CGRectValue];
+    
+    CGFloat space                      = 0.0f;
+    CGRect actionTFRect                = [self.phonenumTextField.superview convertRect:self.phonenumTextField.frame toView:keyWindow];
+    
+    if (CGRectEqualToRect(CGRectZero, self.currentTFFrameBeforeKBShow)) {
+        self.currentTFFrameBeforeKBShow    = actionTFRect;
+    }else{
+        actionTFRect                       = self.currentTFFrameBeforeKBShow;
+    }
+    
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    CGRect windowFrame                 = CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height);
+    CGFloat keyBoardHeight             = [self getKeyBoardHeight:frame];
+    
+    switch (orientation)
+    {
+        case UIInterfaceOrientationLandscapeLeft:
+            
+            space = CGRectGetMaxX(actionTFRect)-(CGRectGetWidth(windowFrame)-keyBoardHeight);
+            if ([[[UIDevice currentDevice] systemVersion] floatValue]>=8.0){
+                //NSLog(@"%f",CGRectGetMaxY(actionTFRect));
+                space = CGRectGetMaxY(actionTFRect) - (CGRectGetWidth(windowFrame)-keyBoardHeight);
+            }
+            break;
+        case UIInterfaceOrientationLandscapeRight:
+            space = keyBoardHeight-CGRectGetMinX(actionTFRect);
+            if ([[[UIDevice currentDevice] systemVersion] floatValue]>=8.0){
+                space = CGRectGetMaxY(actionTFRect) - (CGRectGetWidth(windowFrame)-keyBoardHeight);
+            }
+            break;
+        case UIInterfaceOrientationPortrait:
+            space = CGRectGetMaxY(actionTFRect)-(CGRectGetHeight(windowFrame)-keyBoardHeight);
+            
+            break;
+        case UIInterfaceOrientationPortraitUpsideDown:
+            space = keyBoardHeight-CGRectGetMinY(actionTFRect);
+            
+            break;
+        default:
+            break;
+    }
+    
+    
+    if (space > 0.0f) {
+        NSTimeInterval animationDuration=0.30f;
+        [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
+        [UIView setAnimationDuration:animationDuration];
+        float width = self.view.frame.size.width;
+        float height = self.view.frame.size.height;
+        //上移-Y
+        CGRect rect=CGRectMake(0.0f,-space,width,height);
+        self.view.frame=rect;
+        [UIView commitAnimations];
+    }
+    
+    
+}
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    if (!self.view.superview) {
+        return;
+    }
+    self.currentTFFrameBeforeKBShow    = CGRectZero;
+    
+    NSTimeInterval animationDuration=0.30f;
+    [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    float width = self.view.frame.size.width;
+    float height = self.view.frame.size.height;
+    //上移-Y
+    [self.view setCenter:CGPointMake(width/2, height/2)];
+    [UIView commitAnimations];
+    
+}
+
+#pragma tool
+- (CGFloat)getKeyBoardHeight:(CGRect)keyboardFrame
+{
+    CGFloat keyboardHeight = 0.0f;
+    if(LKSystemVersionGreaterOrEqualThan(8.0)){
+        keyboardHeight = keyboardFrame.size.height;
+        if (fabs(keyboardFrame.size.height - [[UIScreen mainScreen] bounds].size.height)<=0) {
+            keyboardHeight = keyboardFrame.size.width;
+        }
+        if (fabs(keyboardFrame.size.height-[[UIScreen mainScreen] bounds].size.width)<=0) {
+            keyboardHeight = keyboardFrame.size.height;
+        }
+    }else{
+        if((UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) ){
+            keyboardHeight = keyboardFrame.size.width;
+        }else{
+            keyboardHeight = keyboardFrame.size.height;
+        }
+    }
+    return keyboardHeight;
+}
+
 
 - (BOOL)verifyPhoneNum
 {
@@ -281,10 +397,17 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:YES];
+    if (_pickerView.alpha == 1) {
+        [UIView animateWithDuration:0.3 animations:^{
+            _pickerView.alpha = 0;
+        }];
+    }
 }
 
-- (void)requestForAddBankCard
+
+- (void)dealloc
 {
-    
+    [[NSNotificationCenter defaultCenter] removeObserver:self  name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self  name:UIKeyboardWillHideNotification object:nil];
 }
 @end

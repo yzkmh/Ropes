@@ -135,7 +135,7 @@
                             </mask>
                         </variation>
                     </label>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="尊敬的客户，为回馈您的支持，特发代金券50元，以示感谢。" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Lwi-Mg-Qes">
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="尊敬的客户，为回馈您的支持，特发此优惠券，以示感谢。" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Lwi-Mg-Qes">
                         <rect key="frame" x="20" y="309" width="335" height="89"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>

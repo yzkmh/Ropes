@@ -57,8 +57,7 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self.verificationTextField resignFirstResponder];
-    [self.passwordTextField resignFirstResponder];
+    [self.view endEditing:YES];
 }
 
 #pragma makr 添加等待时间

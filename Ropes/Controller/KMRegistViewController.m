@@ -56,9 +56,7 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self.phoneNumTextField resignFirstResponder];
-    [self.verificationTextField resignFirstResponder];
-    [self.passwordTextField resignFirstResponder];
+    [self.view endEditing:YES];
 }
 //获取验证码
 - (IBAction)getPhoneCode:(id)sender
@@ -70,6 +68,8 @@
         [[KMUserManager getInstance] getPhoneCodeWithPhoneNum:self.phoneNumTextField.text andType:@"1" complation:^(BOOL result, NSString *message, id user) {
             if (result) {
                 [LCProgressHUD showSuccess:message];
+            }else{
+                [LCProgressHUD showFailure:message];
             }
         }];
     } else {
@@ -91,7 +91,12 @@
                                               comlation:^(BOOL result, NSString *message, id user) {
                                         
                                                   if (result) {
+                                                      [KMUserManager getInstance].currentUser = user;
                                                       [LCProgressHUD showSuccess:message];
+                                                      [UIView animateWithDuration:0.0 delay:0.3 options:UIViewAnimationOptionLayoutSubviews animations:^{
+                                                          [self.navigationController popViewControllerAnimated:YES];
+                                                      } completion:nil];
+                                                      
                                                   } else {
                                                       if (message) {
                                                           [LCProgressHUD showFailure:message];

@@ -34,6 +34,8 @@
 
 @property (nonatomic, retain) NSMutableDictionary *ConponNumList;
 
+@property (nonatomic, retain) NSDate *loginDate;
+
 - (instancetype)initWithDict:(NSDictionary *)dict;
 + (instancetype)userWithDict:(NSDictionary *)dict;
 @end

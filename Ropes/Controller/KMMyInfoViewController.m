@@ -24,6 +24,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     self.portraitImage.image = [UIImage imageNamed:@"touxiang"];
     self.portraitImage.layer.cornerRadius = self.portraitImage.bounds.size.width * 0.5;
     self.portraitImage.layer.masksToBounds = YES;

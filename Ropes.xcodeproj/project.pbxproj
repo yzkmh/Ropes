@@ -124,6 +124,7 @@
 		ED649A5F1CE07DDC005D09C1 /* KMDiscountMoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED649A5D1CE07DDC005D09C1 /* KMDiscountMoreViewController.xib */; };
 		ED6C1E551CEB207400B81104 /* shop.png in Resources */ = {isa = PBXBuildFile; fileRef = ED6C1E541CEB207400B81104 /* shop.png */; };
 		ED6C1E5C1CEB26FC00B81104 /* userRulers.txt in Resources */ = {isa = PBXBuildFile; fileRef = ED6C1E5B1CEB26FC00B81104 /* userRulers.txt */; };
+		EDAB53451D334826002CC0D1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDAB53441D334826002CC0D1 /* Images.xcassets */; };
 		EDB8F0CD1D2CF77B00D58968 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDB8F0CC1D2CF77B00D58968 /* Foundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -331,6 +332,7 @@
 		ED649A5D1CE07DDC005D09C1 /* KMDiscountMoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KMDiscountMoreViewController.xib; sourceTree = "<group>"; };
 		ED6C1E541CEB207400B81104 /* shop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shop.png; sourceTree = "<group>"; };
 		ED6C1E5B1CEB26FC00B81104 /* userRulers.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = userRulers.txt; sourceTree = "<group>"; };
+		EDAB53441D334826002CC0D1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EDB8F0CC1D2CF77B00D58968 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -655,6 +657,7 @@
 				BB2C982A1C85431D00BAEE17 /* Main.storyboard */,
 				A70B8D691CA96F7C00575096 /* image */,
 				BB2C982D1C85431D00BAEE17 /* Assets.xcassets */,
+				EDAB53441D334826002CC0D1 /* Images.xcassets */,
 				BB2C982F1C85431D00BAEE17 /* LaunchScreen.storyboard */,
 				BB2C98321C85431D00BAEE17 /* Info.plist */,
 				BBB0196B1C869CB30071362D /* macro.pch */,
@@ -876,6 +879,7 @@
 				ED649A5F1CE07DDC005D09C1 /* KMDiscountMoreViewController.xib in Resources */,
 				A741CAC41CAFB81A001F323C /* tag_normal.png in Resources */,
 				A70B8D981CA96F7C00575096 /* pushIcon.png in Resources */,
+				EDAB53451D334826002CC0D1 /* Images.xcassets in Resources */,
 				A70B8DA81CA96F7C00575096 /* messageIcon.png in Resources */,
 				1356884A1CB3F7010017565C /* KMLotteryCell.xib in Resources */,
 				A70B8DA41CA96F7C00575096 /* bg_highlight.png in Resources */,
@@ -1144,6 +1148,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1162,6 +1167,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

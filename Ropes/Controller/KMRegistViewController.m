@@ -11,11 +11,12 @@
 #import <QuartzCore/QuartzCore.h>
 #import "LCProgressHUD.h"
 #import "KMRulersController.h"
-@interface KMRegistViewController ()
+@interface KMRegistViewController ()<UITextFieldDelegate>
 {
     UILabel *LBtimeoff;
     NSTimer *timer;
     int timeleft;
+    BOOL isRequest;
 }
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumTextField;
 @property (weak, nonatomic) IBOutlet UITextField *verificationTextField;
@@ -38,6 +39,7 @@
 
 - (void)resetTextField {
     self.phoneNumTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.phoneNumTextField.delegate = self;
     self.passwordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.verificationTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
 }
@@ -62,11 +64,16 @@
 - (IBAction)getPhoneCode:(id)sender
 {
     //验证密码有效性
-    if ([self verifyPhoneNum]) {
-        //添加60等待提示框
-        [self addTimeOff:_getVerificationCodeBtn];
+    if ([self verifyPhoneNum] && !isRequest) {
+        
+        isRequest = YES;
         [[KMUserManager getInstance] getPhoneCodeWithPhoneNum:self.phoneNumTextField.text andType:@"1" complation:^(BOOL result, NSString *message, id user) {
+            isRequest = NO;
             if (result) {
+                //添加90等待提示框
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self addTimeOff:_getVerificationCodeBtn];
+                });
                 [LCProgressHUD showSuccess:message];
             }else{
                 [LCProgressHUD showFailure:message];
@@ -121,10 +128,10 @@
 #pragma makr 添加等待时间
 - (void)addTimeOff:(UIButton *)view
 {
+    view.titleLabel.text = @"重新获取";
     if (timer) {
         [timer invalidate];
         timer = nil;
-        
     }
     if (!LBtimeoff) {
         LBtimeoff = [[UILabel alloc]initWithFrame:view.bounds];
@@ -133,8 +140,6 @@
         [LBtimeoff setTextColor:[UIColor whiteColor]];
         [LBtimeoff setTextAlignment:NSTextAlignmentCenter];
         
-//        LBtimeoff.layer.masksToBounds = YES;
-//        LBtimeoff.layer.cornerRadius = 3.0;
         LBtimeoff.layer.borderWidth = 1.0;
         LBtimeoff.layer.borderColor = [[UIColor whiteColor] CGColor];
     }
@@ -201,4 +206,19 @@
     KMRulersController *ruler = [[KMRulersController alloc] initWithNibName:@"KMRulers" bundle:[NSBundle mainBundle]];
     [self presentViewController:ruler animated:YES completion:nil];
 }
+
+#pragma mark UITextFieldDelegate
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string]; //得到输入框的内容
+    if (self.phoneNumTextField == textField)  //判断是否时我们想要限定的那个输入框
+    {
+        if ([toBeString length] > 11) { //如果输入框内容大于11则弹出警告
+            textField.text = [toBeString substringToIndex:11];
+            return NO;
+        }
+    }
+    return YES;
+}
+
 @end

@@ -10,11 +10,12 @@
 #import "KMUserManager.h"
 #import <QuartzCore/QuartzCore.h>
 #import "LCProgressHUD.h"
-@interface KMForgetPwdController()
+@interface KMForgetPwdController()<UITextFieldDelegate>
 {
     UILabel *LBtimeoff;
     NSTimer *timer;
     int timeleft;
+    BOOL isRequest;
 }
 @property (weak, nonatomic) IBOutlet UITextField *verificationTextField;
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumTextField;
@@ -32,25 +33,12 @@
 {
     [super viewDidLoad];
     [self resetTextField];
-    [self initPhoneNum];
 }
 
 
-- (void)initPhoneNum
-{
-    if ([KMUserManager getInstance].currentUser.phone)
-    {
-        self.phoneNumTextField.text = [KMUserManager getInstance].currentUser.phone;
-        [self.phoneNumTextField setUserInteractionEnabled:NO];
-//        self.phoneNumTextField.alpha = 0;
-//        
-//        CGRect frame = self.view.frame;
-//        frame.origin.y -= 60;
-//        [self.view setFrame:frame];
-    }
-}
 
 - (void)resetTextField {
+    self.phoneNumTextField.delegate = self;
     self.passwordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.verificationTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
 }
@@ -63,10 +51,10 @@
 #pragma makr 添加等待时间
 - (void)addTimeOff:(UIButton *)view
 {
+    view.titleLabel.text = @"重新获取";
     if (timer) {
         [timer invalidate];
         timer = nil;
-        
     }
     if (!LBtimeoff) {
         LBtimeoff = [[UILabel alloc]initWithFrame:view.bounds];
@@ -141,13 +129,21 @@
 
 - (IBAction)getPhoneCode:(id)sender {
         //添加90等待提示框
-    [self addTimeOff:_getVerificationCodeBtn];
-    self.getVerificationCodeBtn.titleLabel.text = @"重新获取";
-    [[KMUserManager getInstance] getPhoneCodeWithPhoneNum:self.phoneNumTextField.text andType:@"2" complation:^(BOOL result, NSString *message, id user) {
+    if ([self verifyPhoneNum] && !isRequest) {
+        isRequest = YES;
+        [[KMUserManager getInstance] getPhoneCodeWithPhoneNum:self.phoneNumTextField.text andType:@"2" complation:^(BOOL result, NSString *message, id user) {
+            isRequest = NO;
             if (result) {
+                //添加90等待提示框
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self addTimeOff:_getVerificationCodeBtn];
+                });
                 [LCProgressHUD showSuccess:message];
+            }else{
+                [LCProgressHUD showFailure:message];
             }
         }];
+    }
 }
 
 
@@ -173,7 +169,20 @@
                                                          }
         }];
     }
-    
+}
+
+#pragma mark UITextFieldDelegate
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string]; //得到输入框的内容
+    if (self.phoneNumTextField == textField)  //判断是否时我们想要限定的那个输入框
+    {
+        if ([toBeString length] > 11) { //如果输入框内容大于11则弹出警告
+            textField.text = [toBeString substringToIndex:11];
+            return NO;
+        }
+    }
+    return YES;
 }
 
 @end

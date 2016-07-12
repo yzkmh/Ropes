@@ -95,8 +95,18 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)addBtnClick:(id)sender {
-    if (![[self backbankenameWithBanknumber:self.cardnumTextField.text]isEqualToString:self.bankname.text]) {
-        [LCProgressHUD showFailure:@"银行卡号与银行名称不符"];
+    KMUser *user = [KMUserManager getInstance].currentUser;
+    if (![self.phonenumTextField.text isEqualToString:user.phone]) {
+        [LCProgressHUD showFailure:@"填写手机号与当前用户绑定手机号不符"];
+        return;
+    }
+    if (![self.nameTextField.text isEqualToString:user.name]) {
+        [LCProgressHUD showFailure:@"填写姓名与当前用户姓名不符"];
+        return;
+    }
+    if (![self verifyName])
+    {
+        [LCProgressHUD showFailure:@"请输入姓名"];
         return;
     }
     
@@ -110,11 +120,12 @@
         [LCProgressHUD showFailure:@"输入手机号有误"];
         return;
     }
-    if (![self verifyName])
-    {
-        [LCProgressHUD showFailure:@"请输入姓名"];
+
+    if (![[self backbankenameWithBanknumber:self.cardnumTextField.text]isEqualToString:self.bankname.text]) {
+        [LCProgressHUD showFailure:@"银行卡号与银行名称不符"];
         return;
     }
+    
     NSString *sessionId = [KMUserManager getInstance].currentUser.sessionid;
     NSString *sessionIdPwd = [sessionId md5WithTimes:6];
     
@@ -174,6 +185,27 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     self.bankname.text = [_banks objectAtIndex:row];
+}
+
+#pragma mark UITextFieldDelegate
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string]; //得到输入框的内容
+    if (self.phonenumTextField == textField)  //判断是否时我们想要限定的那个输入框
+    {
+        if ([toBeString length] > 11) { //如果输入框内容大于11则弹出警告
+            textField.text = [toBeString substringToIndex:11];
+            return NO;
+        }
+    }
+    if (self.cardnumTextField == textField)  //判断是否时我们想要限定的那个输入框
+    {
+        if ([toBeString length] > 16) { //如果输入框内容大于16则弹出警告
+            textField.text = [toBeString substringToIndex:16];
+            return NO;
+        }
+    }
+    return YES;
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {

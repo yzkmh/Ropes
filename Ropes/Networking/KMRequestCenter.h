@@ -89,6 +89,7 @@ typedef NS_ENUM(NSInteger,KMConponType){
                password:(NSString *)pwd
                 success:(void (^)(NSDictionary *))success
                 failure:(void (^)(int, NSString *))failure;
+
 /**
  *  注册或修改, 忘记密码
  *

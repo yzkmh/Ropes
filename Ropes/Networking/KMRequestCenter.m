@@ -32,11 +32,10 @@
                                                      subUrl:SendMessage
                                                       block:^(NSDictionary *resultDic, NSError *error) {
                                                           
-                                                          BOOL handle_state = [resultDic objectForKey:@"handler_state"];
                                                           int error_code = [[resultDic objectForKey:@"error_code"] intValue];
                                                           NSString *errorString =[resultDic objectForKey:@"error"];
                                                           
-                                                          if (handle_state && error_code == 200) {
+                                                          if (error_code == 200) {
                                                               NSLog(@"code : %d",error_code);
                                                               success(resultDic);
                                                           } else {

@@ -11,7 +11,7 @@
 #import "KMAlertView.h"
 #import "KMUser.h"
 #import "LCProgressHUD.h"
-@interface KMLoginViewController ()<KMAlertViewDelegate>
+@interface KMLoginViewController ()<KMAlertViewDelegate,UITextFieldDelegate>
 {
     int times;
 }
@@ -32,11 +32,18 @@
     [super viewDidLoad];
     [self resetNavigationBar];
     [self resetSelectBtn];
+    [self resetTextField];
     
-//     读取本地账号信息
+
+
+
+
+}
+- (void)resetTextField
+{
+    self.phoneNumTextField.delegate = self;
+    //     读取本地账号信息
     KMUser *localUser = [NSKeyedUnarchiver unarchiveObjectWithFile:kPATH];
-
-
     
     if (localUser) {
         self.phoneNumTextField.text = localUser.phone;
@@ -49,7 +56,7 @@
         self.phoneNumTextField.text = @"";
         self.passwordTextField.text = @"";
     }
-
+    
     if (localUser.isAutoLogin) {
         if ([self checkLoginDateValidityWithDate:localUser.loginDate]) {
             localUser.isRememberPwd = NO;
@@ -61,8 +68,8 @@
             [self loginBtnClick:nil];
         }
     }
-
 }
+
 /**
  *  验证登录有效性 30天
  *
@@ -231,6 +238,20 @@
         self.remeberPwdBtn.selected = YES;
     }
 }
+#pragma mark UITextFieldDelegate
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string]; //得到输入框的内容
+    if (self.phoneNumTextField == textField)  //判断是否时我们想要限定的那个输入框
+    {
+        if ([toBeString length] > 11) { //如果输入框内容大于11则弹出警告
+            textField.text = [toBeString substringToIndex:11];
+            return NO;
+        }
+    }
+    return YES;
+}
+
 
 #pragma mark - 验证输入格式
 // 手机格式

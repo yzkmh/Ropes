@@ -33,11 +33,6 @@
     [self resetNavigationBar];
     [self resetSelectBtn];
     [self resetTextField];
-    
-
-
-
-
 }
 - (void)resetTextField
 {
@@ -251,7 +246,6 @@
     }
     return YES;
 }
-
 
 #pragma mark - 验证输入格式
 // 手机格式

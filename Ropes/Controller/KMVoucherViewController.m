@@ -126,9 +126,11 @@
         _leftList = [list objectAtIndex:0];
         _rightList = [list objectAtIndex:1];
         _isRequest = YES;
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             [_leftTableView reloadData];
             [_rightTableView reloadData];
+            [naviView setLabelWithConponNum1:[NSString stringWithFormat:@"%lu",(unsigned long)_leftList.count] andNum2:[NSString stringWithFormat:@"%lu",(unsigned long)_rightList.count]];
         });
     }];
 }

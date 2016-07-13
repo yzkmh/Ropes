@@ -112,6 +112,7 @@
 		BBB019681C8693C40071362D /* KMAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB019671C8693C40071362D /* KMAlertView.xib */; };
 		BBB0196F1C86CD6D0071362D /* KMTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB0196E1C86CD6D0071362D /* KMTabBarController.m */; };
 		BBB019721C86D3F80071362D /* KMCouponCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB019711C86D3F80071362D /* KMCouponCell.xib */; };
+		ED3C857C1D35E1F600A073D2 /* KMLForgetPwdController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED3C857B1D35E1F600A073D2 /* KMLForgetPwdController.m */; };
 		ED649A2A1CDB3185005D09C1 /* KMViewsMannager.m in Sources */ = {isa = PBXBuildFile; fileRef = ED649A291CDB3185005D09C1 /* KMViewsMannager.m */; };
 		ED649A2D1CDB3D2A005D09C1 /* KMLottery.m in Sources */ = {isa = PBXBuildFile; fileRef = ED649A2C1CDB3D2A005D09C1 /* KMLottery.m */; };
 		ED649A301CDB4AA3005D09C1 /* JsonUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = ED649A2F1CDB4AA3005D09C1 /* JsonUtil.m */; };
@@ -312,6 +313,8 @@
 		BBB0196D1C86CD6D0071362D /* KMTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMTabBarController.h; sourceTree = "<group>"; };
 		BBB0196E1C86CD6D0071362D /* KMTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMTabBarController.m; sourceTree = "<group>"; };
 		BBB019711C86D3F80071362D /* KMCouponCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KMCouponCell.xib; sourceTree = "<group>"; };
+		ED3C857A1D35E1F600A073D2 /* KMLForgetPwdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMLForgetPwdController.h; sourceTree = "<group>"; };
+		ED3C857B1D35E1F600A073D2 /* KMLForgetPwdController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMLForgetPwdController.m; sourceTree = "<group>"; };
 		ED649A281CDB3185005D09C1 /* KMViewsMannager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMViewsMannager.h; sourceTree = "<group>"; };
 		ED649A291CDB3185005D09C1 /* KMViewsMannager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMViewsMannager.m; sourceTree = "<group>"; };
 		ED649A2B1CDB3D2A005D09C1 /* KMLottery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMLottery.h; sourceTree = "<group>"; };
@@ -724,6 +727,8 @@
 				BB8EF3E61CE9CAE400D8AEBA /* KMRulersController.m */,
 				A70B54631CA8088F00E919C6 /* KMForgetPwdController.h */,
 				A70B54641CA8088F00E919C6 /* KMForgetPwdController.m */,
+				ED3C857A1D35E1F600A073D2 /* KMLForgetPwdController.h */,
+				ED3C857B1D35E1F600A073D2 /* KMLForgetPwdController.m */,
 				BB8FB2B51C857C7E00EFCE91 /* KMRegistViewController.h */,
 				BB8FB2B61C857C7E00EFCE91 /* KMRegistViewController.m */,
 				BBB0195F1C86883D0071362D /* KMLoginViewController.h */,
@@ -957,6 +962,7 @@
 				A7A971FF1CB1A81200847478 /* NSNumber+FlickerNumber.m in Sources */,
 				A70B54651CA8088F00E919C6 /* KMForgetPwdController.m in Sources */,
 				BB2C98291C85431D00BAEE17 /* ViewController.m in Sources */,
+				ED3C857C1D35E1F600A073D2 /* KMLForgetPwdController.m in Sources */,
 				1356886F1CB561D90017565C /* KMShopCell.m in Sources */,
 				BB8EF3DE1CE577EF00D8AEBA /* KMTransaction.m in Sources */,
 				A712D6091CB0DBF30008FB99 /* KMEditInfoViewController.m in Sources */,

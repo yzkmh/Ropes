@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface KMForgetPwdController : UIViewController
-@property (nonatomic, copy) NSString *phoneNum;
+
 @end

@@ -10,6 +10,7 @@
 #import "KMUser.h"
 @interface KMUserManager : NSObject
 @property (nonatomic, strong) KMUser *currentUser;
+@property (nonatomic, assign) BOOL isChangeBankInfo;
 
 //单例
 + (KMUserManager *)getInstance;

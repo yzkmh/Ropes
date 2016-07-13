@@ -8,6 +8,7 @@
 
 #import "KMMyInfoViewController.h"
 #import "KMUserManager.h"
+#import "KMLForgetPwdController.h"
 
 @interface KMMyInfoViewController()
 @property (weak, nonatomic) IBOutlet UIImageView *portraitImage;
@@ -44,7 +45,9 @@
 }
 - (IBAction)resetPwdBtnClick:(id)sender {
     // 跳转到重置密码界面
-    [self performSegueWithIdentifier:@"myInfoToForgetPwd" sender:self];
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"KMLogin" bundle:nil];
+    KMLForgetPwdController *forgetPwd = [storyboard instantiateViewControllerWithIdentifier:@"KMLForgetPwd"];
+    [self.navigationController pushViewController:forgetPwd animated:YES];
 }
 - (IBAction)logoutBtnClick:(id)sender {
     // 跳转回登录界面

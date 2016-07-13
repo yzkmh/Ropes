@@ -37,6 +37,7 @@
     [super viewDidLoad];
     [self setTextField];
     [self setNotification];
+    [self setData];
     self.bankname.text = [KMUserManager getInstance].currentUser.bankname;
     self.banks = [NSArray arrayWithObjects:@"中国银行",@"中国工商银行",@"中国建设银行", nil];
     self.bankCode = @"3";
@@ -48,6 +49,16 @@
     _pickerView.alpha = 0;
     [self.view addSubview:_pickerView];
     
+}
+- (void)setData
+{
+    if ([KMUserManager getInstance].isChangeBankInfo) {
+        self.bankname.text = [KMUserManager getInstance].currentUser.bankname;
+        self.cardnumTextField.text = [KMUserManager getInstance].currentUser.bankcard;
+        self.nameTextField.text = [KMUserManager getInstance].currentUser.name;
+        self.phonenumTextField.text = [KMUserManager getInstance].currentUser.phone;
+        [KMUserManager getInstance].isChangeBankInfo = NO;
+    }
 }
 
 - (void)setTextField
@@ -83,6 +94,7 @@
             }
             self.banks = [array copy];
             self.bankCodeArray = [codeArray copy];
+            [_pickerView reloadAllComponents];
             _isRequest =YES;
         } failure:^(int code, NSString *result) {
             

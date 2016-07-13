@@ -29,7 +29,7 @@
     self.view.backgroundColor = [UIColor colorWithRed:0.941 green:0.945 blue:0.949 alpha:1];
     self.automaticallyAdjustsScrollViewInsets = false;
     
-    _table = [[UITableView alloc]initWithFrame:CGRectMake(0, 44+22, self.view.frame.size.width, self.view.frame.size.height)];
+    _table = [[UITableView alloc]initWithFrame:CGRectMake(0, 44+22, self.view.frame.size.width, self.view.frame.size.height-66-48)];
     [_table setDelegate:self];
     [_table setDataSource:self];
     _table.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];

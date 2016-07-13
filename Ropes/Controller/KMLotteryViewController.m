@@ -136,6 +136,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [_leftTableView reloadData];
             [_rightTableView reloadData];
+            [naviView setLabelWithConponNum1:[NSString stringWithFormat:@"%lu",(unsigned long)_leftList.count] andNum2:[NSString stringWithFormat:@"%lu",(unsigned long)_rightList.count]];
         });
     }];
 }

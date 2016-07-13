@@ -42,6 +42,11 @@
     self.phoneNumTextField.delegate = self;
     self.passwordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.verificationTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    
+    self.getVerificationCodeBtn.layer.masksToBounds = YES;
+    self.getVerificationCodeBtn.layer.cornerRadius = 3.0;
+    self.getVerificationCodeBtn.layer.borderWidth = 1.0;
+    self.getVerificationCodeBtn.layer.borderColor = [[UIColor whiteColor] CGColor];
 }
 
 - (void)resetNavigationBar
@@ -128,7 +133,7 @@
 #pragma makr 添加等待时间
 - (void)addTimeOff:(UIButton *)view
 {
-    view.titleLabel.text = @"重新获取";
+    [view setTitle:@"重新获取" forState:UIControlStateNormal];
     if (timer) {
         [timer invalidate];
         timer = nil;

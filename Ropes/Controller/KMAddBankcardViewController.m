@@ -212,8 +212,8 @@
     }
     if (self.cardnumTextField == textField)  //判断是否时我们想要限定的那个输入框
     {
-        if ([toBeString length] > 16) { //如果输入框内容大于16则弹出警告
-            textField.text = [toBeString substringToIndex:16];
+        if ([toBeString length] > 19) { //如果输入框内容大于16则弹出警告
+            textField.text = [toBeString substringToIndex:19];
             return NO;
         }
     }

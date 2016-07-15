@@ -139,6 +139,8 @@
             [_leftTableView reloadData];
             [_rightTableView reloadData];
             [naviView setLabelWithConponNum1:[NSString stringWithFormat:@"%lu",(unsigned long)_leftList.count] andNum2:[NSString stringWithFormat:@"%lu",(unsigned long)_rightList.count]];
+            [[KMUserManager getInstance].currentUser.ConponNumList setObject:[NSString stringWithFormat:@"%lu",(unsigned long)_leftList.count] forKey:@"zc"];
+            [[KMUserManager getInstance].currentUser.ConponNumList setObject:[NSString stringWithFormat:@"%lu",(unsigned long)_rightList.count] forKey:@"zn"];
         });
     }];
 }

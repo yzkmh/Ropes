@@ -64,17 +64,11 @@
     _mySearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, [UIApplication sharedApplication].statusBarFrame.size.height + self.navigationController.navigationBar.frame.size.height, [UIScreen mainScreen].bounds.size.width, 44)];
     
     //设置选项
-    
     _mySearchBar.barTintColor = [UIColor whiteColor];
-    
     _mySearchBar.searchBarStyle = UISearchBarStyleDefault;
-    
     _mySearchBar.translucent = NO; //是否半透明
-    
     [_mySearchBar setAutocapitalizationType:UITextAutocapitalizationTypeNone];
-    
     [_mySearchBar sizeToFit];
-    
     _mySearchBar.delegate = self;
 }
 
@@ -113,12 +107,8 @@
     _rightTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [naviView addToShowView:_rightTableView];
     
-    
     [naviView setLabelWithConponNum1:[NSString stringWithFormat:@"%@",[[KMUserManager getInstance].currentUser.ConponNumList objectForKey:@"cl"]] andNum2:[NSString stringWithFormat:@"%@",[[KMUserManager getInstance].currentUser.ConponNumList objectForKey:@"nl"]]];
-    
     [self.view addSubview:naviView];
-    
-    
 }
 
 - (void)initData
@@ -137,6 +127,8 @@
             [_leftTableView reloadData];
             [_rightTableView reloadData];
             [naviView setLabelWithConponNum1:[NSString stringWithFormat:@"%lu",(unsigned long)_leftList.count] andNum2:[NSString stringWithFormat:@"%lu",(unsigned long)_rightList.count]];
+            [[KMUserManager getInstance].currentUser.ConponNumList setObject:[NSString stringWithFormat:@"%lu",(unsigned long)_leftList.count] forKey:@"cl"];
+            [[KMUserManager getInstance].currentUser.ConponNumList setObject:[NSString stringWithFormat:@"%lu",(unsigned long)_rightList.count] forKey:@"nl"];
         });
     }];
 }
@@ -210,6 +202,7 @@
         lotteryMore.lottery = [_leftList objectAtIndex:indexPath.row];
     }else if([tableView isEqual:_rightTableView]){
         lotteryMore.lottery = [_rightList objectAtIndex:indexPath.row];
+        [lotteryMore setBtnClose];
     }
     [self.navigationController pushViewController:lotteryMore animated:YES];
 }

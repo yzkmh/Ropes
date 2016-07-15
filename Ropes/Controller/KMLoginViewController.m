@@ -294,27 +294,25 @@
         }];
         
     } else {
-        
-
         [self.alertView removeFromSuperview];
         [self performSegueWithIdentifier:@"loginToForgetPwd" sender:self];
     }
 }
 
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    
-    if([segue.identifier isEqualToString:@"loginToForgetPwd"])
-    {
-        
-        id theSegue = segue.destinationViewController;
-        
-        [theSegue setValue:self.phoneNumTextField.text forKey:@"phoneNum"];
-        
-    }           
-    
-}
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    
+//    if([segue.identifier isEqualToString:@"loginToForgetPwd"])
+//    {
+//        
+//        id theSegue = segue.destinationViewController;
+//        
+//        [theSegue setValue:self.phoneNumTextField.text forKey:@"phoneNum"];
+//        
+//    }           
+//    
+//}
 
 
 @end

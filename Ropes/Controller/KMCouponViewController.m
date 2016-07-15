@@ -46,10 +46,13 @@
         self.tableView.scrollEnabled = NO;
     }
     self.tableView.showsVerticalScrollIndicator = NO;
-    
     self.user = [KMUserManager getInstance].currentUser;
-    NSLog(@"%@",self.user.ConponNumList);
-    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.tableView reloadData];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

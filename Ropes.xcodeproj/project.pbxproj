@@ -67,7 +67,6 @@
 		A712D6091CB0DBF30008FB99 /* KMEditInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A712D6081CB0DBF30008FB99 /* KMEditInfoViewController.m */; };
 		A712D60D1CB0F1130008FB99 /* NSArray+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = A712D60C1CB0F1130008FB99 /* NSArray+Log.m */; };
 		A741CABA1CAF7A03001F323C /* LCProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A741CAB91CAF7A03001F323C /* LCProgressHUD.m */; };
-		A741CABC1CAF7A0A001F323C /* LCProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A741CABB1CAF7A0A001F323C /* LCProgressHUD.bundle */; };
 		A741CAC01CAF7C80001F323C /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A741CABF1CAF7C80001F323C /* MBProgressHUD.m */; };
 		A741CAC31CAFB81A001F323C /* tag_highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = A741CAC11CAFB81A001F323C /* tag_highlight.png */; };
 		A741CAC41CAFB81A001F323C /* tag_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = A741CAC21CAFB81A001F323C /* tag_normal.png */; };
@@ -113,6 +112,7 @@
 		BBB0196F1C86CD6D0071362D /* KMTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB0196E1C86CD6D0071362D /* KMTabBarController.m */; };
 		BBB019721C86D3F80071362D /* KMCouponCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB019711C86D3F80071362D /* KMCouponCell.xib */; };
 		ED3C857C1D35E1F600A073D2 /* KMLForgetPwdController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED3C857B1D35E1F600A073D2 /* KMLForgetPwdController.m */; };
+		ED4327531D388594001266A8 /* LCProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ED4327521D388594001266A8 /* LCProgressHUD.bundle */; };
 		ED649A2A1CDB3185005D09C1 /* KMViewsMannager.m in Sources */ = {isa = PBXBuildFile; fileRef = ED649A291CDB3185005D09C1 /* KMViewsMannager.m */; };
 		ED649A2D1CDB3D2A005D09C1 /* KMLottery.m in Sources */ = {isa = PBXBuildFile; fileRef = ED649A2C1CDB3D2A005D09C1 /* KMLottery.m */; };
 		ED649A301CDB4AA3005D09C1 /* JsonUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = ED649A2F1CDB4AA3005D09C1 /* JsonUtil.m */; };
@@ -230,7 +230,6 @@
 		A712D60C1CB0F1130008FB99 /* NSArray+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Log.m"; sourceTree = "<group>"; };
 		A741CAB81CAF7A03001F323C /* LCProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCProgressHUD.h; sourceTree = "<group>"; };
 		A741CAB91CAF7A03001F323C /* LCProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCProgressHUD.m; sourceTree = "<group>"; };
-		A741CABB1CAF7A0A001F323C /* LCProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LCProgressHUD.bundle; sourceTree = "<group>"; };
 		A741CABE1CAF7C80001F323C /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		A741CABF1CAF7C80001F323C /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		A741CAC11CAFB81A001F323C /* tag_highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tag_highlight.png; sourceTree = "<group>"; };
@@ -315,6 +314,7 @@
 		BBB019711C86D3F80071362D /* KMCouponCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KMCouponCell.xib; sourceTree = "<group>"; };
 		ED3C857A1D35E1F600A073D2 /* KMLForgetPwdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMLForgetPwdController.h; sourceTree = "<group>"; };
 		ED3C857B1D35E1F600A073D2 /* KMLForgetPwdController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMLForgetPwdController.m; sourceTree = "<group>"; };
+		ED4327521D388594001266A8 /* LCProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = LCProgressHUD.bundle; path = LCProgressHUD/LCProgressHUD.bundle; sourceTree = "<group>"; };
 		ED649A281CDB3185005D09C1 /* KMViewsMannager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMViewsMannager.h; sourceTree = "<group>"; };
 		ED649A291CDB3185005D09C1 /* KMViewsMannager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMViewsMannager.m; sourceTree = "<group>"; };
 		ED649A2B1CDB3D2A005D09C1 /* KMLottery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMLottery.h; sourceTree = "<group>"; };
@@ -469,9 +469,9 @@
 			isa = PBXGroup;
 			children = (
 				A741CABD1CAF7C80001F323C /* MBProgressHUD */,
-				A741CABB1CAF7A0A001F323C /* LCProgressHUD.bundle */,
 				A741CAB81CAF7A03001F323C /* LCProgressHUD.h */,
 				A741CAB91CAF7A03001F323C /* LCProgressHUD.m */,
+				ED4327521D388594001266A8 /* LCProgressHUD.bundle */,
 				A741CAC51CAFBF3E001F323C /* UIImage+reSize.h */,
 				A741CAC61CAFBF3E001F323C /* UIImage+reSize.m */,
 			);
@@ -913,7 +913,6 @@
 				A70B8D901CA96F7C00575096 /* yellowTip.png in Resources */,
 				135688691CB560A80017565C /* KMShopCell.xib in Resources */,
 				A70B8D991CA96F7C00575096 /* infoIcon.png in Resources */,
-				A741CABC1CAF7A0A001F323C /* LCProgressHUD.bundle in Resources */,
 				A70B8D931CA96F7C00575096 /* unselected.png in Resources */,
 				135688481CB3F6170017565C /* KMLotteryMoreViewController.xib in Resources */,
 				ED649A571CE07B2B005D09C1 /* KMDiscountCell.xib in Resources */,
@@ -925,6 +924,7 @@
 				A70B8D951CA96F7C00575096 /* card.png in Resources */,
 				135688671CB55B500017565C /* KMVoucherMoreViewController.xib in Resources */,
 				BBB019721C86D3F80071362D /* KMCouponCell.xib in Resources */,
+				ED4327531D388594001266A8 /* LCProgressHUD.bundle in Resources */,
 				A7C667261CAFDB7500094D7B /* touxiang.png in Resources */,
 				A70B8D9F1CA96F7C00575096 /* card_normal.png in Resources */,
 				BBB019681C8693C40071362D /* KMAlertView.xib in Resources */,

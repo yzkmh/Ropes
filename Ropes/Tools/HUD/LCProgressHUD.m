@@ -32,9 +32,11 @@
     
     LCProgressHUD *hud = [LCProgressHUD sharedHUD];
     [hud show:YES];
-    [hud setLabelText:text];
+    [hud setDetailsLabelText:text];
+//    [hud setLabelText:text];
     [hud setRemoveFromSuperViewOnHide:YES];
-    [hud setLabelFont:[UIFont boldSystemFontOfSize:TEXT_SIZE]];
+    [hud setDetailsLabelFont:[UIFont boldSystemFontOfSize:TEXT_SIZE]];
+    //[hud setLabelFont:[UIFont boldSystemFontOfSize:TEXT_SIZE]];
     [hud setMinSize:CGSizeMake(BGVIEW_WIDTH, BGVIEW_WIDTH)];
     [[UIApplication sharedApplication].keyWindow addSubview:hud];
     

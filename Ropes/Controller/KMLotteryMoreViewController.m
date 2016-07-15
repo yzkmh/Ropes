@@ -16,6 +16,7 @@
 @interface KMLotteryMoreViewController ()<UITableViewDataSource ,UITableViewDelegate>
 {
     UITableView *_tableView;
+    BOOL isClose;
     
 }
 @end
@@ -104,19 +105,26 @@
         [self.navigationController pushViewController:shopView animated:YES];
     }else if(indexPath.row == 0)
     {
-        [LCProgressHUD showLoading:@"正在发送信息"];
-        
-       [[KMViewsMannager getInstance]sendLotteryMessageWithtcode:_lottery.tcode comlation:^(BOOL result, NSString *message) {
-           if (result) {
-               [LCProgressHUD showSuccess:@"发送成功"];
-           }else{
-               [LCProgressHUD showFailure:message];
-           }
-       }];
+        if (isClose) {
+            [LCProgressHUD showFailure:@"信息已过期"];
+        }else{
+            [LCProgressHUD showLoading:@"正在发送信息"];
+            
+            [[KMViewsMannager getInstance]sendLotteryMessageWithtcode:_lottery.tcode comlation:^(BOOL result, NSString *message) {
+                if (result) {
+                    [LCProgressHUD showSuccess:@"发送成功"];
+                }else{
+                    [LCProgressHUD showFailure:message];
+                }
+            }];
+        }
     }
 }
 
-
+- (void)setBtnClose
+{
+    isClose = YES;
+}
 
 /*
 #pragma mark - Navigation

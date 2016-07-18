@@ -35,9 +35,6 @@
     }else{
         self.cardNumLabel.text = @"";
     }
-
-    
-    
     [LCProgressHUD showLoading:nil];
     
 }

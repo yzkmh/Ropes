@@ -30,6 +30,10 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+}
 
 - (BOOL)verification
 {

@@ -50,11 +50,8 @@
 }
 
 - (IBAction)transactionsBtnClick:(id)sender {
-    
     [self performSegueWithIdentifier:@"walletToTransactions" sender:self];
-    
 }
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.destinationViewController isKindOfClass:[KMBalanceViewController class]]) {
@@ -62,7 +59,6 @@
         bv.cashNum = self.cashNum;
     }
 }
-
 - (void)queryBalance
 {
     NSString *phone = [KMUserManager getInstance].currentUser.phone;

@@ -209,7 +209,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gd8-JK-pBZ">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gd8-JK-pBZ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RUJ-WK-Kcs">
@@ -940,7 +940,7 @@
                         <outlet property="drawBtn" destination="k8h-70-qz2" id="kuG-RM-aYq"/>
                         <segue destination="WEu-dL-BEB" kind="show" identifier="balance2withdraw" id="6Ak-dD-ZF9"/>
                         <segue destination="o9N-hs-Tr3" kind="show" identifier="myInfoToEditInfo" id="8g8-Uz-BdP"/>
-                        <segue destination="vFZ-2S-XHJ" kind="show" identifier="balance2addbankcard" id="BBi-5l-TSv"/>
+                        <segue destination="P0b-Yc-cvh" kind="show" identifier="balance2addbankcard" id="06p-f7-Nge"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ndx-2F-heE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1085,7 +1085,7 @@
                     <connections>
                         <outlet property="cardNumLabel" destination="gKX-Hd-wMo" id="BN8-Uh-6aQ"/>
                         <outlet property="withdrawNum" destination="UAL-bh-YvJ" id="0m4-RY-Fu9"/>
-                        <segue destination="P0b-Yc-cvh" kind="show" identifier="withdraw2bankcard" id="8ga-MH-kyT"/>
+                        <segue destination="vFZ-2S-XHJ" kind="show" identifier="withdraw2bankcard" id="MBD-7i-33Z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="890-nR-tOl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1104,7 +1104,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已添加的银行卡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCA-Ax-IQv">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="已添加的银行卡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCA-Ax-IQv">
                                 <rect key="frame" x="11" y="21" width="218" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="29" id="1s4-KT-WQl"/>
@@ -1114,7 +1114,7 @@
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="frP-mR-5vZ">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="frP-mR-5vZ">
                                 <rect key="frame" x="-4" y="163" width="383" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q2V-4G-7A5">
@@ -1145,7 +1145,7 @@
                                     <constraint firstItem="Q2V-4G-7A5" firstAttribute="leading" secondItem="frP-mR-5vZ" secondAttribute="leading" id="obJ-kk-sVz"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lzc-HO-fa2">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lzc-HO-fa2">
                                 <rect key="frame" x="-4" y="50" width="383" height="105"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="银行名:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L7P-Qd-rFt">
@@ -2107,9 +2107,9 @@
     <inferredMetricsTieBreakers>
         <segue reference="8ZT-UF-nHT"/>
         <segue reference="aec-bp-8Y5"/>
-        <segue reference="Xao-oT-ted"/>
-        <segue reference="BBi-5l-TSv"/>
-        <segue reference="8g8-Uz-BdP"/>
         <segue reference="6Ak-dD-ZF9"/>
+        <segue reference="8g8-Uz-BdP"/>
+        <segue reference="06p-f7-Nge"/>
+        <segue reference="MBD-7i-33Z"/>
     </inferredMetricsTieBreakers>
 </document>

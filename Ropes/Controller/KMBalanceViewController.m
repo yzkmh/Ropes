@@ -67,7 +67,6 @@
     }
 }
 - (IBAction)bankcardBtnClick:(id)sender {
-    [KMUserManager getInstance].isChangeBankInfo = YES;
     [self performSegueWithIdentifier:@"balance2addbankcard" sender:self];
 }
 

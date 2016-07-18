@@ -53,6 +53,7 @@
     return YES;
 }
 - (IBAction)addBankCardBtnClick:(id)sender {
+    [KMUserManager getInstance].isChangeBankInfo = YES;
     [self performSegueWithIdentifier:@"withdraw2bankcard" sender:self];
 }
 

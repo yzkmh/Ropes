@@ -18,19 +18,20 @@
 
 @interface KMDiscountViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 {
+    //上导航控件
     KMNavigationView *naviView;
-    
+    //左右列表类
     UITableView *_leftTableView;
     UITableView *_rightTableView;
-    
+    //防止重复请求
     BOOL _isRequest;
-    
+    //列表类数据数组
     NSArray *_leftList;
     NSArray *_rightList;
-    
+    //下拉刷新控件
     UIRefreshControl *_controlleft;
     UIRefreshControl *_controlright;
-    
+    //搜索控件及搜索中间存储数组
     UISearchBar *_mySearchBar;
     NSArray *_tempLList;
     NSArray *_tempRList;
@@ -101,9 +102,8 @@
 }
 - (void)initNavigation
 {
-    
     naviView = [[[NSBundle mainBundle] loadNibNamed:@"KMNavigationView" owner:self options:nil]objectAtIndex:0];
-    [naviView setFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64)];
+    [naviView setFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64-44)];
     _leftTableView = [[UITableView alloc]initWithFrame:CGRectMake(naviView.bounds.origin.x, 0, naviView.bounds.size.width, naviView.bounds.size.height-45)];
     [_leftTableView setDelegate:self];
     [_leftTableView setDataSource:self];
@@ -115,8 +115,7 @@
     [_rightTableView setDataSource:self];
     _rightTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [naviView addToShowView:_rightTableView];
-    
-    
+    //初始化导航选项卡标题
     [naviView setLabelWithConponNum1:[NSString stringWithFormat:@"%@",[[KMUserManager getInstance].currentUser.ConponNumList objectForKey:@"zc"]] andNum2:[NSString stringWithFormat:@"%@",[[KMUserManager getInstance].currentUser.ConponNumList objectForKey:@"zn"]]];
     
     [self.view addSubview:naviView];
@@ -138,7 +137,9 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [_leftTableView reloadData];
             [_rightTableView reloadData];
+            //更新导航栏数量
             [naviView setLabelWithConponNum1:[NSString stringWithFormat:@"%lu",(unsigned long)_leftList.count] andNum2:[NSString stringWithFormat:@"%lu",(unsigned long)_rightList.count]];
+            //更新主页面数量
             [[KMUserManager getInstance].currentUser.ConponNumList setObject:[NSString stringWithFormat:@"%lu",(unsigned long)_leftList.count] forKey:@"zc"];
             [[KMUserManager getInstance].currentUser.ConponNumList setObject:[NSString stringWithFormat:@"%lu",(unsigned long)_rightList.count] forKey:@"zn"];
         });
@@ -173,7 +174,7 @@
             KMVoucher *voucher = [_leftList objectAtIndex:indexPath.row];
             cell.title.text = voucher.senceName;
             NSString *salaStr = [NSString stringWithFormat:@"%.1f折优惠",[voucher.discountRate floatValue]/10.0f];
-            cell.price.text = [salaStr stringByReplacingOccurrencesOfString:@".0" withString:@""];
+            cell.price.text = [NSString stringWithFormat:@"%@元",[salaStr stringByReplacingOccurrencesOfString:@".0" withString:@""]];;
             if ([voucher.useCount isEqual:@1]) {
                 cell.state.text = @"单";
             }else {
@@ -191,7 +192,7 @@
             KMVoucher *voucher = [_rightList objectAtIndex:indexPath.row];
             cell.title.text = voucher.senceName;
             NSString *salaStr = [NSString stringWithFormat:@"%.1f折优惠",[voucher.discountRate floatValue]/10.0f];
-            cell.price.text = [salaStr stringByReplacingOccurrencesOfString:@".0" withString:@""];
+            cell.price.text = [NSString stringWithFormat:@"%@元",[salaStr stringByReplacingOccurrencesOfString:@".0" withString:@""]];
             if ([voucher.useCount isEqual:@1]) {
                 cell.state.text = @"单";
             }else {

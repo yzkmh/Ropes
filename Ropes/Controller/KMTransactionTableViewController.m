@@ -38,9 +38,12 @@
     }
     return _transactionArray;
 }
-
+/**
+ *  获取收支记录
+ */
 - (void)cashReHis
 {
+    
     [LCProgressHUD showLoading:nil];
     NSString *phone = [KMUserManager getInstance].currentUser.phone;
     NSString *sessionId = [KMUserManager getInstance].currentUser.sessionid;

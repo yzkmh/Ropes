@@ -85,7 +85,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="Suv-7M-buD"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="13"/>
                         <color key="textColor" red="0.76862745099999996" green="0.1018434424" blue="0.068537561390000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -94,7 +94,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="bV1-J0-tET"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="15"/>
                         <color key="textColor" red="0.76862745099999996" green="0.1018434424" blue="0.068537561390000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>

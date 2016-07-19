@@ -29,7 +29,7 @@
             
         }
         
-        return [NSString stringWithFormat:@"%@.00",string];
+        return string;
         
     }
     

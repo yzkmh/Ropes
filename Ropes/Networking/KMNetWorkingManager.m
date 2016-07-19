@@ -52,7 +52,6 @@ static KMNetWorkingManager *_instance = nil;
     NSLog(@"parameter = %@",parameters);
     
    [[[self class] sharedManager] POST:urlString parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-       //NSString *aString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
        NSError *error;
        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:&error];
        NSLog(@"resultDic -- %@",dic);

@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (![[KMUserManager getInstance].currentUser.bankname isEqualToString:@""] && ![[KMUserManager getInstance].currentUser.bankcard isEqualToString:@""]) {
-        self.cardNumLabel.text = [NSString stringWithFormat:@"%@ **** **** **** **** %@",[KMUserManager getInstance].currentUser.bankname,[[KMUserManager getInstance].currentUser.bankcard substringFromIndex:[KMUserManager getInstance].currentUser.bankcard.length -4]];
+        self.cardNumLabel.text = [NSString stringWithFormat:@"%@ **** **** **** %@",[KMUserManager getInstance].currentUser.bankname,[[KMUserManager getInstance].currentUser.bankcard substringFromIndex:[KMUserManager getInstance].currentUser.bankcard.length -4]];
     }else{
         self.cardNumLabel.text = @"";
     }
@@ -63,7 +63,7 @@
     }
     [self requestForWithdraw];
 }
-
+//提现接口
 - (void)requestForWithdraw
 {
     KMUser *user = [KMUserManager getInstance].currentUser;

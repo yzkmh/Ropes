@@ -42,6 +42,7 @@
     self.banks = [NSArray arrayWithObjects:@"中国银行",@"中国工商银行",@"中国建设银行", nil];
     self.bankCode = @"3";
     
+    //初始化银行名选择列表
     _pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, self.cardnumView.frame.origin.y+self.cardnumView.frame.size.height, KMMainScreenBounds.size.width, 100)];
     _pickerView.backgroundColor = [UIColor whiteColor];
     _pickerView.dataSource = self;
@@ -68,7 +69,9 @@
     self.phonenumTextField.delegate = self;
     
 }
-
+/**
+ *  注册键盘监听
+ */
 - (void)setNotification
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
@@ -373,6 +376,13 @@
         return YES;
     }
 }
+/**
+ *  判断银行卡号与开卡行是否相符
+ *
+ *  @param banknumber 卡号
+ *
+ *  @return 开卡银行
+ */
 -(NSString *)backbankenameWithBanknumber:(NSString *)banknumber{
     NSString *bankNumber = [banknumber stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSDictionary *dic;
@@ -397,7 +407,13 @@
     }
     return bankname;
 }
-
+/**
+ *  验证银行卡有效
+ *
+ *  @param cardNo 卡号
+ *
+ *  @return
+ */
 - (BOOL) checkCardNo:(NSString*) cardNo{
     int oddsum = 0;     //奇数求和
     int evensum = 0;    //偶数求和

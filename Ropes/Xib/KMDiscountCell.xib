@@ -50,7 +50,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="0BE-QC-ded"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="15"/>
+                        <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="14"/>
                         <color key="textColor" red="0.76862745099999996" green="0.1018434424" blue="0.068537561390000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>

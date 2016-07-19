@@ -11,6 +11,8 @@
 #import "KMWithdrawViewController.h"
 #import "LCProgressHUD.h"
 #import "KMUserManager.h"
+#import "KMRequestCenter.h"
+#import "NSString+MD5.h"
 @interface KMBalanceViewController()
 @property (weak, nonatomic) IBOutlet UILabel *cashLabel;
 @property (weak, nonatomic) IBOutlet UIButton *drawBtn;
@@ -24,7 +26,7 @@
     [super viewDidLoad];
     NSNumber *num = [[NSNumber alloc] initWithFloat:[self.cashNum floatValue]];
     if (![[KMUserManager getInstance].currentUser.bankname isEqualToString:@""] && ![[KMUserManager getInstance].currentUser.bankcard isEqualToString:@""]) {
-        self.cardNumLabel.text = [NSString stringWithFormat:@"%@ **** **** **** **** %@",[KMUserManager getInstance].currentUser.bankname,[[KMUserManager getInstance].currentUser.bankcard substringFromIndex:[KMUserManager getInstance].currentUser.bankcard.length -4]];
+        self.cardNumLabel.text = [NSString stringWithFormat:@"%@ **** **** **** %@",[KMUserManager getInstance].currentUser.bankname,[[KMUserManager getInstance].currentUser.bankcard substringFromIndex:[KMUserManager getInstance].currentUser.bankcard.length -4]];
     }else{
         self.cardNumLabel.text = @"";
     }
@@ -41,6 +43,12 @@
         [self.drawBtn setUserInteractionEnabled:YES];
     }
 }
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self queryBalance];
+}
+
 - (IBAction)withdrawBtnClick:(id)sender {
     
     if ([[KMUserManager getInstance].currentUser.name isEqualToString:@""]) {
@@ -68,6 +76,35 @@
 }
 - (IBAction)bankcardBtnClick:(id)sender {
     [self performSegueWithIdentifier:@"balance2addbankcard" sender:self];
+}
+/**
+ *  获取余额
+ */
+- (void)queryBalance
+{
+    NSString *phone = [KMUserManager getInstance].currentUser.phone;
+    NSString *sessionId = [KMUserManager getInstance].currentUser.sessionid;
+    NSString *sessionIdPwd = [[sessionId substringToIndex:9] md5WithTimes:6];
+    [KMRequestCenter requestForDoBalanceInqueryWithNum:phone
+                                             sessionId:sessionId
+                                          sessionIdPwd:sessionIdPwd
+                                          requestPhone:phone
+                                               success:^(NSDictionary *resultDic) {
+                                                   
+                                                   NSString *cashnum = @"0";
+                                                   if ([resultDic objectForKey:@"cashnum"] != [NSNull null]) {
+                                                       cashnum = [resultDic objectForKey:@"cashnum"];
+                                                   }
+                                                   
+                                                   dispatch_async(dispatch_get_main_queue(), ^{
+                                                       NSNumber *num = [[NSNumber alloc] initWithFloat:[cashnum floatValue]];
+                                                       self.cashLabel.text = [num formatNumberDecimal];
+                                                   });
+                                                   
+                                                   self.cashNum =cashnum;
+                                                   [LCProgressHUD hide];
+                                               }
+                                               failure:nil];
 }
 
 @end

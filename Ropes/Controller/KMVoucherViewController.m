@@ -100,14 +100,14 @@
 - (void)initNavigation
 {
     naviView = [[[NSBundle mainBundle] loadNibNamed:@"KMNavigationView" owner:self options:nil]objectAtIndex:0];
-    [naviView setFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64)];
-    _leftTableView = [[UITableView alloc]initWithFrame:CGRectMake(naviView.bounds.origin.x, 10, naviView.bounds.size.width, naviView.bounds.size.height-45)];
+    [naviView setFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64-44)];
+    _leftTableView = [[UITableView alloc]initWithFrame:CGRectMake(naviView.bounds.origin.x, 0, naviView.bounds.size.width, naviView.bounds.size.height-45)];
     [_leftTableView setDelegate:self];
     [_leftTableView setDataSource:self];
     _leftTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [naviView addToShowView:_leftTableView];
     
-    _rightTableView = [[UITableView alloc]initWithFrame:CGRectMake(naviView.bounds.size.width, 10, naviView.bounds.size.width, naviView.bounds.size.height-45)];
+    _rightTableView = [[UITableView alloc]initWithFrame:CGRectMake(naviView.bounds.size.width, 0, naviView.bounds.size.width, naviView.bounds.size.height-45)];
     [_rightTableView setDelegate:self];
     [_rightTableView setDataSource:self];
     _rightTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -164,16 +164,16 @@
             cell = [[[NSBundle mainBundle]loadNibNamed:@"KMVoucherCell" owner:self options:nil]objectAtIndex:0];
             KMVoucher *voucher = [_leftList objectAtIndex:indexPath.row];
             cell.title.text = voucher.senceName;
-            cell.price.text = voucher.consumeCount;
-            cell.banlance.text = voucher.balance;
+            cell.price.text = [NSString stringWithFormat:@"%@元",voucher.consumeCount];
+            cell.banlance.text =[NSString stringWithFormat:@"余额:%@元",voucher.balance];
             if (![voucher.policyDescription isKindOfClass:[NSNull class]]) {
                 cell.premise.text = voucher.policyDescription;
             }else{
                 cell.premise.text = @"";
             }
-            if ([voucher.useCounttype isEqual:@1]) {
+            if ([voucher.consumetype isEqual:@1]) {
                 cell.state.text = @"单";
-            }else if([voucher.useCounttype isEqual:@2]) {
+            }else {
                 cell.state.text = @"多";
             }
             cell.validDate.text = voucher.invalidDate;
@@ -186,16 +186,16 @@
             cell = [[[NSBundle mainBundle]loadNibNamed:@"KMVoucherCell" owner:self options:nil]objectAtIndex:0];
             KMVoucher *voucher = [_rightList objectAtIndex:indexPath.row];
             cell.title.text = voucher.senceName;
-            cell.price.text = voucher.consumeCount;
-            cell.banlance.text = voucher.balance;
+            cell.price.text = [NSString stringWithFormat:@"%@元",voucher.consumeCount];
+            cell.banlance.text =[NSString stringWithFormat:@"余额:%@元",voucher.balance];
             if (![voucher.policyDescription isKindOfClass:[NSNull class]]) {
                 cell.premise.text = voucher.policyDescription;
             }else{
                 cell.premise.text = @"";
             }
-            if ([voucher.useCounttype isEqual:@1]) {
+            if ([voucher.consumetype isEqual:@1]) {
                 cell.state.text = @"单";
-            }else if([voucher.useCounttype isEqual:@2]) {
+            }else {
                 cell.state.text = @"多";
             }
             cell.validDate.text = voucher.invalidDate;

@@ -125,7 +125,7 @@
         return;
     }
     
-    if (![self checkCardNo:self.cardnumTextField.text])
+    if (![self verifyCardNum])
     {
         [LCProgressHUD showFailure:@"输入银行卡号有误"];
         return;
@@ -415,6 +415,9 @@
  *  @return
  */
 - (BOOL) checkCardNo:(NSString*) cardNo{
+    
+    //^([0-9]{16}|[0-9]{19})$
+    
     int oddsum = 0;     //奇数求和
     int evensum = 0;    //偶数求和
     int allsum = 0;

@@ -29,17 +29,18 @@
     
     NSNumber *num = [[NSNumber alloc] initWithInt:0];
     self.balanceLabel.text = [num formatNumberDecimal];
-    if (![[KMUserManager getInstance].currentUser.bankname isEqualToString:@""] && ![[KMUserManager getInstance].currentUser.bankcard isEqualToString:@""]) {
-        self.cardNumLabel.text = [NSString stringWithFormat:@"%@ **** **** **** %@",[KMUserManager getInstance].currentUser.bankname,[[KMUserManager getInstance].currentUser.bankcard substringFromIndex:[KMUserManager getInstance].currentUser.bankcard.length -4]];
-    }else{
-        self.cardNumLabel.text = @"";
-    }
+
     [LCProgressHUD showLoading:nil];
     
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    if (![[KMUserManager getInstance].currentUser.bankname isEqualToString:@""] && ![[KMUserManager getInstance].currentUser.bankcard isEqualToString:@""]) {
+        self.cardNumLabel.text = [NSString stringWithFormat:@"%@ **** **** **** %@",[KMUserManager getInstance].currentUser.bankname,[[KMUserManager getInstance].currentUser.bankcard substringFromIndex:[KMUserManager getInstance].currentUser.bankcard.length -4]];
+    }else{
+        self.cardNumLabel.text = @"";
+    }
     [super viewDidAppear:animated];
     [self queryBalance];
 }

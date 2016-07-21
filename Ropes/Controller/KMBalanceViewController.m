@@ -25,11 +25,7 @@
 {
     [super viewDidLoad];
     NSNumber *num = [[NSNumber alloc] initWithFloat:[self.cashNum floatValue]];
-    if (![[KMUserManager getInstance].currentUser.bankname isEqualToString:@""] && ![[KMUserManager getInstance].currentUser.bankcard isEqualToString:@""]) {
-        self.cardNumLabel.text = [NSString stringWithFormat:@"%@ **** **** **** %@",[KMUserManager getInstance].currentUser.bankname,[[KMUserManager getInstance].currentUser.bankcard substringFromIndex:[KMUserManager getInstance].currentUser.bankcard.length -4]];
-    }else{
-        self.cardNumLabel.text = @"";
-    }
+
     
     self.cashLabel.text = [num formatNumberDecimal];
     if ([self.cashNum floatValue] == 0.0f) {
@@ -47,6 +43,11 @@
 {
     [super viewDidAppear:animated];
     [self queryBalance];
+    if (![[KMUserManager getInstance].currentUser.bankname isEqualToString:@""] && ![[KMUserManager getInstance].currentUser.bankcard isEqualToString:@""]) {
+        self.cardNumLabel.text = [NSString stringWithFormat:@"%@ **** **** **** %@",[KMUserManager getInstance].currentUser.bankname,[[KMUserManager getInstance].currentUser.bankcard substringFromIndex:[KMUserManager getInstance].currentUser.bankcard.length -4]];
+    }else{
+        self.cardNumLabel.text = @"";
+    }
 }
 
 - (IBAction)withdrawBtnClick:(id)sender {

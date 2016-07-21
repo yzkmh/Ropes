@@ -154,9 +154,10 @@
                                             BOOL status = [[resultDic objectForKey:@"status"] boolValue];
                                             if (status)
                                             {
+                                                [KMUserManager getInstance].currentUser.bankname = self.bankname.text;
+                                                [KMUserManager getInstance].currentUser.bankcard = self.cardnumTextField.text;
                                                 [LCProgressHUD showSuccess:@"添加成功"];
-                                                
-                                                
+
                                             } else
                                             {
                                                 [LCProgressHUD showFailure:[resultDic objectForKey:@"msg"]];

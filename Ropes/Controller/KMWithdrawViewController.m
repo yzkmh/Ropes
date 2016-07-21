@@ -46,6 +46,10 @@
         [LCProgressHUD showFailure:@"余额不足, 无法提现"];
         return NO;
     }
+    if ([self.withdrawNum.text floatValue]  > 8000.0f) {
+        [LCProgressHUD showFailure:@"提现金额超过8000, 无法提现"];
+        return NO;
+    }
     if (![KMUserManager getInstance].currentUser.bankcard || ![KMUserManager getInstance].currentUser.bankname ) {
         [LCProgressHUD showFailure:@"银行卡数据有误"];
         return NO;

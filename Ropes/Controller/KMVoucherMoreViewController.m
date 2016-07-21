@@ -25,7 +25,6 @@
     [_tableView setDataSource:self];
     [_tableView setDelegate:self];
     
-    
     [self.view addSubview:_tableView];
     
     

@@ -186,8 +186,8 @@
 		1356887A1CB747640017565C /* KMAuthenticationMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMAuthenticationMoreViewController.h; sourceTree = "<group>"; };
 		1356887B1CB747640017565C /* KMAuthenticationMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMAuthenticationMoreViewController.m; sourceTree = "<group>"; };
 		1356887C1CB747640017565C /* KMAuthenticationMoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KMAuthenticationMoreViewController.xib; sourceTree = "<group>"; };
-		1357B66E1CA4B69D00BDF221 /* KMUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMUserManager.h; sourceTree = "<group>"; };
-		1357B66F1CA4B69D00BDF221 /* KMUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMUserManager.m; sourceTree = "<group>"; };
+		1357B66E1CA4B69D00BDF221 /* KMUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KMUserManager.h; path = ../Models/KMUserManager.h; sourceTree = "<group>"; };
+		1357B66F1CA4B69D00BDF221 /* KMUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KMUserManager.m; path = ../Models/KMUserManager.m; sourceTree = "<group>"; };
 		136E1AD21CA670A2005B3F4D /* KMCouponViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMCouponViewController.h; sourceTree = "<group>"; };
 		136E1AD31CA670A2005B3F4D /* KMCouponViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMCouponViewController.m; sourceTree = "<group>"; };
 		136E1AD51CA670D6005B3F4D /* KMCoupon.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = KMCoupon.storyboard; sourceTree = "<group>"; };
@@ -315,12 +315,12 @@
 		ED3C857A1D35E1F600A073D2 /* KMLForgetPwdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMLForgetPwdController.h; sourceTree = "<group>"; };
 		ED3C857B1D35E1F600A073D2 /* KMLForgetPwdController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMLForgetPwdController.m; sourceTree = "<group>"; };
 		ED4327521D388594001266A8 /* LCProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = LCProgressHUD.bundle; path = LCProgressHUD/LCProgressHUD.bundle; sourceTree = "<group>"; };
-		ED649A281CDB3185005D09C1 /* KMViewsMannager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMViewsMannager.h; sourceTree = "<group>"; };
-		ED649A291CDB3185005D09C1 /* KMViewsMannager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMViewsMannager.m; sourceTree = "<group>"; };
+		ED649A281CDB3185005D09C1 /* KMViewsMannager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KMViewsMannager.h; path = ../Models/KMViewsMannager.h; sourceTree = "<group>"; };
+		ED649A291CDB3185005D09C1 /* KMViewsMannager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KMViewsMannager.m; path = ../Models/KMViewsMannager.m; sourceTree = "<group>"; };
 		ED649A2B1CDB3D2A005D09C1 /* KMLottery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMLottery.h; sourceTree = "<group>"; };
 		ED649A2C1CDB3D2A005D09C1 /* KMLottery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMLottery.m; sourceTree = "<group>"; };
-		ED649A2E1CDB4AA3005D09C1 /* JsonUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonUtil.h; sourceTree = "<group>"; };
-		ED649A2F1CDB4AA3005D09C1 /* JsonUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonUtil.m; sourceTree = "<group>"; };
+		ED649A2E1CDB4AA3005D09C1 /* JsonUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JsonUtil.h; path = ../Models/JsonUtil.h; sourceTree = "<group>"; };
+		ED649A2F1CDB4AA3005D09C1 /* JsonUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JsonUtil.m; path = ../Models/JsonUtil.m; sourceTree = "<group>"; };
 		ED649A321CDC3674005D09C1 /* KMShop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMShop.h; sourceTree = "<group>"; };
 		ED649A331CDC3674005D09C1 /* KMShop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMShop.m; sourceTree = "<group>"; };
 		ED649A351CDC474C005D09C1 /* KMVoucher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMVoucher.h; sourceTree = "<group>"; };
@@ -382,6 +382,10 @@
 		135688501CB3F9B50017565C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				ED649A281CDB3185005D09C1 /* KMViewsMannager.h */,
+				ED649A291CDB3185005D09C1 /* KMViewsMannager.m */,
+				1357B66E1CA4B69D00BDF221 /* KMUserManager.h */,
+				1357B66F1CA4B69D00BDF221 /* KMUserManager.m */,
 				135688511CB3F9B50017565C /* KMNavigationView.h */,
 				135688521CB3F9B50017565C /* KMNavigationView.m */,
 				135688531CB3F9B50017565C /* KMNavigationView.xib */,
@@ -420,12 +424,6 @@
 		1357B66A1CA4B32300BDF221 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				ED649A2E1CDB4AA3005D09C1 /* JsonUtil.h */,
-				ED649A2F1CDB4AA3005D09C1 /* JsonUtil.m */,
-				ED649A281CDB3185005D09C1 /* KMViewsMannager.h */,
-				ED649A291CDB3185005D09C1 /* KMViewsMannager.m */,
-				1357B66E1CA4B69D00BDF221 /* KMUserManager.h */,
-				1357B66F1CA4B69D00BDF221 /* KMUserManager.m */,
 				A7D69FB11CA719550018E187 /* KMUser.h */,
 				A7D69FB21CA719550018E187 /* KMUser.m */,
 				ED649A2B1CDB3D2A005D09C1 /* KMLottery.h */,
@@ -489,6 +487,8 @@
 		A70B545F1CA7D21800E919C6 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				ED649A2E1CDB4AA3005D09C1 /* JsonUtil.h */,
+				ED649A2F1CDB4AA3005D09C1 /* JsonUtil.m */,
 				A712D60A1CB0F1130008FB99 /* Log */,
 				A702525D1CAD702500A88698 /* HUD */,
 				A70B54601CA7D39B00E919C6 /* NSString+MD5.h */,

@@ -174,7 +174,7 @@
             KMVoucher *voucher = [_leftList objectAtIndex:indexPath.row];
             cell.title.text = voucher.senceName;
             NSString *salaStr = [NSString stringWithFormat:@"%.1f折优惠",[voucher.discountRate floatValue]/10.0f];
-            cell.price.text = [NSString stringWithFormat:@"%@元",[salaStr stringByReplacingOccurrencesOfString:@".0" withString:@""]];;
+            cell.price.text = [NSString stringWithFormat:@"%@",[salaStr stringByReplacingOccurrencesOfString:@".0" withString:@""]];;
             if ([voucher.useCount isEqual:@1]) {
                 cell.state.text = @"单";
             }else {
@@ -192,7 +192,7 @@
             KMVoucher *voucher = [_rightList objectAtIndex:indexPath.row];
             cell.title.text = voucher.senceName;
             NSString *salaStr = [NSString stringWithFormat:@"%.1f折优惠",[voucher.discountRate floatValue]/10.0f];
-            cell.price.text = [NSString stringWithFormat:@"%@元",[salaStr stringByReplacingOccurrencesOfString:@".0" withString:@""]];
+            cell.price.text = [NSString stringWithFormat:@"%@",[salaStr stringByReplacingOccurrencesOfString:@".0" withString:@""]];
             if ([voucher.useCount isEqual:@1]) {
                 cell.state.text = @"单";
             }else {

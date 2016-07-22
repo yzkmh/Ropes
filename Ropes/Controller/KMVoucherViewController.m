@@ -122,7 +122,8 @@
     [LCProgressHUD showLoading:nil];
     [[KMViewsMannager getInstance]getViewsInfomationWithConponType:KMVoucherType comlation:^(BOOL result, NSArray *list) {
         [LCProgressHUD hide];
-        
+        [_controlleft endRefreshing];
+        [_controlright endRefreshing];
         _leftList = [list objectAtIndex:0];
         _rightList = [list objectAtIndex:1];
         _isRequest = YES;

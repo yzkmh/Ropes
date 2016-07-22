@@ -42,8 +42,8 @@
 
 - (BOOL)verification
 {
-    
-    if (self.withdrawNum.text.length == 0) {
+//    NSLog(@"%f",[self.withdrawNum.text floatValue]);
+    if (self.withdrawNum.text.length == 0 || [self.withdrawNum.text floatValue] <= 0.0f) {
         [LCProgressHUD showFailure:@"请输入提现金额"];
         return NO;
     }

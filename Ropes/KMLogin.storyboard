@@ -717,7 +717,7 @@
                                             <action selector="bankCardBtnClick:" destination="oAg-Da-zJh" eventType="touchUpInside" id="ibW-M3-ccz"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0M-jx-fWc">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0M-jx-fWc">
                                         <rect key="frame" x="69" y="16" width="279" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="4Se-m7-8Zp"/>
@@ -878,7 +878,7 @@
                                             <constraint firstAttribute="height" constant="19" id="tnm-s2-MVk"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nji-MX-mcA">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nji-MX-mcA">
                                         <rect key="frame" x="79" y="15" width="269" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="ApU-tY-0SE"/>
@@ -1023,7 +1023,7 @@
                                         <color key="textColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKX-Hd-wMo">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKX-Hd-wMo">
                                         <rect key="frame" x="70" y="14" width="278" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="HGe-cr-T15"/>
@@ -2105,7 +2105,7 @@
         <image name="unselected.png" width="26" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8ZT-UF-nHT"/>
+        <segue reference="FLX-vg-ZWx"/>
         <segue reference="aec-bp-8Y5"/>
         <segue reference="6Ak-dD-ZF9"/>
         <segue reference="8g8-Uz-BdP"/>

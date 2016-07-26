@@ -35,6 +35,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
+forBarMetrics:UIBarMetricsDefault];
     [self setTextField];
     [self setNotification];
     [self setData];

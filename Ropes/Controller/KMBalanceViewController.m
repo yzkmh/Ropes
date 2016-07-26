@@ -24,6 +24,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
+forBarMetrics:UIBarMetricsDefault];
     NSNumber *num = [[NSNumber alloc] initWithFloat:[self.cashNum floatValue]];
 
     

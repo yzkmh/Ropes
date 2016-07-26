@@ -155,7 +155,7 @@
                             <constraint firstAttribute="height" constant="80" id="79o-EV-wxf"/>
                         </constraints>
                     </tableView>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="尊敬的客户，为回馈您的支持，特发代金券，以示感谢。" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SUf-iA-L54">
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="尊敬的客户，为回馈您的支持，特发代金券，以示感谢。" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SUf-iA-L54">
                         <rect key="frame" x="16" y="338" width="343" height="89"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>

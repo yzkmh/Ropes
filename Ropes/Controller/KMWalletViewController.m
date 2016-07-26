@@ -26,6 +26,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
+forBarMetrics:UIBarMetricsDefault];
     
     NSNumber *num = [[NSNumber alloc] initWithInt:0];
     self.balanceLabel.text = [num formatNumberDecimal];

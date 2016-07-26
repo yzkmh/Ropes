@@ -168,7 +168,7 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="尊敬的客户，为回馈您的支持，特发此折扣券，以示感谢。" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="IA8-EA-Pzn">
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="尊敬的客户，为回馈您的支持，特发此折扣券，以示感谢。" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="IA8-EA-Pzn">
                         <rect key="frame" x="20" y="367" width="335" height="89"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>

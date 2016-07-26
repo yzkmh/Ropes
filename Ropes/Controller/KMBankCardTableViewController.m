@@ -24,6 +24,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
+forBarMetrics:UIBarMetricsDefault];
     KMUser *user = [[KMUserManager getInstance] currentUser];
     self.bankName.text = user.bankname;
     self.name.text = user.name;

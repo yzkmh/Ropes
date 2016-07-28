@@ -592,11 +592,13 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="autoLoginBtn" destination="bDa-56-IlJ" id="E7s-JO-DwN"/>
+                        <outlet property="autoLoginLabel" destination="hcd-rO-vCO" id="sI7-Xa-xrf"/>
                         <outlet property="forgetPwdBtn" destination="Nv3-aZ-oRi" id="0dv-0X-pj9"/>
                         <outlet property="loginBtn" destination="r2a-1y-Kx0" id="XTq-SO-SHi"/>
                         <outlet property="passwordTextField" destination="eVu-w7-enV" id="vyc-cu-taD"/>
                         <outlet property="phoneNumTextField" destination="sOR-9P-2f7" id="j5c-tO-RwT"/>
                         <outlet property="remeberPwdBtn" destination="3rD-zG-odO" id="6wM-kC-c4l"/>
+                        <outlet property="remeberPwdLabel" destination="zq5-6W-GuG" id="HO4-IL-ePf"/>
                         <segue destination="ynN-1E-5T7" kind="presentation" identifier="loginToTabBar" id="FLX-vg-ZWx"/>
                         <segue destination="gbr-Zi-bRh" kind="show" identifier="loginToForgetPwd" id="aec-bp-8Y5"/>
                         <segue destination="B0V-m2-Zii" kind="show" identifier="loginToRegist" id="pqx-SK-7dJ"/>

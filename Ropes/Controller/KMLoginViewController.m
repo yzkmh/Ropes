@@ -35,7 +35,19 @@ forBarMetrics:UIBarMetricsDefault];
     [self resetNavigationBar];
     [self resetSelectBtn];
     [self resetTextField];
+    [self addGestureRecognizer];
 }
+- (void)addGestureRecognizer
+{
+    [self.remeberPwdLabel setUserInteractionEnabled:YES];
+    UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(remeberBtnClick:)];
+    [self.remeberPwdLabel addGestureRecognizer:tap1];
+    
+    [self.autoLoginLabel setUserInteractionEnabled:YES];
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(autoLoginBtnClick:)];
+    [self.autoLoginLabel addGestureRecognizer:tap2];
+}
+
 - (void)resetTextField
 {
     self.phoneNumTextField.delegate = self;
@@ -222,9 +234,7 @@ forBarMetrics:UIBarMetricsDefault];
 - (IBAction)remeberBtnClick:(id)sender {
     
     self.remeberPwdBtn.selected = !self.remeberPwdBtn.selected;
-    if (![self.remeberPwdBtn isSelected]) {
-        self.autoLoginBtn.selected = NO;
-    }
+    self.autoLoginBtn.selected = self.remeberPwdBtn.selected;
 }
 
 - (IBAction)autoLoginBtnClick:(id)sender {

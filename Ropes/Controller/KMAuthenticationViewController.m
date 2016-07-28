@@ -119,8 +119,7 @@ forBarMetrics:UIBarMetricsDefault];
     [naviView setLabelWithConponNum1:[NSString stringWithFormat:@"%@",[[KMUserManager getInstance].currentUser.ConponNumList objectForKey:@"sc"]] andNum2:[NSString stringWithFormat:@"%@",[[KMUserManager getInstance].currentUser.ConponNumList objectForKey:@"sn"]]];
     
     [self.view addSubview:naviView];
-    
-    
+
 }
 
 - (void)initData

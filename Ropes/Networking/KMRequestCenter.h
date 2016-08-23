@@ -10,45 +10,45 @@
 
 
 // 短信调用接口
-#define SendMessage @"http://122.49.7.211/cappController/doSendMessage"
+#define SendMessage @"http://www.smartou.com/cappController/doSendMessage"
 // 登录接口
-#define Login       @"http://122.49.7.211/cappController/doLogin"
+#define Login       @"http://www.smartou.com/cappController/doLogin"
 // 注册或修改,忘记密码接口
-#define Register    @"http://122.49.7.211/cappController/doRegister"
+#define Register    @"http://www.smartou.com/cappController/doRegister"
 // 完善客户信息
-#define UpdateDetail @"http://122.49.7.211/cappController/doUpdateDetail"
+#define UpdateDetail @"http://www.smartou.com/cappController/doUpdateDetail"
 // 登录时获取主页数据接口
-#define CIndex @"http://122.49.7.211/cappController/cIndex"
+#define CIndex @"http://www.smartou.com/cappController/cIndex"
 // 登录获取主页彩票数据
-#define CLotteryIndex @"http://122.49.7.211/cappControllerLot/cLotteryIndex"
+#define CLotteryIndex @"http://www.smartou.com/cappControllerLot/cLotteryIndex"
 // 获取信息
-#define ViewInformation @"http://122.49.7.211/cappController/viewInformation"
+#define ViewInformation @"http://www.smartou.com/cappController/viewInformation"
 // 查询身份认证信息
-#define LotteryInquery @"http://122.49.7.211/cappControllerLot/lotteryInquery"
+#define LotteryInquery @"http://www.smartou.com/cappControllerLot/lotteryInquery"
 //可使用门店查询
-#define GetUsedScen @"http://122.49.7.211/cappControllerLot/getUsedScen"
+#define GetUsedScen @"http://www.smartou.com/cappControllerLot/getUsedScen"
 //查询彩票代金券信息
-#define LotteryInqueryVoucher @"http://122.49.7.211/cappControllerLot/lotteryInqueryVoucher"
+#define LotteryInqueryVoucher @"http://www.smartou.com/cappControllerLot/lotteryInqueryVoucher"
 //发送短信（彩票）
-#define GetMars @"http://122.49.7.211/cappControllerLot/getMars"
+#define GetMars @"http://www.smartou.com/cappControllerLot/getMars"
 //立即使用
-#define Immediately @"http://122.49.7.211/cappController/immediately"
+#define Immediately @"http://www.smartou.com/cappController/immediately"
 //获取彩票使用记录
-#define GetUsedHis @"http://122.49.7.211/cappControllerLot/getUsedHis"
+#define GetUsedHis @"http://www.smartou.com/cappControllerLot/getUsedHis"
 //彩票外使用记录
-#define UsedHis @"http://122.49.7.211/cappController/usedHis"
+#define UsedHis @"http://www.smartou.com/cappController/usedHis"
 //可使用门店非彩票
-#define UseAble @"http://122.49.7.211/cappController/useAble"
+#define UseAble @"http://www.smartou.com/cappController/useAble"
 // 查询余额
-#define BalanceInquery @"http://122.49.7.211/cappController/doBalanceInquery"
+#define BalanceInquery @"http://www.smartou.com/cappController/doBalanceInquery"
 // 查询收支记录
-#define CashReHis @"http://122.49.7.211/cappController/doCashReHis"
+#define CashReHis @"http://www.smartou.com/cappController/doCashReHis"
 // 提现
-#define DoCashRe @"http://122.49.7.211/cappController/doCashRe"
+#define DoCashRe @"http://www.smartou.com/cappController/doCashRe"
 // 添加银行卡
-#define DoInsertBankInfo @"http://122.49.7.211/cappController/doInsertBankInfo"
+#define DoInsertBankInfo @"http://www.smartou.com/cappController/doInsertBankInfo"
 //银行卡列表
-#define DoRequestBankName @"http://122.49.7.211/cappController/doRequestBankName"
+#define DoRequestBankName @"http://www.smartou.com/cappController/doRequestBankName"
 
 
 typedef NS_ENUM(NSInteger,KMConponType){
